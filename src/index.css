@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  @apply font-body text-navy-900;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display;
+}
+
+::selection {
+  background-color: #f5ae13;
+  color: #000e28;
+}
+
+/* Custom scrollbar (subtle, not intrusive) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eef2fb;
+}
+::-webkit-scrollbar-thumb {
+  background: #b9c6e8;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8fa3d6;
+}
+
+/* Reusable underline-on-hover for nav links */
+.nav-link {
+  position: relative;
+  padding-bottom: 4px;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #1450e0, #f5ae13);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* Focus glow for form inputs */
+.input-glow {
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.input-glow:focus {
+  outline: none;
+  border-color: #1450e0;
+  box-shadow: 0 0 0 4px rgba(20, 80, 224, 0.15);
+}
+
+/* Card lift hover */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(15, 31, 74, 0.16);
+}
+
+.bg-grid-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
