@@ -1,300 +1,570 @@
+
 import React from "react";
-import { motion } from "framer-motion";
-import {
-  Brain,
-  BarChart3,
-  Settings,
-  Cloud,
-  Cpu,
-  Users,
-  ArrowRight,
-  Send,
-  MapPin,
-  Mail,
-  Phone,
-} from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import tracksBG from "../assets/hero/ideax-2026-conference-tracks-banner.webp";
+import {
+  ArrowRight,
+  BarChart3,
+  Scale,
+  Settings,
+  Lightbulb,
+  Users,
+  Leaf,
+  Globe2,
+  Send,
+  Network,
+  ChevronRight,
+} from "lucide-react";
+
+// Replace these with your SYNERGY 2026 image files.
+import tracksBG from "../assets/img/conference.png";
 import trackCtaBg from "../assets/hero/ideax-2026-conference-tracks-call-to-action.webp";
 
+// --------------------------------------------------
+// FRAMER MOTION VARIANTS
+// --------------------------------------------------
+
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  hidden: {
+    opacity: 0,
+    y: 28,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: "easeOut",
+    },
+  },
+};
+
+const fadeLeft = {
+  hidden: {
+    opacity: 0,
+    x: -35,
+  },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.65,
+      ease: "easeOut",
+    },
+  },
 };
 
 const stagger = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
+  show: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
 };
 
-const tracks = [
+const hoverTransition = {
+  type: "spring",
+  stiffness: 260,
+  damping: 22,
+};
+
+// --------------------------------------------------
+// THREE MAIN CONFERENCE STREAMS
+// --------------------------------------------------
+
+const streams = [
   {
     no: "01",
-    icon: Brain,
-    color: "#E91E8F",
-    title: "Artificial Intelligence & Machine Learning",
+    icon: BarChart3,
+    color: "#1655F5",
+    gradient: "linear-gradient(135deg, #2C7BFF, #0635C8)",
+    title: "Management, Business, Economics & Sustainability",
     items: [
-      "Deep Learning",
-      "Machine Learning Algorithms",
-      "Generative AI",
-      "Explainable AI",
-      "Neural Networks & Architectures",
-      "AI Applications",
+      "Global Business Trends and Innovation",
+      "Management Strategies and Leadership",
+      "Economic Development and Policy",
+      "Finance, Investment and Financial Markets",
+      "Tourism, Hospitality and Creative Industries",
+      "Sustainable Business and Inclusive Growth",
     ],
   },
   {
     no: "02",
-    icon: BarChart3,
-    color: "#0B63FF",
-    title: "Data Science & Decision Analytics",
+    icon: Scale,
+    color: "#8135E8",
+    gradient: "linear-gradient(135deg, #A45AFF, #6721D2)",
+    title:
+      "Law, Criminal Justice, Humanities, Social Science, Arts & Education",
     items: [
-      "Predictive Analytics",
-      "Data Mining",
-      "Big Data Engineering",
-      "Business Intelligence",
-      "Data Visualization",
-      "Decision Support Systems",
+      "Law and Legal Studies",
+      "Criminal Justice and Justice Administration",
+      "Humanities, Culture and the Arts",
+      "Language, Literature and Communication",
+      "Political Science and Public Administration",
+      "Psychology, Sociology and Education",
     ],
   },
   {
     no: "03",
     icon: Settings,
-    color: "#0E8F54",
-    title: "Optimization & Decision Engineering",
+    color: "#079C98",
+    gradient: "linear-gradient(135deg, #17B8B0, #087D80)",
+    title:
+      "General Science, Food Technology, IT, Computing & Emerging Engineering",
     items: [
-      "Operations Research",
-      "Optimization Algorithms",
-      "Multi-criteria Decision Making",
-      "Simulation & Modeling",
-      "Heuristic & Metaheuristic Methods",
-      "Decision Support Systems",
-    ],
-  },
-  {
-    no: "04",
-    icon: Cloud,
-    color: "#6938D3",
-    title: "Emerging Computing Technologies",
-    items: [
-      "Cloud & Edge Computing",
-      "Internet of Things (IoT)",
-      "Blockchain Technology",
-      "Cybersecurity",
-      "Quantum Computing",
-      "Digital Twins",
-    ],
-  },
-  {
-    no: "05",
-    icon: Cpu,
-    color: "#FF7417",
-    title: "Intelligent Systems Applications",
-    items: [
-      "Healthcare AI",
-      "Smart Cities",
-      "Finance & FinTech",
-      "Smart Manufacturing",
-      "Industry 4.0 / 5.0",
-      "Agriculture Intelligence",
-    ],
-  },
-  {
-    no: "06",
-    icon: Users,
-    color: "#0988A8",
-    title: "Socio-Technical & Human-Centric AI",
-    items: [
-      "Human-AI Interaction",
-      "Ethics & Responsible AI",
-      "Policy & Governance",
-      "Education & Training",
-      "Sustainable Development",
-      "Social Impact Computing",
+      "Agriculture and Food Science & Technology",
+      "Applied Science and Natural Sciences",
+      "Computer Science and Information Systems",
+      "Communication Technology and Networks",
+      "Emerging Engineering and Smart Technologies",
+      "Environmental Science and Sustainability",
     ],
   },
 ];
 
-export default function TracksPage() {
+// --------------------------------------------------
+// KEY TOPICS
+// --------------------------------------------------
+
+const keyTopics = [
+  {
+    icon: Lightbulb,
+    color: "#FFAA0A",
+    gradient: "linear-gradient(135deg, #FFBB21, #FF9800)",
+    title: "Innovations in Management",
+    description:
+      "New ideas and strategies for resilient and sustainable business, economies and industries.",
+  },
+  {
+    icon: Users,
+    color: "#8135E8",
+    gradient: "linear-gradient(135deg, #A754FF, #7024D1)",
+    title: "Humanities, Law and Social Development",
+    description:
+      "People, society and inclusive development through humanities, law, social sciences, arts and education.",
+  },
+  {
+    icon: Leaf,
+    color: "#4CAF50",
+    gradient: "linear-gradient(135deg, #6BD46E, #329E40)",
+    title: "Science and Technology Solutions",
+    description:
+      "Advancing science, computing and emerging engineering for real-world impact.",
+  },
+  {
+    icon: Globe2,
+    color: "#1655F5",
+    gradient: "linear-gradient(135deg, #2E81FF, #0645D8)",
+    title: "Interdisciplinary Global Collaboration",
+    description:
+      "Cross-disciplinary research and international partnerships for a more inclusive and sustainable future.",
+  },
+];
+
+// --------------------------------------------------
+// SECTION HEADING
+// --------------------------------------------------
+
+function SectionHeading({ eyebrow, title, description }) {
   return (
-    <main className="min-h-screen bg-white text-[#07113F] overflow-hidden">
-      {/* Hero */}
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="text-center"
+    >
+      <p className="text-[12px] sm:text-[13px] font-semibold uppercase tracking-[3px] text-[#1655F5]">
+        {eyebrow}
+      </p>
+
+      <div className="mx-auto mt-2 flex h-[3px] w-[55px] overflow-hidden rounded-full">
+        <span className="w-[55%] bg-[#1655F5]" />
+        <span className="w-[45%] bg-[#FFB51D]" />
+      </div>
+
+      <h2 className="mt-4 text-[24px] sm:text-[28px] lg:text-[32px] font-bold leading-tight text-[#08184A]">
+        {title}
+      </h2>
+
+      <p className="mx-auto mt-3 max-w-[780px] text-[13px] sm:text-[14px] leading-6 text-[#36466D]">
+        {description}
+      </p>
+    </motion.div>
+  );
+}
+
+// --------------------------------------------------
+// MAIN CONFERENCE PAGE
+// --------------------------------------------------
+
+export default function TracksPage() {
+  const reduceMotion = useReducedMotion();
+
+  const reveal = reduceMotion
+    ? {
+        hidden: { opacity: 1 },
+        show: { opacity: 1 },
+      }
+    : fadeUp;
+
+  const hoverCard = reduceMotion
+    ? undefined
+    : {
+        y: -9,
+        scale: 1.015,
+      };
+
+  return (
+   <main className="min-h-screen w-full bg-white font-sans text-[#0a2b4f]">
+
+      {/* ========================================
+          HERO SECTION
+      ======================================== */}
+
       <section
-        className="
-    relative min-h-[360px] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[500px] lg:bg-[length:100%_100%]"
-        style={{ backgroundImage: `url(${tracksBG})` }}
+        className="relative min-h-[360px] bg-[#041631] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[0px] lg:bg-[length:100%_100%]"
+        style={{
+          backgroundImage: `linear-gradient(
+            90deg,
+            rgba(1,12,34,0.65) 0%,
+            rgba(1,12,34,0.30) 50%,
+            rgba(1,12,34,0.05) 100%
+          ), url("${tracksBG}")`,
+        }}
       >
-        <div className="relative z-10 max-w-[1420px] mx-auto px-4 sm:px-8 lg:px-16 pt-6 sm:pt-8 lg:pt-16">
+        <div className="relative z-10 mx-auto max-w-[1420px] px-4 pt-6 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16">
+
           <motion.div
             initial="hidden"
             animate="show"
-            variants={fadeUp}
+            variants={reduceMotion ? reveal : fadeLeft}
             className="max-w-[520px]"
           >
-            <div className="flex items-center gap-3 text-white/80 text-[13px] font-semibold">
-              <Link to="/" className="hover:text-[#12A8FF]">
+            {/* Breadcrumb */}
+
+            <div className="flex items-center gap-3 text-[13px] font-medium text-white/90">
+              <Link
+                to="/"
+                className="transition-colors duration-300 hover:text-[#FFB51D]"
+              >
                 Home
               </Link>
-              <span>›</span>
-              <span className="text-[#12A8FF]">Tracks</span>
+
+              <ChevronRight size={15} />
+
+              <span>Conference</span>
             </div>
 
-            <h1 className="mt-8 font-[600] leading-none">
-              <span className="block text-white text-[36px] sm:text-[38px] lg:text-[42px]">
+            {/* Hero Title */}
+
+            <h1 className="mt-7 font-semibold leading-[1.05]">
+              <span className="block text-[36px] sm:text-[38px] lg:text-[42px] text-white">
                 Conference
               </span>
-              <span className="block text-[36px] sm:text-[48px] lg:text-[52px] font-semibold bg-gradient-to-r from-[#0B63FF] via-[#13B5FF] to-[#00D4FF] bg-clip-text text-transparent">
-                Tracks
+
+              <span className="block text-[36px] sm:text-[48px] lg:text-[52px] text-[#FFB51D]">
+                Streams
               </span>
             </h1>
 
-             <div className="mt-4 flex h-[4px] w-[70px] overflow-hidden rounded-full">
-        <span className="w-[55%] bg-[#13B5FF]" />
-        <span className="w-[45%] bg-[#FFC21A]" />
-      </div>
+            <motion.h2
+              initial={
+                reduceMotion
+                  ? false
+                  : { opacity: 0, y: 15 }
+              }
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.6 }}
+              className="mt-3 text-[16px] sm:text-[18px] lg:text-[20px] font-semibold text-white"
+            >
+              Explore. Collaborate. Innovate.
+            </motion.h2>
 
-            <p className="mt-7 max-w-[430px] text-white text-[14px] sm:text-[15px] leading-8">
-              IDEAX 2026 invites high-quality research papers across a wide
-              range of cutting-edge topics.
+            {/* Accent Line */}
+
+            <div className="mt-4 flex h-[4px] w-[75px] overflow-hidden rounded-full">
+              <span className="w-[55%] bg-[#03BFFF]" />
+              <span className="w-[45%] bg-[#FFB51D]" />
+            </div>
+
+            {/* Hero Description */}
+
+            <p className="mt-6 max-w-[430px] text-[13px] sm:text-[14px] lg:text-[15px] leading-6 sm:leading-7 text-white/95">
+              SYNERGY 2026 covers diverse interdisciplinary areas and invites
+              high-quality research contributions to advance knowledge, foster
+              collaboration, and create a sustainable and digital future.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Tracks Overview */}
-      <section className="relative z-10 bg-white px-4 sm:px-8 lg:px-16 -mt-14 sm:-mt-16 lg:-mt-6">
-        <div className="max-w-[1240px] mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center pt-10"
-          >
-            <p className="uppercase tracking-[3px] text-[#1247E5] text-[14px] font-[600]">
-              Tracks Overview
-            </p>
+      {/* ========================================
+          CONFERENCE STREAMS SECTION
+      ======================================== */}
 
-            <div className="mx-auto mt-3 w-[55px] h-[3px] bg-gradient-to-r from-[#1247E5] to-[#F6A200]" />
+      <section className="relative z-10 -mt-4 rounded-t-[18px] bg-white px-4 pb-6 pt-8 sm:px-8 sm:pt-10 lg:px-16">
 
-            <h2 className="mt-5 text-[16px] sm:text-[18px] lg:text-[24px] font-[700] text-[#08184A] leading-tight">
-              Explore. Innovate. Impact.
-            </h2>
+        <div className="mx-auto max-w-[1240px]">
 
-            <p className="mt-4 max-w-[600px] mx-auto text-[#4B5579] text-[14px] sm:text-[14px] leading-7">
-              IDEAX 2026 covers a wide spectrum of themes in Innovation,
-              Decision Engineering and Artificial Intelligence to foster
-              collaboration and drive meaningful impact.
-            </p>
-          </motion.div>
+          <SectionHeading
+            eyebrow="Conference Streams"
+            title="Three Main Streams"
+            description="SYNERGY 2026 brings together a wide range of disciplines to address global challenges and create opportunities for a sustainable and digital future."
+          />
 
-          {/* Cards */}
+          {/* Stream Cards */}
+
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10"
+            viewport={{ once: true, amount: 0.1 }}
+            className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3"
           >
-            {tracks.map((track) => {
-              const Icon = track.icon;
+            {streams.map((stream) => {
+              const Icon = stream.icon;
 
               return (
-                <motion.div
-                  key={track.no}
-                  variants={fadeUp}
-                  whileHover={{ y: -10, scale: 1.015 }}
-                  className="group bg-white rounded-[14px] p-7 border border-[#E2E8F5] shadow-[0_10px_30px_rgba(0,20,80,0.08)] hover:shadow-[0_20px_45px_rgba(18,71,229,0.15)] transition-all duration-500"
+                <motion.article
+                  key={stream.no}
+                  variants={reveal}
+                  whileHover={hoverCard}
+                  transition={hoverTransition}
+                  className="group flex h-full flex-col rounded-[14px] border border-[#E2E8F5] bg-white p-5 sm:p-6 shadow-[0_8px_25px_rgba(0,30,80,0.06)] transition-shadow duration-300 hover:shadow-[0_18px_40px_rgba(0,40,120,0.14)]"
                 >
-                  <div className="flex items-start gap-6">
-                    <div
-                      className="w-[58px] h-[58px] shrink-0 rounded-full flex items-center justify-center shadow-[0_15px_28px_rgba(0,0,0,0.18)] group-hover:scale-110 transition-all duration-500"
-                      style={{
-                        background: `linear-gradient(135deg, ${track.color}, ${track.color}cc)`,
-                      }}
-                    >
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
+                  {/* Card Heading */}
 
-                    <div>
+                  <div className="flex items-start gap-4">
+                    <motion.div
+                      whileHover={
+                        reduceMotion
+                          ? undefined
+                          : { rotate: 6, scale: 1.08 }
+                      }
+                      transition={hoverTransition}
+                      className="flex h-[65px] w-[65px] shrink-0 items-center justify-center rounded-full shadow-[0_10px_20px_rgba(0,30,80,0.16)]"
+                      style={{ background: stream.gradient }}
+                    >
+                      <Icon
+                        size={34}
+                        strokeWidth={1.8}
+                        className="text-white"
+                      />
+                    </motion.div>
+
+                    <div className="min-w-0 flex-1">
                       <h3
-                        className="text-[24px] font-[600] leading-none"
-                        style={{ color: track.color }}
+                        className="text-[24px] font-bold leading-none"
+                        style={{ color: stream.color }}
                       >
-                        {track.no}
+                        {stream.no}
                       </h3>
 
-                      <h4 className="mt-2 text-[14px] sm:text-[16px] font-semibold leading-snug text-[#07113F]">
-                        {track.title}
+                      <h4 className="mt-2 text-[14px] sm:text-[15px] font-semibold leading-snug text-[#07113F]">
+                        {stream.title}
                       </h4>
 
                       <div
-                        className="mt-4 w-[34px] h-[2px]"
-                        style={{ backgroundColor: track.color }}
+                        className="mt-3 h-[2px] w-[30px]"
+                        style={{
+                          backgroundColor: stream.color,
+                        }}
                       />
                     </div>
                   </div>
 
-                  <ul className="mt-7 space-y-3">
-                    {track.items.map((item) => (
+                  {/* Topics List */}
+
+                  <ul className="mt-6 flex-1 space-y-3">
+                    {stream.items.map((item) => (
                       <li
                         key={item}
-                        className="flex items-start gap-3 text-[13px] text-[#1F2A44] font-medium"
+                        className="flex items-start gap-3 text-[12px] sm:text-[13px] font-medium leading-5 text-[#253452]"
                       >
                         <span
-                          className="mt-[8px] w-[5px] h-[5px] rounded-full shrink-0"
-                          style={{ backgroundColor: track.color }}
+                          className="mt-[8px] h-[6px] w-[6px] shrink-0 rounded-full"
+                          style={{
+                            backgroundColor: stream.color,
+                          }}
                         />
-                        {item}
+
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  {/* <button
-                    className="mt-8 flex items-center gap-3 text-[13px] font-semibold group-hover:gap-5 transition-all duration-300"
-                    style={{ color: track.color }}
+                  {/* View Details */}
+
+                  <Link
+                    to={`/submission?stream=${stream.no}`}
+                    className="mt-7 inline-flex w-fit items-center gap-3 text-[13px] font-semibold transition-all duration-300 hover:gap-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
+                    style={{
+                      color: stream.color,
+                    }}
                   >
-                    View Track Details <ArrowRight className="w-4 h-4" />
-                  </button> */}
-                </motion.div>
+                    View Stream Details
+
+                    <ArrowRight
+                      size={17}
+                      className="transition-transform duration-300 group-hover:translate-x-1"
+                    />
+                  </Link>
+                </motion.article>
               );
             })}
           </motion.div>
+        </div>
+      </section>
 
-          {/* Bottom CTA */}
-          <motion.section
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mt-10 mb-8 rounded-[14px] overflow-hidden bg-cover bg-center shadow-[0_10px_30px_rgba(0,20,80,0.08)]"
-            style={{ backgroundImage: `url(${trackCtaBg})` }}
+      {/* ========================================
+          KEY TOPICS SECTION
+      ======================================== */}
+
+      <section className="bg-white px-4 pb-7 pt-2 sm:px-8 lg:px-16">
+
+        <div className="mx-auto max-w-[1240px]">
+
+          <SectionHeading
+            eyebrow="Topics of Interest"
+            title="Key Topics"
+            description="We welcome research and discussions on, but not limited to, the following topics:"
+          />
+
+          {/* Topic Cards */}
+
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.1 }}
+            className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
           >
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-6 px-5 sm:px-8 lg:px-10 py-4 text-center lg:text-left">
-              <div className="flex flex-col sm:flex-row items-center gap-5">
-                <motion.div
-                  whileHover={{ scale: 1.12, rotate: -8 }}
-                  className="w-[54px] h-[54px] rounded-full bg-gradient-to-br from-[#0B63FF] to-[#123FD8] flex items-center justify-center shadow-[0_15px_30px_rgba(11,99,255,0.35)]"
+            {keyTopics.map((topic) => {
+              const Icon = topic.icon;
+
+              return (
+                <motion.article
+                  key={topic.title}
+                  variants={reveal}
+                  whileHover={hoverCard}
+                  transition={hoverTransition}
+                  className="group flex min-h-[230px] flex-col items-center rounded-xl border border-[#E5EBF6] bg-white px-5 py-5 text-center shadow-[0_6px_22px_rgba(0,30,80,0.06)] transition-shadow duration-300 hover:shadow-[0_16px_35px_rgba(0,40,120,0.13)]"
                 >
-                  <Send className="w-7 h-7 text-white" />
+                  <motion.div
+                    whileHover={
+                      reduceMotion
+                        ? undefined
+                        : { rotate: 8, scale: 1.1 }
+                    }
+                    transition={hoverTransition}
+                    className="mb-4 flex h-[60px] w-[60px] items-center justify-center rounded-full shadow-[0_8px_20px_rgba(0,30,80,0.15)]"
+                    style={{
+                      background: topic.gradient,
+                    }}
+                  >
+                    <Icon
+                      size={30}
+                      strokeWidth={1.8}
+                      className="text-white"
+                    />
+                  </motion.div>
+
+                  <h3 className="max-w-[220px] text-[14px] font-semibold leading-5 text-[#07113F]">
+                    {topic.title}
+                  </h3>
+
+                  <p className="mt-4 max-w-[230px] text-[12px] sm:text-[13px] leading-5 text-[#334466]">
+                    {topic.description}
+                  </p>
+                </motion.article>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========================================
+          SUBMISSION CTA SECTION
+      ======================================== */}
+
+      <section className="bg-white px-4 pb-5 sm:px-8 lg:px-16">
+
+        <div className="mx-auto max-w-[1240px]">
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={reveal}
+            whileHover={
+              reduceMotion ? undefined : { y: -3 }
+            }
+            transition={hoverTransition}
+            className="relative overflow-hidden rounded-[14px] border border-[#CBDCFB] bg-[#E8F0FF] shadow-[0_8px_25px_rgba(0,40,120,0.06)]"
+            style={{
+              backgroundImage: `linear-gradient(
+                90deg,
+                rgba(232,240,255,0.88),
+                rgba(232,240,255,0.52)
+              ), url("${trackCtaBg}")`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="relative z-10 flex flex-col items-center justify-between gap-5 px-5 py-5 text-center sm:px-8 lg:flex-row lg:px-10 lg:text-left">
+
+              <div className="flex flex-col items-center gap-5 sm:flex-row">
+
+                {/* Send Icon */}
+
+                <motion.div
+                  whileHover={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          scale: 1.1,
+                          rotate: -8,
+                        }
+                  }
+                  transition={hoverTransition}
+                  className="flex h-[65px] w-[65px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#236EFF] to-[#0736B8] shadow-[0_10px_25px_rgba(11,99,255,0.25)]"
+                >
+                  <Send
+                    size={30}
+                    strokeWidth={1.8}
+                    className="text-white"
+                  />
                 </motion.div>
 
                 <div>
-                  <h3 className="text-[18px] sm:text-[22px] font-[600] text-[#08184A]">
-                    Don’t see your topic?
+                  <h3 className="text-[18px] sm:text-[20px] lg:text-[22px] font-semibold text-[#08184A]">
+                    Don’t see your exact topic?
                   </h3>
 
-                  <p className="mt-2 max-w-[620px] text-[#4B5579] text-[14px] sm:text-[14px] leading-6">
-                    We welcome interdisciplinary submissions that drive
-                    innovation and create impact across domains.
+                  <p className="mt-2 max-w-[620px] text-[13px] sm:text-[14px] leading-6 text-[#35466C]">
+                    We welcome interdisciplinary submissions that create
+                    impact across domains.
                   </p>
                 </div>
               </div>
-<Link to="/contact">
-              <button className="shrink-0 bg-[#123FD8] text-white px-4 py-3 rounded-lg text-[13px] font-medium flex items-center gap-3 hover:scale-105 hover:bg-[#0B2FB3] transition-all duration-300 shadow-[0_12px_30px_rgba(18,63,216,0.3)]">
-                SUBMIT YOUR PAPER <ArrowRight className="w-5 h-5" />
-              </button></Link>
+
+              {/* CTA Button */}
+
+              <Link
+                to="/submission"
+                className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-lg bg-[#082D9D] px-6 py-4 text-[13px] font-semibold text-white shadow-[0_8px_22px_rgba(8,45,157,0.2)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#1655F5] hover:shadow-[0_14px_30px_rgba(8,45,157,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1655F5]"
+              >
+                SUBMIT YOUR PAPER
+
+                <ArrowRight
+                  size={17}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
             </div>
-          </motion.section>
+          </motion.div>
         </div>
       </section>
     </main>
