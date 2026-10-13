@@ -21,7 +21,7 @@ import {
   ArrowRight,
   Presentation,
   FileCheck,
-  Lightbulb,
+  Lightbulb
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroBg from "../assets/hero/ideax-2026-about-conference-banner.webp";
