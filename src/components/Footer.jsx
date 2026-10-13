@@ -7,7 +7,7 @@ import Logo from "../assets/img/Synergy 2026 Globe Logo (1).png";
 const QUICK_LINKS = [
   
   { label: "About", to: "/about" },
-  { label: "Tracks", to: "/tracks" },
+  { label: "Conference", to: "/conference " },
   { label: "Speakers", to: "/speakers" },
   { label: "Schedule", to: "/schedule" },
   { label: "Committee", to: "/committee" },
