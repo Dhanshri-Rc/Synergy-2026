@@ -8,9 +8,9 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-import homeHero from "../assets/hero/ideax-2026-homepage-hero-banner.webp";
+import homeHero from "../assets/img/homeBg.png";
 import { useState } from "react";
-import profile from "../assets/hero/ideax-2026-conference-illustration.webp"
+import profile from "../assets/hero/IDEAX-2026-conference-illustration.webp"
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -18,10 +18,10 @@ const fadeUp = {
 };
 
 const STATS = [
-  { icon: Users, value: "200+", label: "Participants", color: "text-[#2563EB]" },
-  { icon: FileText, value: "150+", label: "Research Papers", color: "text-[#7C3AED]" },
-  { icon: Globe2, value: "30+", label: "Countries", color: "text-[#12B8B3]" },
-  { icon: Mic2, value: "5+", label: "Keynote Speakers", color: "text-[#FB923C]" },
+  { icon: Users, value: "500+", label: "Global Participants", color: "text-[#2563EB]" },
+  { icon: FileText, value: "200+", label: "Research Streams", color: "text-[#7C3AED]" },
+  { icon: Globe2, value: "30+", label: "Countries Represented", color: "text-[#12B8B3]" },
+  { icon: Mic2, value: "50+", label: "Industry Experts & Speakers", color: "text-[#FB923C]" },
 ];
 
 const TRACKS = [
@@ -119,20 +119,20 @@ const prevSpeaker = () => {
             </h1>
 
             <h2 className="mt-4 max-w-[540px] text-[21px] font-medium leading-tight text-white sm:text-[27px]">
-              International Conference on Innovation, Decision Engineering and Artificial Intelligence
+              International Conference on Innovation $ Interdisciplinary Integration for a Sustainable & Digital Future.
             </h2>
 
             <div className="mt-4 w-16 h-[3px] rounded-lg bg-[#FFC21A]"></div>
 
-            <p className="mt-5 text-[14px] font-medium text-white/85">
-              Innovating Intelligence. Engineering Decisions. Creating Impact.
+            <p className="mt-5 text-[14px] font-medium text-white/85 max-w-[470px]">
+             Connecting acedemicians, researchers, professionals, industry experts, and students for global collaboration and knowledge sharing.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3 text-[12px] font-semibold text-white">
               {[
-                [Calendar, "10 – 12 December, 2026"],
-                [MapPin, "Singapore"],
-                [Laptop, "Hybrid (In-person & Online)"],
+                [Calendar, "4 – 5 December, 2026"],
+                [MapPin, "University of Batangas Lipa Campus, Batangas, Philippines"],
+                
               ].map(([Icon, text]) => (
                 <span key={text} className="flex items-center gap-2">
                   <Icon size={16} className="text-[#FFC21A]" /> {text}
@@ -146,36 +146,7 @@ const prevSpeaker = () => {
             </div>
           </motion.div>
 
-       <motion.div
-  initial={{ opacity: 0, x: 25 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.7, ease: "easeOut" }}
-  className="pointer-events-auto absolute right-[40px] top-[75px] hidden flex-col gap-[14px] lg:flex xl:right-[72px]"
->
-  {[
-    [Lightbulb, "INNOVATION"],
-    [BrainCircuit, "INTELLIGENCE"],
-    [BarChart3, "DECISIONS"],
-    [Target, "IMPACT"],
-  ].map(([Icon, label], index) => (
-    <motion.div
-      key={label}
-      initial={{ opacity: 0, x: 24 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.45, delay: index * 0.1 }}
-      whileHover={{ x: -6, scale: 1.03 }}
-      className="flex items-center gap-4 text-white"
-    >
-      <span className="flex h-[40px] w-[40px] items-center justify-center rounded-full border hover:border-white/20 bg-white/10 backdrop-blur-md shadow-[0_0_18px_rgba(59,130,246,0.22)] transition-all duration-300 border-[#11A8FF] hover:bg-white/15">
-        <Icon size={22} strokeWidth={2} className="text-white" />
-      </span>
-
-      <span className="min-w-[100px] text-[14px] font-bold tracking-wide text-white">
-        {label}
-      </span>
-    </motion.div>
-  ))}
-</motion.div>
+    
         </div>
       </section>
 
@@ -194,19 +165,16 @@ const prevSpeaker = () => {
       className="text-left"
     >
       <p className="text-[12px] font-bold uppercase tracking-wide text-[#2563EB]">
-        About IDEAX 2026
+        About SYNERGY 2026
       </p>
 
-      <h2 className="mt-3 max-w-[560px] text-[22px] font-[600] leading-[1.12] text-[#07113F] sm:text-[28px] lg:text-[30px]">
-        Shaping the Future with{" "}
-        <span className="text-[#2563EB]">Innovation</span> and Intelligence
+      <h2 className="mt-3 max-w-[360px] text-[22px] font-[600] leading-[1.12] text-[#07113F] sm:text-[28px] lg:text-[30px]">
+       Bringing Disciplines{" "}
+        <span className="text-[#2563EB] mt-1">Shaping Future</span>  
       </h2>
 
       <p className="mt-5 max-w-[650px] text-[14px] font-medium leading-[1.75] text-[#1F2A44]/85">
-        IDEAX 2026 brings together global researchers, industry leaders,
-        practitioners and innovators to exchange ideas, present cutting-edge
-        research and explore the transformative power of innovation, decision
-        engineering and artificial intelligence.
+        SYNERGY 2026 is a globle platform that brings together diverse disciplines to explore innovation solutions, foster interdisciplinary intergartin and advance a sustainable and digital future for communities worldwide.
       </p>
 
       <Link
@@ -468,7 +436,7 @@ const prevSpeaker = () => {
       className="md:border-r md:border-[#E5EAF3] md:pr-8"
     >
       <h3 className="mb-5 text-[12px] font-semibold uppercase tracking-wide text-[#2563EB]">
-        Why Attend IDEAX 2026?
+        Why Attend SYNERGY 2026?
       </h3>
 
       <ul className="space-y-4">
@@ -562,7 +530,7 @@ const prevSpeaker = () => {
 
       <div>
         <h3 className="text-[14px] font-semibold leading-tight text-[#FFC21A] sm:text-[18px]">
-          Be a Part of IDEAX 2026
+          Be a Part of SYNERGY 2026
         </h3>
         <p className="mt-1 text-[11px] font-medium leading-snug text-white/90 sm:text-[12px]">
           Join us to innovate, engineer decisions and create a better tomorrow.

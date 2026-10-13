@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Facebook, Youtube } from "./SocialIcons";
-import Logo from "../assets/hero/ideax-2026-official-logo.webp";
+import Logo from "../assets/img/Synergy 2026 Globe Logo (1).png";
 
 const QUICK_LINKS = [
   

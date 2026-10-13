@@ -3,7 +3,7 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import hlogo from "../assets/hero/ideax-2026-white-logo.webp"
+import hlogo from "../assets/hero/headerLogo.png";
 
 const LINKS = [
   { label: "Home", to: "/" },
