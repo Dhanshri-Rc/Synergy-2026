@@ -115,7 +115,7 @@ const prevSpeaker = () => {
             <p className="text-[15px] font-medium text-[#FFC21A]">Welcome to</p>
 
             <h1 className="mt-1 text-[40px] font-semibold leading-none text-white sm:text-[50px] lg:text-[56px]">
-              IDEAX <span className="text-[#FFC21A]">2026</span>
+              SYNERGY <span className="text-[#FFC21A]">2026</span>
             </h1>
 
             <h2 className="mt-4 max-w-[540px] text-[21px] font-medium leading-tight text-white sm:text-[27px]">
