@@ -1,496 +1,363 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  Brain,
-  Eye,
-  Target,
-  Network,
-  Handshake,
-  Globe2,
-  BarChart3,
-  Cpu,
-  Settings,
-  Cloud,
-  Cross,
   Users,
-  CalendarDays,
-  Trophy,
-  BookOpen,
-  FileText,
-  Award,
+  Lightbulb,
+  Network,
+  ChartNoAxesCombined,
   ArrowRight,
-  Presentation,
-  FileCheck,
-  Lightbulb
+  ExternalLink,
 } from "lucide-react";
-import { Link } from "react-router-dom";
-import heroBg from "../assets/hero/ideax-2026-about-conference-banner.webp";
-import ctaBg from "../assets/hero/ideax-2026-about-call-to-action-banner.webp";
-import whyBg from "../assets/hero/ideax-2026-about-conference-illustration.webp";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: "easeOut" } },
+// Replace these paths with the corresponding assets from your project.
+const ASSETS = {
+  hero: "/src/assets/img/aboutBg.png",
+  campus: "/src/assets/img/universityBatangas.png",
+  batangasLogo: "/src/assets/img/batangasUniversityLogo.png",
+  daltaLogo: "/src/assets/img/universityofPerpetual.png",
+  himalayanLogo: "/src/assets/img/himalayanUniversity.png",
+  grcfLogo: "/src/assets/img/globalResearch.png",
+  researcherLogo: "/src/assets/img/researcherConnectLogo.png",
+  batangasBg: "/src/assets/img/batangas-building.webp",
+  daltaBg: "/src/assets/img/perpetual-help-building.webp",
+  himalayanBg: "/src/assets/img/himalayan-university-building.webp",
+  grcfBg: "/src/assets/img/grcf-network.webp",
+  partnerBg: "/src/assets/img/researcher-connect-banner.webp",
 };
 
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
+const reveal = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55 } },
 };
-
-const tracks = [
-  {
-    icon: Brain,
-    title: "Artificial Intelligence & Machine Learning",
-    color: "#0B63FF",
-    items: ["Deep Learning", "Generative AI", "Explainable AI", "Neural Computing"],
-  },
-  {
-    icon: BarChart3,
-    title: "Data Science & Decision Analytics",
-    color: "#13BFD6",
-    items: ["Predictive Analytics", "Data Mining", "Big Data Engineering", "Business Intelligence"],
-  },
-  {
-    icon: Settings,
-    title: "Optimization & Decision Engineering",
-    color: "#7146FF",
-    items: ["Operations Research", "Decision Support Systems", "Multi-criteria Decision Making", "Simulation & Modeling"],
-  },
-  {
-    icon: Cloud,
-    title: "Emerging Computing Technologies",
-    color: "#FF9900",
-    items: ["Cloud & Edge Computing", "Internet of Things (IoT)", "Blockchain", "Cybersecurity"],
-  },
-  {
-    icon: Cross,
-    title: "Intelligent Systems Applications",
-    color: "#28B64B",
-    items: ["Healthcare AI", "Finance & FinTech", "Smart Cities", "Industry 4.0/5.0"],
-  },
+const vision = [
   {
     icon: Users,
-    title: "Socio-Technical & Human-Centric AI",
-    color: "#236CFF",
-    items: ["Human-AI Interaction", "Ethics & Responsible AI", "Policy & Governance", "Education & Training"],
+    title: "Global Collaboration",
+    description:
+      "Connect with researchers and experts from diverse disciplines worldwide",
+  },
+  {
+    icon: Lightbulb,
+    title: "Knowledge Sharing",
+    description: "Exchange ideas and innovations for real-world impact",
+  },
+  {
+    icon: Network,
+    title: "Interdisciplinary Approach",
+    description: "Explore solutions to complex global challenges",
+  },
+  {
+    icon: ChartNoAxesCombined,
+    title: "Sustainable Future",
+    description: "Drive innovation for a more sustainable and digital world",
+  },
+];
+const institutions = [
+  {
+    name: "University of Batangas",
+    location: "Lipa City, Feliciano Leviste Road, Lipa City, Philippines",
+    logo: ASSETS.batangasLogo,
+  },
+  {
+    name: "University of Perpetual Help System DALTA",
+    location: "Calamba, Laguna, Philippines",
+    logo: ASSETS.daltaLogo,
+  },
+  {
+    name: "Himalayan University",
+    location: "Itanagar, Arunachal Pradesh, India",
+    logo: ASSETS.himalayanLogo,
+  },
+  {
+    name: "GLOBAL RESEARCH CONFERENCE FORUM",
+    location: "International Academic Platform",
+    logo: ASSETS.grcfLogo,
+  },
+];
+const descriptions = [
+  {
+    title: "University of Batangas",
+    bg: ASSETS.batangasBg,
+    dark: true,
+    text: "The University of Batangas, located along Governor Feliciano Leviste Road in Lipa City, Philippines, is a premier private institution of higher education known for its commitment to academic excellence, ethical leadership, and community service. With a proud legacy spanning decades, the university offers a wide range of undergraduate and graduate programs across diverse disciplines including Business, Engineering, Education, Law, Information Technology, and more.",
+    url: "https://ub.edu.ph/",
+    button: "Visit University",
+  },
+  {
+    title: "University of Perpetual Help System DALTA",
+    bg: ASSETS.daltaBg,
+    text: "The University of Perpetual Help System DALTA is a distinguished private higher education institution committed to academic excellence, research, and community development. With campuses serving students in the Philippines, the university provides quality education across diverse fields and encourages graduates to become globally competitive, responsible, and service-oriented professionals.",
+    url: "https://perpetualdalta.edu.ph/",
+    button: "Visit University",
+  },
+  {
+    title: "Himalayan University",
+    bg: ASSETS.himalayanBg,
+    text: "The Himalayan University is a leading multidisciplinary institution of higher education located in Itanagar, Arunachal Pradesh, India. Established with a vision to promote quality education, research, innovation, and community engagement, the University offers a wide range of undergraduate, postgraduate, diploma, and doctoral programs across diverse disciplines. Recognized by statutory bodies including UGC and other professional councils, Himalayan University is committed to fostering academic excellence, skill development, entrepreneurship, and holistic development of the North-Eastern region and the nation.",
+    url: "https://www.himalayanuniversity.com/",
+    button: "Visit University",
+  },
+  {
+    title: "Global Research Conference Forum (GRCF)",
+    bg: ASSETS.grcfBg,
+    text: "The Global Research Conference Forum (GRCF) is an international academic platform committed to advancing multidisciplinary research, fostering global academic collaboration, and promoting innovation through high-impact conferences, workshops, and publications. Headquartered in India, GRCF has collaborated with esteemed universities and organizing events that bring together scholars, professionals, and students from diverse domains.",
+    url: null,
+    button: "Learn More",
   },
 ];
 
-const focusAreas = [
-  { icon: Brain, title: "Innovation", desc: "Encouraging novel ideas and creative solutions", color: "#0B63FF" },
-  { icon: Network, title: "Decision Engineering", desc: "Modeling and optimizing decision processes", color: "#12AFC2" },
-  { icon: Cpu, title: "Artificial Intelligence", desc: "Intelligent algorithms and adaptive systems", color: "#6F42FF" },
-  { icon: Handshake, title: "Collaboration", desc: "Connecting academia, industry and institutions", color: "#FF9900" },
-  { icon: Globe2, title: "Sustainability", desc: "Technology-enabled sustainable and ethical solutions", color: "#27B43E" },
-];
-
-const whyItems = [
-  { text: "Present your research to a global audience", icon: Presentation, bg: "bg-[#0B63FF]" },
-  { text: "Learn from world renowned experts", icon: BookOpen, bg: "bg-[#8B5CF6]" },
-  { text: "Network with global research community", icon: Users, bg: "bg-[#14B8A6]" },
-  { text: "Explore collaborations and partnerships", icon: Handshake, bg: "bg-[#F43F5E]" },
-  { text: "Publish in reputed indexed proceedings", icon: FileCheck, bg: "bg-[#F59E0B]" },
-  { text: "Drive innovation for societal impact", icon: Lightbulb, bg: "bg-[#22C55E]" },
-];
-
-const dates = [
-  ["Paper Submission Deadline", "25 August, 2026"],
-  ["Notification of Acceptance", "10 September, 2026"],
-  ["Camera-Ready Submission", "5 October, 2026"],
-  ["Early Bird Registration", "18 October, 2026"],
-  ["Conference Dates", "10 – 12 December, 2026"],
-];
-
-export default function AboutIdeax2026() {
+function Eyebrow({ children }) {
   return (
-    <div className="min-h-screen bg-white text-[#07113F] font-sans overflow-hidden">
-      {/* Hero */}
+    <div className="mb-2 flex items-center gap-2 text-[11px] sm:text-[12px] font-bold tracking-wide text-[#244668] uppercase">
+      <span className="h-[3px] w-6 bg-[#ffb51d]" />
+      {children}
+      <span className="h-px w-6 bg-[#f1c46a]" />
+    </div>
+  );
+}
+function Heading({ children }) {
+  return (
+    <h2 className="text-[24px] sm:text-[28px] lg:text-[32px] font-bold leading-tight tracking-tight text-[#082c53]">
+      {children}
+    </h2>
+  );
+}
+function Gold({ children }) {
+  return <span className="text-[#ffb21b]">{children}</span>;
+}
+
+export default function AboutSynergy2026() {
+  return (
+    <div className="min-h-screen overflow-hidden bg-white font-sans text-[#0a2b4f]">
+      {/* Hero: original page height and width preserved */}
       <section
-        className="relative min-h-[450px] bg-cover bg-center bg-no-repeat sm:min-h-[450px] lg:min-h-[570px] lg:bg-[length:100%_100%]"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        className="relative min-h-[450px] sm:min-h-[450px] lg:min-h-[570px] bg-[#061b39] bg-cover bg-center bg-no-repeat lg:bg-[length:100%_100%]"
+        style={{
+          backgroundImage: `linear-gradient(90deg,rgba(1,17,44,.76),rgba(1,17,44,.15)),url('${ASSETS.hero}')`,
+        }}
       >
-        <div className="absolute inset-0 bg-white/45 sm:bg-white/25 lg:bg-transparent" />
-
-        <div className="relative max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-16 pt-10 sm:pt-14 lg:pt-20">
-          <motion.div initial="hidden" animate="show" variants={fadeUp} className="max-w-[520px]">
-            <h2 className="font-semibold text-[#06134A] leading-[1.1]">
-              <span className="block text-[26px] sm:text-[38px] lg:text-[42px]">About the</span>
-              <span className="block text-[36px] sm:text-[48px] lg:text-[50px] font-[600] bg-gradient-to-r from-[#0B63FF] via-[#13B5FF] to-[#00D4FF] bg-clip-text text-transparent">
-                IDEAX 2026
-              </span>
-            </h2>
-
-            <h3 className="mt-5 text-[15px] sm:text-[16px] lg:text-[18px] font-semibold leading-snug">
-              International Conference on{" "}
-              <span className="text-[#0B63FF]">Innovation, Decision Engineering</span>{" "}
-              and <span className="text-[#0B63FF]">Artificial Intelligence</span>
-            </h3>
-
-            <div className="mt-4 flex h-[4px] w-[70px] overflow-hidden rounded-full">
-        <span className="w-[55%] bg-[#13B5FF]" />
-        <span className="w-[45%] bg-[#FFC21A]" />
-      </div>
-
-            <p className="mt-6 sm:mt-6 max-w-[360px] text-[13px] sm:text-[14px] lg:text-[15px] leading-6 font-semibold text-[#07113F]/90">
-              IDEAX 2026 is a premier international platform that brings together researchers,
-              academicians, industry leaders and innovators to explore cutting-edge advancements in
-              computing, intelligent systems and decision-making methodologies.
+        <div className="relative mx-auto max-w-[1420px] px-4 pt-10 sm:px-6 sm:pt-14 lg:px-16 lg:pt-20">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={reveal}
+            className="max-w-[520px] text-white"
+          >
+            <div className="mb-4 text-[13px] sm:text-[14px]">
+              <Link to="/" className="hover:text-[#ffb51d]">
+                Home
+              </Link>
+              <span className="mx-2">›</span>About
+            </div>
+            <h1 className="text-[36px] font-bold leading-[1.1] sm:text-[48px] lg:text-[50px]">
+              About SYNERGY <Gold>2026</Gold>
+            </h1>
+            <div className="mt-5 h-[4px] w-[70px] bg-[#ffb51d]" />
+            <p className="mt-6 max-w-[460px] text-[13px] font-medium leading-6 text-white/95 sm:text-[14px] lg:text-[15px]">
+              Bringing together global minds to drive interdisciplinary
+              innovation for a sustainable and digital future.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <main className="max-w-[1420px] mx-auto px-4 sm:px-6 lg:px-16">
-        {/* Mission Vision Focus */}
-        <section className="relative z-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[250px_250px_1fr] gap-4 -mt-12">
-          {[
-            {
-              title: "OUR MISSION",
-              icon: Target,
-              desc: "To advance innovation and intelligent decision-making by fostering interdisciplinary research, collaboration and knowledge exchange for global impact.",
-            },
-            {
-              title: "OUR VISION",
-              icon: Eye,
-              desc: "To become a leading global conference series that inspires innovation and shapes the future of intelligent decision systems.",
-            },
-          ].map((card, index) => (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.25 }}
-              transition={{ duration: 0.55, delay: index * 0.08 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 sm:p-5 text-center shadow-[0_8px_25px_rgba(0,40,120,0.12)] transition-all duration-300"
-            >
-              <h4 className="font-semibold text-[#07113F]">{card.title}</h4>
-              <card.icon className="mx-auto my-4 sm:my-4 w-12 h-12 text-[#0B63FF]" />
-              <p className="text-[13px] sm:text-[14px] leading-6 sm:leading-6 font-semibold text-[#07113F]/80">
-                {card.desc}
-              </p>
-            </motion.div>
-          ))}
-
+      <main>
+        {/* Conference overview */}
+        <section className="mx-auto grid max-w-[1420px] grid-cols-1 items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-16">
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.6, delay: 0.12 }}
-            className="md:col-span-2 xl:col-span-1 bg-white rounded-2xl p-5 sm:p-5 shadow-[0_8px_25px_rgba(0,40,120,0.14)]"
-          >
-            <h4 className="text-center font-semibold text-[#0637C8] mb-5">CORE FOCUS AREAS</h4>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {focusAreas.map((f, index) => (
-                <motion.div
-                  key={f.title}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.06 }}
-                  whileHover={{ y: -6 }}
-                  className="text-center group"
-                >
-                  <div
-                    className="mx-auto w-16 h-16 sm:w-18 sm:h-18 flex items-center justify-center border-2 rounded-[22px] sm:rounded-[28px] rotate-45 group-hover:scale-110 transition"
-                    style={{ borderColor: f.color }}
-                  >
-                    <f.icon className="-rotate-45 w-8 h-8 sm:w-10 sm:h-10" style={{ color: f.color }} />
-                  </div>
-
-                  <h5 className="mt-5 sm:mt-6 font-semibold text-[13px] sm:text-[14px]" style={{ color: f.color }}>
-                    {f.title}
-                  </h5>
-
-                  <p className="mt-2 text-[12px] leading-5 font-medium">{f.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Tracks */}
-        <section className="py-10 sm:py-12">
-          <motion.h3
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="text-center text-[20px] sm:text-[22px] font-semibold text-[#0637C8]"
-          >
-            CONFERENCE TRACKS
-          </motion.h3>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.05 }}
-            className="text-center mt-4 font-semibold text-[13px] sm:text-[14px] max-w-[850px] mx-auto"
-          >
-            IDEAX 2026 invites high-quality research papers across a wide range of topics, including but not limited to:
-          </motion.p>
-
-          <motion.div
-            variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 xl:gap-2 mt-8"
-          >
-            {tracks.map((t, i) => (
-              <motion.div
-                key={t.title}
-                variants={fadeUp}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative text-center bg-white rounded-2xl p-5 min-h-[300px] xl:min-h-[300px] shadow-[0_8px_24px_rgba(0,40,120,0.12)] hover:shadow-[0_18px_35px_rgba(0,40,120,0.18)] transition duration-500"
-              >
-                <div className="flex justify-center mb-5">
-                  <t.icon className="w-12 h-12 transition-transform duration-500 group-hover:scale-110" style={{ color: t.color }} />
-                </div>
-
-                <h4 className="font-semibold text-[13px] leading-5">{t.title}</h4>
-
-                <ul className="mt-5 text-left space-y-2 text-[13px] font-semibold text-[#07113F]/80">
-                  {t.items.map((it) => (
-                    <li key={it}>• {it}</li>
-                  ))}
-                </ul>
-
-                <div
-                  className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center border-2 font-black"
-                  style={{ borderColor: t.color, color: t.color }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* Why + Stats */}
-        <section className="grid grid-cols-1 xl:grid-cols-[480px_1fr] gap-6 py-5">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="bg-white rounded-2xl p-6 sm:p-6 shadow-[0_8px_24px_rgba(0,40,120,0.12)]"
+            variants={reveal}
           >
-            <h3 className="font-semibold mb-4">WHY PARTICIPATE?</h3>
-
-            <div className="space-y-4">
-              {whyItems.map((item, index) => {
-                const Icon = item.icon;
-
-                return (
-                  <motion.div
-                    key={item.text}
-                    initial={{ opacity: 0, x: -25 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.06 }}
-                    className="flex items-center gap-4 group"
-                  >
-                    <div className={`shrink-0 w-8 h-8 rounded-full ${item.bg} flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300`}>
-                      <Icon className="w-5 h-5 text-white" />
-                    </div>
-
-                    <p className="text-[13px] sm:text-[14px] font-semibold text-[#07113F] leading-4">
-                      {item.text}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="rounded-2xl p-5 sm:p-8 lg:p-8 xl:p-8 bg-cover bg-center text-white shadow-xl overflow-hidden"
-            style={{ backgroundImage: `url(${whyBg})` }}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-0 h-full items-center text-center">
-              {[
-                ["500+", "Participants", Users],
-                ["150+", "Research Papers", FileText],
-                ["30+", "Countries", Globe2],
-                ["50+", "Keynote Speakers", Award],
-                ["20+", "University Participants", Network],
-              ].map(([num, label, Icon], index) => (
-                <motion.div
-                  key={label}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: index * 0.07 }}
-                  whileHover={{ y: -8, scale: 1.03 }}
-                  className="group relative px-4 py-5 rounded-xl transition-all duration-500  hover:backdrop-blur-sm hover:shadow-[0_10px_30px_rgba(0,184,255,0.15)]"
-                >
-                  {index !== 4 && (
-                    <span className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 h-[90px] w-px bg-white/20" />
-                  )}
-
-                  <div className="flex justify-center mb-3 sm:mb-4">
-                    <div className="rounded-full p-3 transition-all duration-500 group-hover:bg-white/10 group-hover:shadow-[0_0_25px_rgba(0,184,255,0.45)]">
-                      <Icon className="w-11 h-11 sm:w-11 sm:h-11 text-[#00B8FF] transition-all duration-500 " />
-                    </div>
-                  </div>
-
-                  <h4 className="text-[24px] lg:text-[24px] font-semibold transition-all duration-500 ">
-                    {num}
-                  </h4>
-
-                  <p className="mt-2 text-[13px] lg:text-[14px] text-white/90 transition-all duration-500 ">
-                    {label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Attend + Dates */}
-        <section className="grid grid-cols-1 xl:grid-cols-[1fr_480px] gap-8 py-8">
-          <div>
-            <motion.h3
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
-              className="text-center text-[20px] sm:text-[22px] font-semibold text-[#0637C8] mb-8"
+            <Eyebrow>Conference Overview</Eyebrow>
+            <Heading>
+              About SYNERGY <Gold>2026</Gold>
+            </Heading>
+            <p className="mt-5 text-[13px] leading-6 sm:text-[14px]">
+              SYNERGY 2026 brings together academicians, researchers,
+              professionals, industry experts, and students from multiple
+              disciplines to engage in meaningful dialogue and collaboration.
+              The event focuses on interdisciplinary integration as a pathway to
+              solve complex global challenges and drive sustainable innovation
+              across sectors.
+            </p>
+            <p className="mt-4 text-[13px] leading-6 sm:text-[14px]">
+              This two-day event fosters global collaboration,
+              knowledge-sharing, and networking across Business, Humanities,
+              Law, Criminal Justice, Science, Engineering, and Communication
+              Technology.
+            </p>
+            <Link
+              to="/conference"
+              className="mt-6 inline-flex items-center gap-3 rounded-full bg-[#ffb51d] px-6 py-3 text-[13px] font-bold text-[#082c53] transition hover:-translate-y-1 hover:bg-[#ffc74f]"
             >
-              WHO SHOULD ATTEND?
-            </motion.h3>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-2">
-              {["Researchers & Academicians", "Industry Professionals", "Students & Scholars", "Policy Makers & Government", "Startups & Innovators"].map((x, i) => (
-                <motion.div
-                  key={x}
-                  initial={{ opacity: 0, y: 25 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.45, delay: i * 0.07 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="text-center bg-white rounded-2xl p-4 shadow-md transition"
-                >
-                  <div className="w-20 h-20 sm:w-20 sm:h-20 mx-auto rounded-full bg-[#EAF3FF] flex items-center justify-center">
-                    {i === 0 ? <BookOpen /> : i === 1 ? <Users /> : i === 2 ? <Award /> : i === 3 ? <Globe2 /> : <Trophy />}
-                  </div>
-
-                  <p className="mt-4 text-[13px] font-semibold">{x}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
+              Learn More About the Conference <ArrowRight size={16} />
+            </Link>
+          </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="show"
             viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="bg-white rounded-2xl p-5 sm:p-6 shadow-[0_8px_24px_rgba(0,40,120,0.12)]"
+            variants={reveal}
+            className="relative rounded-xl bg-[#fff7eb] p-3 sm:p-5"
           >
-            <h3 className="text-center text-[20px] sm:text-[18px] font-semibold text-[#0637C8] mb-4">
-              IMPORTANT DATES
-            </h3>
-
-            <div className="space-y-3">
-              {dates.map(([name, date], index) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 font-semibold text-[13px]"
-                >
-                  <div className="flex items-center gap-3">
-                    <CalendarDays className="shrink-0 w-5 h-5 text-[#0B63FF]" />
-                    <span>{name}</span>
-                  </div>
-
-                  <span className="text-[#0637C8] sm:text-right">{date}</span>
-                </motion.div>
-              ))}
-            </div>
+            <img
+              src={ASSETS.campus}
+              alt="University of Batangas campus"
+              className="h-[250px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[350px]"
+            />
           </motion.div>
         </section>
 
-        {/* Publication */}
-        <section className="py-6">
-          <motion.h3
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
-            className="text-center text-[20px] sm:text-[22px] font-semibold text-[#0637C8] mb-7"
-          >
-            PUBLICATION & INDEXING
-          </motion.h3>
+        {/* Why Synergy */}
+        <section className="bg-[#eff8fe] py-12 lg:py-16">
+          <div className="mx-auto max-w-[1420px] px-4 sm:px-6 lg:px-16">
+            <Eyebrow>Our Vision</Eyebrow>
+            <Heading>
+              Why SYNERGY <Gold>2026?</Gold>
+            </Heading>
+            <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {vision.map(({ icon: Icon, title, description }, i) => (
+                <motion.article
+                  key={title}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  variants={reveal}
+                  whileHover={{ y: -6 }}
+                  className="rounded-xl bg-white px-5 py-7 text-center shadow-sm"
+                >
+                  <div
+                    className={`mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full text-white ${i % 2 ? "bg-[#ffb51d]" : "bg-[#063761]"}`}
+                  >
+                    <Icon size={30} />
+                  </div>
+                  <h3 className="text-[14px] font-bold">{title}</h3>
+                  <p className="mt-2 text-[13px] leading-5">{description}</p>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 bg-white rounded-2xl p-5 sm:p-7 shadow-[0_8px_24px_rgba(0,40,120,0.12)]">
-            {[
-              ["Peer Reviewed", "All accepted papers are peer reviewed", FileText],
-              ["Conference Proceedings", "Published with ISBN and DOI", BookOpen],
-              ["Indexed & Abstracted", "Scopus, Google Scholar and other databases", Globe2],
-              ["Selected Papers", "Opportunity for extended journal publication", Award],
-            ].map(([title, desc, Icon], index) => (
-              <motion.div
-                key={title}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
+        {/* Organizers */}
+        <section className="mx-auto max-w-[1420px] px-4 py-12 sm:px-6 lg:px-16 lg:py-16">
+          <Eyebrow>Organizers</Eyebrow>
+          <Heading>
+            Our Organizing <Gold>Institutions</Gold>
+          </Heading>
+          <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {institutions.map((org) => (
+              <motion.article
+                key={org.name}
+                initial="hidden"
+                whileInView="show"
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: index * 0.07 }}
-                whileHover={{ y: -8, scale: 1.03 }}
-                className="flex items-center gap-4"
+                variants={reveal}
+                whileHover={{ y: -5 }}
+                className="flex min-h-[225px] flex-col items-center rounded-xl border border-slate-100 bg-white p-5 text-center shadow-[0_5px_22px_rgba(10,50,90,.08)]"
               >
-                <Icon className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 text-[#0B63FF]" />
-                <div>
-                  <h4 className="font-semibold text-[14px]">{title}</h4>
-                  <p className="text-[13px] font-medium mt-1">{desc}</p>
+                <img
+                  src={org.logo}
+                  alt={`${org.name} logo`}
+                  className="mb-4 h-[85px] w-[95px] object-contain"
+                />
+                <h3 className="text-[13px] font-bold leading-5">{org.name}</h3>
+                <p className="mt-2 text-[12px] leading-5 text-slate-600">
+                  {org.location}
+                </p>
+              </motion.article>
+            ))}
+          </div>
+          <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
+            {descriptions.map((org) => (
+              <motion.article
+                key={org.title}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                variants={reveal}
+                className={`relative isolate flex min-h-[300px] flex-col items-start overflow-hidden rounded-xl p-6 sm:p-8 ${org.dark ? "bg-[#052b4c] text-white" : "bg-[#eef6fc] text-[#082c53]"}`}
+              >
+                <div
+                  className="absolute inset-0 -z-10 bg-cover bg-right bg-no-repeat opacity-30"
+                  style={{ backgroundImage: `url('${org.bg}')` }}
+                />
+                <div
+                  className={`absolute inset-0 -z-10 ${org.dark ? "bg-gradient-to-r from-[#052b4c] via-[#052b4c]/90 to-transparent" : "bg-gradient-to-r from-[#f5f9fc] via-[#f5f9fc]/90 to-transparent"}`}
+                />
+                <div className="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase">
+                  <span className="h-[3px] w-6 bg-[#ffb51d]" />
+                  About
                 </div>
-              </motion.div>
+                <h3 className="max-w-[340px] text-[19px] font-bold leading-tight sm:text-[21px]">
+                  {org.title}
+                </h3>
+                <p className="mt-3 max-w-[490px] text-[12px] leading-[1.6] sm:text-[13px]">
+                  {org.text}
+                </p>
+                {org.url ? (
+                  <a
+                    href={org.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-auto inline-flex items-center gap-2 rounded-full px-5 py-2 text-[12px] font-bold transition hover:scale-105 ${org.dark ? "bg-white text-[#052b4c]" : "bg-[#053b66] text-white"}`}
+                  >
+                    {org.button}
+                    <ArrowRight size={14} />
+                  </a>
+                ) : (
+                  <Link
+                    to="/contact"
+                    className="mt-auto inline-flex items-center gap-2 rounded-full bg-[#053b66] px-5 py-2 text-[12px] font-bold text-white transition hover:scale-105"
+                  >
+                    {org.button}
+                    <ArrowRight size={14} />
+                  </Link>
+                )}
+              </motion.article>
             ))}
           </div>
         </section>
 
-        {/* CTA */}
-        <motion.section
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 rounded-2xl overflow-hidden bg-cover bg-center text-white p-5 sm:p-6 lg:p-6 shadow-xl"
-          style={{ backgroundImage: `url(${ctaBg})` }}
+        {/* Publication partner */}
+        <section
+          className="bg-[#eef8ff] bg-cover bg-center"
+          style={{
+            backgroundImage: `linear-gradient(90deg,rgba(238,248,255,.98),rgba(238,248,255,.7)),url('${ASSETS.partnerBg}')`,
+          }}
         >
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 text-center lg:text-left">
-            <div className="flex flex-col sm:flex-row items-center gap-5 lg:gap-6">
-              <motion.div whileHover={{ scale: 1.12, rotate: -8 }}>
-                <Trophy className="shrink-0 w-16 h-16  text-[#FFB000]" />
-              </motion.div>
-
-              <div className="max-w-[560px]">
-                <h2 className="text-[20px] sm:text-[22px] lg:text-[24px] font-semibold">
-                  Be Part of IDEAX 2026
-                </h2>
-
-                <p className="mt-1 text-[13px] sm:text-[14px] text-white/90 leading-6">
-                  Join us in shaping the future of intelligent systems and data-driven decisions that create a better and smarter world.
-                </p>
-              </div>
+          <div className="mx-auto flex max-w-[1420px] flex-col items-start gap-6 px-4 py-9 sm:px-6 md:flex-row md:items-center lg:px-16">
+            <img
+              src={ASSETS.researcherLogo}
+              alt="Researcher Connect"
+              className="h-24 w-32 shrink-0 object-contain"
+            />
+            <div>
+              <Eyebrow>Publication Partner</Eyebrow>
+              <h2 className="text-[23px] font-bold text-[#082c53]">
+                Researcher Connect
+              </h2>
+              <p className="mt-2 max-w-[860px] text-[13px] leading-5">
+                Researcher Connect Innovation and Impact Private Limited (RCI
+                Pvt. Ltd.) is a global organization committed to advancing
+                research, innovation, and academic excellence. Through
+                conferences, publications, training programs, and international
+                collaborations, RCI connects researchers, academicians, industry
+                professionals, and students to foster knowledge sharing and
+                create meaningful societal impact.
+              </p>
+              <Link
+                to="/contact"
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#ffb51d] px-5 py-2 text-[12px] font-bold text-[#082c53] hover:bg-[#ffc74f]"
+              >
+                Learn More <ArrowRight size={14} />
+              </Link>
             </div>
-<Link to="/registration">
-            <button className="shrink-0 bg-[#FFB000] text-[13px] text-[#07113F] px-5 py-3 rounded-lg font-semibold flex items-center gap-3 hover:scale-105 transition">
-              REGISTER NOW <ArrowRight className="w-4 h-4" />
-            </button></Link>
           </div>
-        </motion.section>
+        </section>
       </main>
     </div>
   );
