@@ -184,7 +184,7 @@ function SectionHeading({ eyebrow, title, description }) {
         <span className="w-[45%] bg-[#FFB51D]" />
       </div>
 
-      <h2 className="mt-4 text-[24px] sm:text-[28px] lg:text-[32px] font-bold leading-tight text-[#08184A]">
+      <h2 className="mt-4 text-[24px] sm:text-[28px] lg:text-[32px] font-[600] leading-tight text-[#08184A]">
         {title}
       </h2>
 
@@ -224,14 +224,10 @@ export default function TracksPage() {
       ======================================== */}
 
       <section
-        className="relative min-h-[360px] bg-[#041631] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[0px] lg:bg-[length:100%_100%]"
+        className="relative min-h-[400px] bg-[#041631] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[440px] lg:bg-[length:100%_100%]"
         style={{
-          backgroundImage: `linear-gradient(
-            90deg,
-            rgba(1,12,34,0.65) 0%,
-            rgba(1,12,34,0.30) 50%,
-            rgba(1,12,34,0.05) 100%
-          ), url("${tracksBG}")`,
+          backgroundImage: `
+           url("${tracksBG}")`,
         }}
       >
         <div className="relative z-10 mx-auto max-w-[1420px] px-4 pt-6 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16">
@@ -259,8 +255,8 @@ export default function TracksPage() {
 
             {/* Hero Title */}
 
-            <h1 className="mt-7 font-semibold leading-[1.05]">
-              <span className="block text-[36px] sm:text-[38px] lg:text-[42px] text-white">
+            <h1 className="mt-6 font-[600] leading-[1.05]">
+              <span className="text-[36px] text-white font-[600] leading-[1.1] sm:text-[48px] lg:text-[50px]">
                 Conference
               </span>
 
@@ -277,21 +273,21 @@ export default function TracksPage() {
               }
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.6 }}
-              className="mt-3 text-[16px] sm:text-[18px] lg:text-[20px] font-semibold text-white"
+              className="mt-2 text-[16px] sm:text-[18px] lg:text-[20px] font-semibold text-white"
             >
               Explore. Collaborate. Innovate.
             </motion.h2>
 
             {/* Accent Line */}
 
-            <div className="mt-4 flex h-[4px] w-[75px] overflow-hidden rounded-full">
+            <div className="mt-2 flex h-[4px] w-[75px] overflow-hidden rounded-full">
               <span className="w-[55%] bg-[#03BFFF]" />
               <span className="w-[45%] bg-[#FFB51D]" />
             </div>
 
             {/* Hero Description */}
 
-            <p className="mt-6 max-w-[430px] text-[13px] sm:text-[14px] lg:text-[15px] leading-6 sm:leading-7 text-white/95">
+            <p className="mt-5 max-w-[430px] text-[13px] sm:text-[14px] lg:text-[15px] leading-6 sm:leading-7 text-white/95">
               SYNERGY 2026 covers diverse interdisciplinary areas and invites
               high-quality research contributions to advance knowledge, foster
               collaboration, and create a sustainable and digital future.
@@ -304,7 +300,7 @@ export default function TracksPage() {
           CONFERENCE STREAMS SECTION
       ======================================== */}
 
-      <section className="relative z-10 -mt-4 rounded-t-[18px] bg-white px-4 pb-6 pt-8 sm:px-8 sm:pt-10 lg:px-16">
+      <section className="relative z-10 -mt-4 rounded-t-[18px] bg-white px-4 pb-6 pt-6 sm:px-8 sm:pt-8 lg:px-16">
 
         <div className="mx-auto max-w-[1240px]">
 
@@ -356,7 +352,7 @@ export default function TracksPage() {
 
                     <div className="min-w-0 flex-1">
                       <h3
-                        className="text-[24px] font-bold leading-none"
+                        className="text-[24px] font-[600] leading-none"
                         style={{ color: stream.color }}
                       >
                         {stream.no}
@@ -395,22 +391,7 @@ export default function TracksPage() {
                     ))}
                   </ul>
 
-                  {/* View Details */}
-
-                  <Link
-                    to={`/submission?stream=${stream.no}`}
-                    className="mt-7 inline-flex w-fit items-center gap-3 text-[13px] font-semibold transition-all duration-300 hover:gap-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4"
-                    style={{
-                      color: stream.color,
-                    }}
-                  >
-                    View Stream Details
-
-                    <ArrowRight
-                      size={17}
-                      className="transition-transform duration-300 group-hover:translate-x-1"
-                    />
-                  </Link>
+                
                 </motion.article>
               );
             })}

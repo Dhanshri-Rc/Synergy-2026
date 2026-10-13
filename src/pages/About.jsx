@@ -268,7 +268,7 @@ export default function AboutSynergy2026() {
 
         style={{
 
-          backgroundImage: `linear-gradient(90deg,rgba(1,17,44,.76),rgba(1,17,44,.15)),url('${ASSETS.hero}')`,
+          backgroundImage: `url('${ASSETS.hero}')`,
 
         }}
 
