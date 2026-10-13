@@ -18,7 +18,7 @@ const ASSETS = {
   daltaLogo: "/src/assets/img/universityofPerpetual.png",
   himalayanLogo: "/src/assets/img/himalayanUniversity.png",
   grcfLogo: "/src/assets/img/globalResearch.png",
-  researcherLogo: "/src/assets/img/researcherConnectLogo.png",
+  researcherLogo: "/src/assets/img/RC Logo.png",
   batangasBg: "/src/assets/img/batangas-building.webp",
   daltaBg: "/src/assets/img/perpetual-help-building.webp",
   himalayanBg: "/src/assets/img/himalayan-university-building.webp",
