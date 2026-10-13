@@ -8,7 +8,7 @@ import hlogo from "../assets/hero/headerLogo.png";
 const LINKS = [
   { label: "Home", to: "/" },
   { label: "About", to: "/about" },
-  { label: "Tracks", to: "/tracks" },
+  { label: "Conference", to: "/conference" },
   { label: "Speakers", to: "/speakers" },
   { label: "Schedule", to: "/schedule" },
   { label: "Committee", to: "/committee" },
