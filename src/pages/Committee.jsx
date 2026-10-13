@@ -224,7 +224,7 @@ const [organizingIndex, setOrganizingIndex] = useState(0);
         <p className="mt-2 max-w-[560px] text-[12px] font-medium leading-relaxed text-white/85 sm:text-[13px]">
           We are always looking for enthusiastic volunteers
           <br className="hidden sm:block" />
-          to help make IDEAX 2026 a success.
+          to help make SYNERGY 2026 a success.
         </p>
       </div>
     </div>

@@ -4,7 +4,13 @@ import {
   Users, FileText, Globe2, Mic2, BrainCircuit, LineChart,
   Cloud, HeartPulse, Leaf, Cpu, ChevronLeft, ChevronRight,
   CheckCircle2, FileCheck2, BadgeCheck, ShieldCheck, Send,
-  ArrowRight
+  ArrowRight ,   ChartNoAxesColumnIncreasing,
+  Scale,
+  Settings,
+  
+
+  Network,
+
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
@@ -26,43 +32,91 @@ const STATS = [
 
 const TRACKS = [
   {
-    icon: BrainCircuit,
+    icon: ChartNoAxesColumnIncreasing,
     color: "text-[#2563EB]",
-    title: "Artificial Intelligence & Machine Learning",
-    desc: "Advances in AI, ML, deep learning and intelligent systems.",
+    title: "Management, Business, Economics & Sustainability",
+    desc: "Innovative strategies for resilient and sustainable growth.",
   },
   {
-    icon: LineChart,
-    color: "text-[#7C3AED]",
-    title: "Decision Engineering & Analytics",
-    desc: "Decision support systems, optimization, predictive analytics and simulation.",
+    icon: Scale,
+    color: "text-[#6945FF]",
+    title:
+      "Law, Criminal Justice, Humanities, Social Science, Arts & Education",
+    desc: "People, society and inclusive development through interdisciplinary collaboration.",
   },
   {
-    icon: Cloud,
-    color: "text-[#12B8B3]",
-    title: "Data Science & Big Data",
-    desc: "Big data technologies, data mining, analytics and visualization.",
-  },
-  {
-    icon: Cpu,
-    color: "text-[#FB923C]",
-    title: "Smart Systems & Emerging Tech",
-    desc: "IoT, blockchain, cloud, edge computing and cyber-physical systems.",
-  },
-  {
-    icon: HeartPulse,
-    color: "text-[#EC4899]",
-    title: "Intelligent Applications & Industry 4.0",
-    desc: "AI in healthcare, finance, smart cities, robotics and automation.",
+    icon: Settings,
+    color: "text-[#0DA99A]",
+    title:
+      "General Science, Food Technology, IT, Computing & Emerging Engineering",
+    desc: "Advancing science, technology and emerging solutions for real-world impact.",
   },
   {
     icon: Leaf,
-    color: "text-[#84CC16]",
-    title: "Sustainability & Societal Impact",
-    desc: "Sustainable innovation, green computing and ethical AI.",
+    color: "text-[#65B933]",
+    title: "Sustainable Development",
+    desc: "Interdisciplinary solutions for a greener, healthier and more inclusive future.",
+  },
+  {
+    icon: Lightbulb,
+    color: "text-[#FF9800]",
+    title: "Innovation & Technology",
+    desc: "Transforming ideas into solutions for societal and industrial advancement.",
+  },
+  {
+    icon: Network,
+    color: "text-[#2563EB]",
+    title: "Global Collaboration",
+    desc: "Building partnerships for knowledge exchange and a better global tomorrow.",
   },
 ];
-
+const ORGANIZING_PARTNERS = [
+  {
+    id: 1,
+    name: "University of Batangas",
+    subtitle: "Lipa Campus",
+    location: "Batangas, Philippines",
+    country: "Philippines",
+    flag: "🇵🇭",
+    image: batangasLogo,
+  },
+  {
+    id: 2,
+    name: "University of Perpetual Help System DALTA",
+    subtitle: "",
+    location: "",
+    country: "Philippines",
+    flag: "🇵🇭",
+    image: perpetualLogo,
+  },
+  {
+    id: 3,
+    name: "Himalayan University",
+    subtitle: "",
+    location: "",
+    country: "India",
+    flag: "🇮🇳",
+    image: himalayanLogo,
+  },
+  {
+    id: 4,
+    name: "Global Research Conference Forum",
+    subtitle: "",
+    location: "",
+    country: "International",
+    flag: "🌐",
+    image: globalResearchLogo,
+  },
+  {
+    id: 5,
+    name: "Research Connect",
+    subtitle: "Publication Partner",
+    location: "",
+    country: "International",
+    flag: "🌐",
+    image: researcherConnectLogo,
+  },
+];
 const SPEAKERS = [
   { name: "Prof. Yann LeCun", uni: "New York University", country: "USA", flag: "🇺🇸", img:profile },
   { name: "Prof. Fei-Fei Li", uni: "Stanford University", country: "USA", flag: "🇺🇸", img:profile },
@@ -216,172 +270,321 @@ const prevSpeaker = () => {
   </div>
 </section>
 
-      {/* TRACKS */}
-    <section className="relative overflow-hidden bg-white px-5 py-3 sm:px-8 lg:px-16">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.06),transparent_35%)]" />
+   
+ 
+{/* CONFERENCE THEMES SECTION */}
+<section className="relative isolate overflow-hidden bg-white px-4 py-8 sm:px-6 sm:py-10 lg:px-10 xl:px-12 2xl:px-16">
+  {/* Subtle background */}
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.045),transparent_50%)]"
+  />
 
-  <div className="relative mx-auto max-w-[1420px] text-center">
-    <motion.p
-      initial={{ opacity: 0, y: 12 }}
+  <div className="relative z-10 mx-auto w-full max-w-[1450px] text-center">
+    {/* Section heading */}
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.45 }}
-      className="text-[12px] font-bold uppercase leading-none text-[#2563EB]"
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+      className="mb-5 sm:mb-6"
     >
-      Conference Tracks
-    </motion.p>
+      <p className="text-[11px] font-bold uppercase tracking-[0.03em] text-[#2563EB] sm:text-[12px]">
+        CONFERENCE THEMES
+      </p>
 
-    <motion.h2
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.05 }}
-      className="mt-2 text-[24px] font-[600] leading-tight text-[#07113F] sm:text-[29px]"
-    >
-      Explore Key Themes
-    </motion.h2>
+      <h2 className="mt-1.5 text-[24px] font-bold leading-tight tracking-[-0.02em] text-[#07113F] sm:text-[28px] lg:text-[30px]">
+        Explore Key Streams
+      </h2>
 
-    <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-6">
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: 49 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.65, delay: 0.2 }}
+        className="mx-auto mt-2 h-[2px] rounded-full bg-[#2563EB]"
+      />
+    </motion.div>
+
+    {/* Theme cards */}
+    <div className="grid grid-cols-1 items-stretch gap-3 min-[420px]:grid-cols-2 md:grid-cols-3 xl:grid-cols-6 xl:gap-2">
       {TRACKS.map(({ icon: Icon, color, title, desc }, index) => (
         <motion.div
           key={title}
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.5, delay: index * 0.06, ease: "easeOut" }}
-          whileHover={{ y: -8, scale: 1.025 }}
-          className="group flex min-h-[165px] flex-col items-center justify-start rounded-[10px] border border-[#E3E9F4] bg-white px-3 py-5 text-center shadow-[0_8px_24px_rgba(15,23,42,0.04)] transition-all duration-300 hover:border-[#C7D8FF] hover:shadow-[0_18px_45px_rgba(37,99,235,0.14)]"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{
+            duration: 0.5,
+            delay: index * 0.055,
+            ease: "easeOut",
+          }}
+          whileHover={{
+            y: -7,
+            scale: 1.015,
+            transition: {
+              duration: 0.25,
+              ease: "easeOut",
+            },
+          }}
+          className="group relative flex h-full min-h-[220px] flex-col items-center rounded-[9px] border border-[#E4EAF5] bg-white px-3 py-5 text-center shadow-[0_2px_12px_rgba(15,23,42,0.025)] transition-[border-color,box-shadow,background-color] duration-300 ease-out hover:z-10 hover:border-[#BFD2FF] hover:bg-[#FCFDFF] hover:shadow-[0_15px_35px_rgba(37,99,235,0.12)] sm:min-h-[235px] md:min-h-[245px] xl:min-h-[228px] 2xl:min-h-[235px]"
         >
-          <Icon
-            size={39}
-            strokeWidth={2}
-            className={`mb-4 ${color} transition-transform duration-300 group-hover:scale-110`}
-          />
+          {/* Icon */}
+          <motion.div
+            whileHover={{
+              rotate: [0, -5, 5, 0],
+              scale: 1.1,
+            }}
+            transition={{ duration: 0.4 }}
+            className="mb-3 flex h-[48px] w-[48px] shrink-0 items-center justify-center"
+          >
+            <Icon
+              size={43}
+              strokeWidth={1.7}
+              className={`${color} transition-transform duration-300 ease-out group-hover:scale-110`}
+              aria-hidden="true"
+            />
+          </motion.div>
 
-          <h3 className="max-w-[160px] text-[13px] font-[600] leading-[1.18] text-[#07113F]">
+          {/* Title */}
+          <h3 className="mx-auto w-full max-w-[205px] text-[13px] font-semibold leading-[1.35] text-[#07113F] transition-colors duration-300 group-hover:text-[#2563EB] sm:text-[13px] lg:text-[13.5px]">
             {title}
           </h3>
 
-          <p className="mt-3 max-w-[160px] text-[12px] font-medium leading-[1.45] text-[#1F2A44]/75">
+          {/* Description */}
+          <p className="mx-auto mt-4 w-full max-w-[195px] text-[12px] font-normal leading-[1.5] text-[#46516B] transition-colors duration-300 group-hover:text-[#263858]">
             {desc}
           </p>
+
+          {/* Hover accent */}
+          <div
+            aria-hidden="true"
+            className="absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 rounded-full bg-[#2563EB] transition-[width] duration-300 ease-out group-hover:w-[65%]"
+          />
         </motion.div>
       ))}
     </div>
 
-    <Link
-      to="/tracks"
-      className="mx-auto mt-5 inline-flex h-[34px] items-center gap-4 rounded-[6px] border border-[#2563EB] px-8 text-[12px] font-bold text-[#2563EB] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#2563EB] hover:text-white hover:shadow-[0_10px_25px_rgba(37,99,235,0.22)]"
+    {/* View all button */}
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.25 }}
+      className="mt-5 flex justify-center sm:mt-6"
     >
-      View All Tracks <span className="text-[16px] leading-none">→</span>
-    </Link>
+      <Link
+        to="/tracks"
+        className="group/btn inline-flex min-h-[36px] items-center justify-center gap-5 rounded-[5px] border border-[#2563EB] bg-white px-6 py-2 text-[12px] font-semibold text-[#2563EB] shadow-[0_2px_5px_rgba(37,99,235,0.05)] transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#2563EB] hover:text-white hover:shadow-[0_10px_25px_rgba(37,99,235,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2563EB] sm:px-7"
+      >
+        View All Themes
+
+        <ArrowRight
+          size={17}
+          strokeWidth={2}
+          className="transition-transform duration-300 group-hover/btn:translate-x-1.5"
+        />
+      </Link>
+    </motion.div>
   </div>
 </section>
+
 
       {/* SPEAKERS */}
-    <section className="relative overflow-hidden rounded-t-[8px] bg-[#050B35] px-5 py-7 sm:px-8 lg:px-16">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_95%_85%,rgba(168,85,247,0.35),transparent_28%),radial-gradient(circle_at_20%_0%,rgba(37,99,235,0.22),transparent_34%)]" />
+  <section
+      id="organizing-partners"
+      className="relative isolate overflow-hidden rounded-t-[12px] bg-[#050C35] px-4 py-5 sm:px-6 sm:py-6 lg:px-10 xl:px-12 2xl:px-16"
+    >
+      {/* Background gradients */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_95%_90%,rgba(115,34,194,0.28),transparent_25%),radial-gradient(circle_at_20%_0%,rgba(37,99,235,0.17),transparent_40%)]"
+      />
 
-  <div className="relative mx-auto max-w-[1420px]">
-    <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
-      <div>
-        <p className="text-[12px] font-bold uppercase leading-none text-[#FFC21A]">
-          Keynote Speakers
-        </p>
+      {/* Decorative bottom glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-28 -right-24 h-[260px] w-[260px] rounded-full bg-purple-600/10 blur-[85px]"
+      />
 
-        <h2 className="mt-2 text-[22px] font-[600] leading-tight text-white sm:text-[25px]">
-          Global Minds. Intelligent Ideas. Lasting Impact.
-        </h2>
-      </div>
-
-      <Link
-        to="/speakers"
-        className="inline-flex h-[32px] items-center gap-3 rounded-[5px] border border-[#FFC21A]/70 px-5 text-[11px] font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFC21A] hover:text-[#07113F]"
-      >
-        View All Speakers <span className="text-[15px]">→</span>
-      </Link>
-    </div>
-
-    <div className="relative px-0 md:px-8">
-      <button
-        type="button"
-        onClick={prevSpeaker}
-        className="absolute left-0 top-1/2 z-20 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur transition-all duration-300 hover:scale-110 hover:bg-white/20 md:flex"
-      >
-        <ChevronLeft size={17} />
-      </button>
-
-      <motion.div
-        key={speakerIndex}
-        initial={{ opacity: 0, x: 28 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.45, ease: "easeOut" }}
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
-      >
-        {visibleSpeakers.map((sp, index) => (
+      <div className="relative z-10 mx-auto w-full max-w-[1450px]">
+        {/* Section heading */}
+        <div className="mb-3 flex flex-col items-start justify-between gap-3 sm:mb-4 sm:flex-row sm:items-center">
           <motion.div
-            key={`${sp.name}-${speakerIndex}`}
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: index * 0.05 }}
-            whileHover={{ y: -8, scale: 1.025 }}
-            className="group rounded-[8px] border border-white/10 bg-white/[0.09] px-4 py-5 text-center backdrop-blur transition-all duration-300 hover:border-[#11A8FF]/70 hover:bg-white/[0.13] hover:shadow-[0_18px_45px_rgba(17,168,255,0.15)]"
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
           >
-            <div className="mx-auto mb-3 h-[86px] w-[86px] overflow-hidden rounded-full border-2 border-[#11A8FF] bg-slate-200 transition-transform duration-300 group-hover:scale-105">
-              <img
-                src={sp.img}
-                alt={sp.name}
-                className="h-full w-full object-cover"
-                onError={(e) => {
-                  e.currentTarget.style.display = "none";
-                  e.currentTarget.parentElement.innerHTML = `<div class='flex h-full w-full items-center justify-center text-[28px] font-bold text-slate-700'>${sp.name.split(" ")[1]?.[0] || "S"}</div>`;
-                }}
-              />
-            </div>
-
-            <h3 className="text-[13px] font-semibold leading-tight text-white">
-              {sp.name}
-            </h3>
-
-            <p className="mt-1 text-[11px] font-medium text-white/75">
-              {sp.uni}
+            <p className="text-[12px] font-bold uppercase tracking-[0.02em] text-[#FFC21A]">
+              ORGANIZING PARTNERS
             </p>
 
-            <p className="mt-2 text-[12px] font-semibold text-white/85">
-               {sp.country}
-            </p>
+            <h2 className="mt-1.5 text-[21px] font-semibold leading-[1.2] tracking-[-0.015em] text-white sm:text-[24px] lg:text-[25px]">
+              Leading Institutions. Stronger Together.
+            </h2>
           </motion.div>
-        ))}
-      </motion.div>
 
-      <button
-        type="button"
-        onClick={nextSpeaker}
-        className="absolute right-0 top-1/2 z-20 hidden h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white backdrop-blur transition-all duration-300 hover:scale-110 hover:bg-white/20 md:flex"
-      >
-        <ChevronRight size={17} />
-      </button>
+          <Link
+            to="/partners"
+            className="group/btn inline-flex min-h-[36px] shrink-0 items-center justify-center gap-6 rounded-[5px] border border-[#D99B18] bg-transparent px-5 py-2 text-[12px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFC21A] hover:text-[#07113F] hover:shadow-[0_8px_20px_rgba(255,194,26,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC21A]"
+          >
+            View All Partners
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover/btn:translate-x-1"
+            />
+          </Link>
+        </div>
 
-      <div className="mt-5 flex justify-center gap-2 md:hidden">
-        <button
-          type="button"
-          onClick={prevSpeaker}
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white"
-        >
-          <ChevronLeft size={17} />
-        </button>
+        {/* Carousel area */}
+        <div className="relative px-0 min-[480px]:px-9 lg:px-10">
+          {/* Previous arrow */}
+          <button
+            type="button"
+            onClick={prevPartner}
+            aria-label="Previous organizing partner"
+            className="absolute left-0 top-1/2 z-20 hidden h-[34px] w-[34px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/[0.04] text-white transition-all duration-300 hover:scale-110 hover:border-[#FFC21A] hover:bg-[#FFC21A] hover:text-[#07113F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FFC21A] min-[480px]:flex"
+          >
+            <ChevronLeft size={19} strokeWidth={1.8} />
+          </button>
 
-        <button
-          type="button"
-          onClick={nextSpeaker}
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white"
-        >
-          <ChevronRight size={17} />
-        </button>
+          {/* Animated partner cards */}
+          <div className="relative overflow-hidden">
+            <AnimatePresence
+              mode="wait"
+              initial={false}
+              custom={direction}
+            >
+              <motion.div
+                key={`${partnerIndex}-${visibleCount}`}
+                custom={direction}
+                variants={carouselVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+                className="grid grid-cols-1 gap-2.5 min-[480px]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-3"
+              >
+                {visiblePartners.map((partner, index) => (
+                  <motion.article
+                    key={partner.id}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.35,
+                      delay: index * 0.04,
+                    }}
+                    whileHover={{
+                      y: -6,
+                      scale: 1.015,
+                      transition: {
+                        duration: 0.22,
+                        ease: "easeOut",
+                      },
+                    }}
+                    className="group relative flex min-h-[194px] min-w-0 flex-col items-center overflow-hidden rounded-[7px] border border-white/[0.04] bg-white/[0.085] px-2.5 py-3 text-center shadow-[0_5px_18px_rgba(0,0,0,0.04)] transition-[background-color,border-color,box-shadow] duration-300 hover:z-10 hover:border-[#4779D6]/60 hover:bg-white/[0.13] hover:shadow-[0_16px_35px_rgba(23,80,184,0.18)] sm:min-h-[200px] lg:min-h-[194px]"
+                  >
+                    {/* Logo */}
+                    <div className="mb-2 flex h-[85px] w-[85px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 shadow-[0_2px_10px_rgba(0,0,0,0.12)] transition-transform duration-300 group-hover:scale-105">
+                      <img
+                        src={partner.img}
+                        alt={`${partner.name} logo`}
+                        loading="lazy"
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+
+                    {/* Partner name */}
+                    <h3 className="w-full text-[13px] font-semibold leading-[1.2] text-white sm:text-[13.5px]">
+                      {partner.name}
+                    </h3>
+
+                    {/* Partner subtitle */}
+                    {partner.subtitle && (
+                      <p className="mt-1 text-[11px] leading-[1.25] text-white/80">
+                        {partner.subtitle}
+                      </p>
+                    )}
+
+                    {/* Location */}
+                    {partner.location && (
+                      <p className="mt-0.5 text-[10.5px] leading-[1.25] text-white/70">
+                        {partner.location}
+                      </p>
+                    )}
+
+                    {/* Country */}
+                    <div className="mt-auto flex items-center justify-center gap-2 pt-2 text-[12px] font-medium text-white/85">
+                      {partner.country === "International" ? (
+                        <Globe2
+                          size={20}
+                          strokeWidth={1.7}
+                          className="shrink-0 text-[#66C3FF]"
+                        />
+                      ) : (
+                        <span
+                          aria-hidden="true"
+                          className="text-[22px] leading-none"
+                        >
+                          {partner.flag}
+                        </span>
+                      )}
+
+                      <span>{partner.country}</span>
+                    </div>
+
+                    {/* Hover accent */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-[#FFC21A] transition-[width] duration-300 group-hover:w-[65%]"
+                    />
+                  </motion.article>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Next arrow */}
+          <button
+            type="button"
+            onClick={nextPartner}
+            aria-label="Next organizing partner"
+            className="absolute right-0 top-1/2 z-20 hidden h-[34px] w-[34px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/[0.04] text-white transition-all duration-300 hover:scale-110 hover:border-[#FFC21A] hover:bg-[#FFC21A] hover:text-[#07113F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FFC21A] min-[480px]:flex"
+          >
+            <ChevronRight size={19} strokeWidth={1.8} />
+          </button>
+        </div>
+
+        {/* Mobile navigation */}
+        <div className="mt-4 flex items-center justify-center gap-4 min-[480px]:hidden">
+          <button
+            type="button"
+            onClick={prevPartner}
+            aria-label="Previous partner"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-all duration-300 hover:bg-[#FFC21A] hover:text-[#07113F]"
+          >
+            <ChevronLeft size={19} />
+          </button>
+
+          <span className="text-[12px] font-medium text-white/70">
+            {partnerIndex + 1} / {PARTNERS.length}
+          </span>
+
+          <button
+            type="button"
+            onClick={nextPartner}
+            aria-label="Next partner"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-all duration-300 hover:bg-[#FFC21A] hover:text-[#07113F]"
+          >
+            <ChevronRight size={19} />
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
       {/* INFO */}
   <section className="relative overflow-hidden bg-white px-5 py-8 sm:px-8 lg:px-16">
