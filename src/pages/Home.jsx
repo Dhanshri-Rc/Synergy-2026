@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Calendar, MapPin, Laptop, Lightbulb, BarChart3, Target,
   Users, FileText, Globe2, Mic2, BrainCircuit, LineChart,
   Cloud, HeartPulse, Leaf, Cpu, ChevronLeft, ChevronRight,
   CheckCircle2, FileCheck2, BadgeCheck, ShieldCheck, Send,
-  ArrowRight ,   ChartNoAxesColumnIncreasing,
+  ArrowRight ,   ChartNoAxesColumnIncreasing, BookOpen, Database , Award, CalendarDays , Check ,
   Scale,
   Settings,
   
@@ -15,8 +15,13 @@ import {
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import homeHero from "../assets/img/homeBg.png";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import profile from "../assets/hero/IDEAX-2026-conference-illustration.webp"
+import batangasLogo from "../assets/img/batangasUniversityLogo.png";
+import perpetualLogo from "../assets/img/universityofPerpetual.png";
+import himalayanLogo from "../assets/img/himalayanUniversity.png";
+import globalResearchLogo from "../assets/img/globalResearch.png";
+import researcherConnectLogo from "../assets/img/RC Logo.png";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -70,7 +75,7 @@ const TRACKS = [
     desc: "Building partnerships for knowledge exchange and a better global tomorrow.",
   },
 ];
-const ORGANIZING_PARTNERS = [
+const PARTNERS = [
   {
     id: 1,
     name: "University of Batangas",
@@ -78,7 +83,7 @@ const ORGANIZING_PARTNERS = [
     location: "Batangas, Philippines",
     country: "Philippines",
     flag: "🇵🇭",
-    image: batangasLogo,
+    img: batangasLogo,
   },
   {
     id: 2,
@@ -87,7 +92,7 @@ const ORGANIZING_PARTNERS = [
     location: "",
     country: "Philippines",
     flag: "🇵🇭",
-    image: perpetualLogo,
+    img: perpetualLogo,
   },
   {
     id: 3,
@@ -96,7 +101,7 @@ const ORGANIZING_PARTNERS = [
     location: "",
     country: "India",
     flag: "🇮🇳",
-    image: himalayanLogo,
+    img: himalayanLogo,
   },
   {
     id: 4,
@@ -105,7 +110,7 @@ const ORGANIZING_PARTNERS = [
     location: "",
     country: "International",
     flag: "🌐",
-    image: globalResearchLogo,
+    img: globalResearchLogo,
   },
   {
     id: 5,
@@ -114,25 +119,50 @@ const ORGANIZING_PARTNERS = [
     location: "",
     country: "International",
     flag: "🌐",
-    image: researcherConnectLogo,
+    img: researcherConnectLogo,
   },
 ];
-const SPEAKERS = [
-  { name: "Prof. Yann LeCun", uni: "New York University", country: "USA", flag: "🇺🇸", img:profile },
-  { name: "Prof. Fei-Fei Li", uni: "Stanford University", country: "USA", flag: "🇺🇸", img:profile },
-  { name: "Prof. Amit P. Sheth", uni: "University of South Carolina", country: "USA", flag: "🇺🇸", img:profile },
-  { name: "Prof. Virginia Dignum", uni: "Umeå University", country: "Sweden", flag: "🇸🇪", img:profile },
-  { name: "Prof. Hiroaki Kitano", uni: "Sony Computer Science Labs", country: "Japan", flag: "🇯🇵", img:profile },
-  { name: "Prof. Stuart Russell", uni: "UC Berkeley", country: "USA", flag: "🇺🇸", img:profile },
-  { name: "Prof. Yoshua Bengio", uni: "Mila Institute", country: "Canada", flag: "🇨🇦", img:profile },
-];
+
 
 const DATES = [
-  ["Paper Submission Deadline", "25 August, 2026"],
-  ["Notification of Acceptance", "10 September, 2026"],
-  ["Camera Ready Submission", "5 October, 2026"],
-  ["Early Bird Registration", "18 October, 2026"],
-  ["Conference Dates", "10 – 12 December, 2026"],
+  ["Abstract Submission Deadline", "15 July, 2026"],
+  ["Full Paper Submission Deadline", "15 August, 2026"],
+  ["Notification of Acceptance", "15 September, 2026"],
+  ["Early Bird Registration", "30 September, 2026"],
+  ["Regular Registration", "15 November, 2026"],
+  ["Conference Dates", "4 – 5 December, 2026"],
+];
+
+const WHY_ATTEND = [
+  "Engage with global experts and thought leaders",
+  "Present your research to a diverse audience",
+  "Explore interdisciplinary collaboration",
+  "Gain new insights and professional networks",
+  "Be part of solutions for a sustainable and digital future",
+  "Experience the culture and beauty of the Philippines",
+];
+
+const PUBLICATION_HIGHLIGHTS = [
+  {
+    icon: FileText,
+    title: "Peer Reviewed Proceedings",
+    color: "text-[#2563EB]",
+  },
+  {
+    icon: BookOpen,
+    title: "Publication Opportunities",
+    color: "text-[#2563EB]",
+  },
+  {
+    icon: Database,
+    title: "Indexed in Major Databases",
+    color: "text-[#2563EB]",
+  },
+  {
+    icon: Award,
+    title: "Quality Research Exposure",
+    color: "text-[#FF9200]",
+  },
 ];
 
 
@@ -141,20 +171,71 @@ const DATES = [
 export default function Home() {
 
 
-const [speakerIndex, setSpeakerIndex] = useState(0);
 
-const visibleSpeakers = [
-  ...SPEAKERS.slice(speakerIndex),
-  ...SPEAKERS.slice(0, speakerIndex),
-].slice(0, 5);
 
-const nextSpeaker = () => {
-  setSpeakerIndex((prev) => (prev + 1) % SPEAKERS.length);
-};
+  const [partnerIndex, setPartnerIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(5);
+  const [direction, setDirection] = useState(1);
 
-const prevSpeaker = () => {
-  setSpeakerIndex((prev) => (prev - 1 + SPEAKERS.length) % SPEAKERS.length);
-};
+  // Responsive number of visible cards
+  useEffect(() => {
+    const updateCount = () => {
+      const width = window.innerWidth;
+
+      if (width < 480) {
+        setVisibleCount(1);
+      } else if (width < 640) {
+        setVisibleCount(2);
+      } else if (width < 1024) {
+        setVisibleCount(3);
+      } else {
+        setVisibleCount(5);
+      }
+    };
+
+    updateCount();
+
+    window.addEventListener("resize", updateCount);
+
+    return () => window.removeEventListener("resize", updateCount);
+  }, []);
+
+  const prevPartner = () => {
+    setDirection(-1);
+
+    setPartnerIndex((prev) =>
+      (prev - 1 + PARTNERS.length) % PARTNERS.length
+    );
+  };
+
+  const nextPartner = () => {
+    setDirection(1);
+
+    setPartnerIndex((prev) =>
+      (prev + 1) % PARTNERS.length
+    );
+  };
+
+  const visiblePartners = Array.from(
+    { length: Math.min(visibleCount, PARTNERS.length) },
+    (_, index) =>
+      PARTNERS[(partnerIndex + index) % PARTNERS.length]
+  );
+
+  const carouselVariants = {
+    enter: (dir) => ({
+      opacity: 0,
+      x: dir > 0 ? 35 : -35,
+    }),
+    center: {
+      opacity: 1,
+      x: 0,
+    },
+    exit: (dir) => ({
+      opacity: 0,
+      x: dir > 0 ? -35 : 35,
+    }),
+  };
 
   return (
     <main className="w-full overflow-hidden bg-white text-[#07113F]">
@@ -587,128 +668,182 @@ const prevSpeaker = () => {
     </section>
 
       {/* INFO */}
-  <section className="relative overflow-hidden bg-white px-5 py-8 sm:px-8 lg:px-16">
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(37,99,235,0.05),transparent_30%),radial-gradient(circle_at_85%_20%,rgba(14,165,233,0.05),transparent_30%)]" />
 
-  <div className="relative mx-auto grid max-w-[1420px] grid-cols-1 gap-8 md:grid-cols-[1.15fr_1fr_1.15fr]">
-    
-    {/* Important Dates */}
+{/* IMPORTANT DATES, WHY ATTEND & PUBLICATION */}
+<section className="relative isolate overflow-hidden bg-white px-4 py-7 sm:px-6 sm:py-9 lg:px-10 xl:px-12 2xl:px-16">
+
+  {/* Soft background */}
+  <div
+    aria-hidden="true"
+    className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(37,99,235,0.035),transparent_35%),radial-gradient(circle_at_85%_20%,rgba(14,165,233,0.035),transparent_35%)]"
+  />
+
+  <div className="relative mx-auto grid w-full max-w-[1450px] grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1.05fr] lg:gap-5 xl:gap-6">
+
+    {/* ================= IMPORTANT DATES ================= */}
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55 }}
-      className="md:border-r md:border-[#E5EAF3] md:pr-8"
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+      className="min-w-0 border-b border-[#E5EAF3] pb-6 md:border-r md:border-b-0 md:pr-5 md:pb-0 lg:pr-5 xl:pr-6"
     >
-      <h3 className="mb-5 text-[12px] font-semibold uppercase tracking-wide text-[#2563EB]">
+      <h3 className="mb-4 text-[15px] font-semibold uppercase tracking-[0.01em] text-[#2563EB]">
         Important Dates
       </h3>
 
-      <ul className="space-y-4">
+      <ul className="relative space-y-3">
+
+        {/* Vertical timeline line */}
+        <div
+          aria-hidden="true"
+          className="absolute bottom-[10px] left-[7px] top-[9px] w-px bg-[#D7E5FF]"
+        />
+
         {DATES.map(([label, date], index) => (
           <motion.li
             key={label}
-            initial={{ opacity: 0, x: -18 }}
+            initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: index * 0.05 }}
-            className="flex items-center gap-3 text-[13px]"
+            transition={{
+              duration: 0.4,
+              delay: index * 0.055,
+              ease: "easeOut",
+            }}
+            whileHover={{ x: 4 }}
+            className="group relative flex min-w-0 items-start gap-3"
           >
-            <span className="flex h-[17px] w-[17px] shrink-0 items-center justify-center rounded-full border border-[#2563EB] text-[#2563EB]">
-              <Calendar size={11} strokeWidth={2.4} />
+            {/* Timeline icon */}
+            <span className="relative z-10 mt-[2px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full border-[1.5px] border-[#2563EB] bg-white text-[#2563EB] transition-all duration-300 group-hover:scale-110 group-hover:bg-[#2563EB] group-hover:text-white">
+              <CalendarDays size={9} strokeWidth={2.3} />
             </span>
 
-            <span className="flex-1 font-semibold text-[#07113F]">
-              {label}
-            </span>
+            {/* Label and date */}
+            <div className="flex min-w-0 flex-1 flex-col gap-1 min-[450px]:flex-row min-[450px]:items-start min-[450px]:justify-between min-[450px]:gap-3 lg:flex-col xl:flex-row">
+              <span className="min-w-0 text-[11.5px] font-semibold leading-[1.45] text-[#07113F] transition-colors duration-300 group-hover:text-[#2563EB]">
+                {label}
+              </span>
 
-            <span className="whitespace-nowrap font-semibold text-[#1F2A44]">
-              {date}
-            </span>
+              <span className="shrink-0 whitespace-nowrap text-[11.5px] font-medium leading-[1.45] text-[#263452]">
+                {date}
+              </span>
+            </div>
           </motion.li>
         ))}
       </ul>
     </motion.div>
 
-    {/* Why Attend */}
+    {/* ================= WHY ATTEND ================= */}
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.55, delay: 0.1 }}
-      className="md:border-r md:border-[#E5EAF3] md:pr-8"
+      className="min-w-0 border-b border-[#E5EAF3] pb-6 md:border-b-0 lg:border-r lg:pr-5 lg:pb-0 xl:pr-6"
     >
-      <h3 className="mb-5 text-[12px] font-semibold uppercase tracking-wide text-[#2563EB]">
+      <h3 className="mb-4 text-[15px] font-semibold uppercase tracking-[0.01em] text-[#2563EB]">
         Why Attend SYNERGY 2026?
       </h3>
 
-      <ul className="space-y-4">
-        {[
-          "Present your research to a global audience",
-          "Learn from world-renowned experts",
-          "Publish in reputed indexed proceedings",
-          "Network with researchers and industry leaders",
-          "Explore collaborations and innovations",
-        ].map((item, index) => (
+      <ul className="space-y-3">
+        {WHY_ATTEND.map((item, index) => (
           <motion.li
             key={item}
-            initial={{ opacity: 0, x: -18 }}
+            initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: index * 0.05 }}
-            className="flex items-start gap-3 text-[13px] font-medium leading-snug text-[#1F2A44]"
+            transition={{
+              duration: 0.4,
+              delay: index * 0.055,
+            }}
+            whileHover={{ x: 4 }}
+            className="group flex items-start gap-3"
           >
-            <span className="mt-[1px] flex h-[16px] w-[16px] shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-white">
-              <CheckCircle2 size={12} strokeWidth={3} />
+            {/* Blue check icon */}
+            <span className="mt-[1px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full bg-[#2563EB] text-white transition-all duration-300 group-hover:scale-110 group-hover:bg-[#1746C7]">
+              <Check size={10} strokeWidth={3} />
             </span>
-            {item}
+
+            <span className="text-[11.5px] font-medium leading-[1.45] text-[#1F2A44] transition-colors duration-300 group-hover:text-[#2563EB]">
+              {item}
+            </span>
           </motion.li>
         ))}
       </ul>
     </motion.div>
 
-    {/* Publication */}
+    {/* ================= PUBLICATION HIGHLIGHTS ================= */}
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.55, delay: 0.2 }}
+      className="min-w-0 md:col-span-2 lg:col-span-1"
     >
-      <h3 className="mb-5 text-[12px] font-semibold uppercase tracking-wide text-[#2563EB]">
-        Publication &amp; Indexing
+      <h3 className="mb-4 text-[15px] font-semibold uppercase tracking-[0.01em] text-[#2563EB]">
+        Publication &amp; Submission Highlights
       </h3>
 
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-2 xl:grid-cols-4">
-        {[
-          [FileCheck2, "Scopus Indexed Proceedings"],
-          [BadgeCheck, "Scopus Indexed Journals"],
-          [ShieldCheck, "DOI Assignment"],
-          [FileText, "Open Access Proceedings"],
-        ].map(([Icon, label], index) => (
-          <motion.div
-            key={label}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: index * 0.06 }}
-            whileHover={{ y: -7, scale: 1.025 }}
-            className="group flex min-h-[118px] flex-col items-center justify-center rounded-[10px] bg-white p-4 text-center shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition-all duration-300 hover:shadow-[0_18px_45px_rgba(37,99,235,0.15)]"
-          >
-            <Icon
-              size={34}
-              strokeWidth={2.2}
-              className="mb-3 text-[#2563EB] transition-transform duration-300 group-hover:scale-110"
-            />
+      <div className="grid grid-cols-2 gap-2 min-[420px]:grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+        {PUBLICATION_HIGHLIGHTS.map(
+          ({ icon: Icon, title, color }, index) => (
+            <motion.div
+              key={title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.45,
+                delay: index * 0.07,
+                ease: "easeOut",
+              }}
+              whileHover={{
+                y: -6,
+                scale: 1.025,
+                transition: {
+                  duration: 0.25,
+                  ease: "easeOut",
+                },
+              }}
+              className="group relative flex min-h-[132px] min-w-0 flex-col items-center justify-center overflow-hidden rounded-[8px] border border-[#E8EEF7] bg-white px-2 py-4 text-center shadow-[0_4px_15px_rgba(15,23,42,0.035)] transition-[border-color,box-shadow,background-color] duration-300 hover:z-10 hover:border-[#BFD2FF] hover:bg-[#FCFDFF] hover:shadow-[0_12px_30px_rgba(37,99,235,0.13)]"
+            >
+              {/* Icon */}
+              <motion.div
+                whileHover={{
+                  scale: 1.12,
+                  rotate: [0, -5, 5, 0],
+                }}
+                transition={{ duration: 0.35 }}
+                className="mb-3 flex h-[42px] w-[42px] items-center justify-center"
+              >
+                <Icon
+                  size={35}
+                  strokeWidth={1.75}
+                  aria-hidden="true"
+                  className={`${color} transition-transform duration-300 group-hover:scale-110`}
+                />
+              </motion.div>
 
-            <p className="text-[12px] font-semibold leading-tight text-[#07113F]">
-              {label}
-            </p>
-          </motion.div>
-        ))}
+              {/* Highlight title */}
+              <p className="w-full text-[10.5px] font-medium leading-[1.35] text-[#07113F] transition-colors duration-300 group-hover:text-[#2563EB]">
+                {title}
+              </p>
+
+              {/* Bottom hover indicator */}
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-[#2563EB] transition-[width] duration-300 group-hover:w-[65%]"
+              />
+            </motion.div>
+          )
+        )}
       </div>
     </motion.div>
+
   </div>
 </section>
+
 
       {/* CTA */}
      <section className="bg-white px-5 pb-6 sm:px-8 lg:px-16">
@@ -736,7 +871,7 @@ const prevSpeaker = () => {
           Be a Part of SYNERGY 2026
         </h3>
         <p className="mt-1 text-[11px] font-medium leading-snug text-white/90 sm:text-[12px]">
-          Join us to innovate, engineer decisions and create a better tomorrow.
+          Join s global community to exchange knowledge, build collaborations, and shape a sustainable future.
         </p>
       </div>
     </div>
