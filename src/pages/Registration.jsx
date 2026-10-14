@@ -13,6 +13,7 @@ import {
   ClipboardCheck,
   BookOpenCheck,
   Network,
+  Calendar,
   Users,
   Mail,
   Phone,
@@ -20,7 +21,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import registrationHero from "../assets/hero/ideax-2026-registration-banner.webp";
+import registrationHero from "../assets/img/RegistrationBg.png";
 import ctaBg from "../assets/hero/ideax-2026-about-call-to-action-banner.webp";
 import noteImg from "../assets/hero/ideax-2026-registration-guidelines.webp";
 import questionImg from "../assets/hero/ideax-2026-registration-faq.webp";
@@ -181,12 +182,12 @@ export default function RegistrationPage() {
     <main className="min-h-screen overflow-hidden bg-white text-[#07113F]">
       {/* Hero */}
       <section
-        className="relative min-h-[360px] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[500px] lg:bg-[length:100%_100%]"
+        className="relative min-h-[360px] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[470px] lg:bg-[length:100%_100%]"
         style={{ backgroundImage: `url(${registrationHero})` }}
       >
         <div className="relative z-10 mx-auto max-w-[1420px] px-4 pt-7 sm:px-8 sm:pt-10 lg:px-16 lg:pt-12">
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="max-w-[520px]">
-            <div className="flex items-center gap-3 text-[13px] font-semibold text-[#07113F]/80">
+            <div className="flex items-center gap-3 text-[13px] font-semibold text-white/90">
               <Link to="/" className="hover:text-[#0B63FF]">
                 Home
               </Link>
@@ -195,36 +196,27 @@ export default function RegistrationPage() {
             </div>
 
             <h1 className="mt-7 font-semibold leading-[1.2]">
-              <span className="block text-[#07113F] text-[36px] sm:text-[38px] lg:text-[42px]">
+              <span className="block text-[#fafafa] text-[36px] sm:text-[38px] lg:text-[42px]">
                 Register for
               </span>
-              <span className="block text-[36px] sm:text-[48px] lg:text-[52px] font-semibold bg-gradient-to-r from-[#0B63FF] via-[#13B5FF] to-[#00D4FF] bg-clip-text text-transparent">
-  IDEAX 2026
+              <span className="block text-[36px] sm:text-[48px] lg:text-[52px] font-semibold bg-gradient-to-r from-[#eea20b] via-[#f3c304] to-[#e6bc13] bg-clip-text text-transparent">
+                SYNERGY 2026
 </span>
             </h1>
 
-            <p className="mt-5 max-w-[430px] text-[14px] font-medium leading-7 text-[#07113F] sm:text-[15px]">
-              Be a part of the global platform bringing together innovators,
-              researchers and industry leaders to shape the future of AI and
-              Decision Engineering.
+            <p className="mt-5 max-w-[430px] text-[14px] font-medium leading-7 text-[#f4f4f5] sm:text-[15px]">
+           Join the International Conference and be part of a global community advancing innovation, interdisciplinary integration, and a sustainable digital future.
             </p>
 
-            <div className="mt-7 grid max-w-[500px] grid-cols-1 gap-4 sm:grid-cols-3">
+           <div className="mt-6 flex flex-wrap gap-3 text-[12px] font-semibold text-white">
               {[
-                [CalendarDays, "10 – 12", "December, 2026", "#0B63FF"],
-                [MapPin, "Singapore,", "Asia", "#FF9900"],
-                [Monitor, "Hybrid", "(In-person & Online)", "#14B8A6"],
-              ].map(([Icon, title, desc, color], i) => (
-                <div
-                  key={title}
-                  className={`flex items-center gap-3 ${i !== 2 ? "sm:border-r sm:border-[#C8D6EC]" : ""}`}
-                >
-                  <Icon className="h-7 w-7 shrink-0" style={{ color }} />
-                  <div>
-                    <h4 className="text-[13px] font-semibold text-[#07113F]">{title}</h4>
-                    <p className="text-[11px] font-medium text-[#07113F]">{desc}</p>
-                  </div>
-                </div>
+                [Calendar, "4 – 5 December, 2026"],
+                [MapPin, "University of Batangas Lipa Campus, Batangas, Philippines"],
+                
+              ].map(([Icon, text]) => (
+                <span key={text} className="flex items-center gap-2">
+                  <Icon size={16} className="text-[#FFC21A]" /> {text}
+                </span>
               ))}
             </div>
           </motion.div>
