@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -217,21 +216,19 @@ export default function TracksPage() {
       };
 
   return (
-   <main className="min-h-screen w-full bg-white font-sans text-[#0a2b4f]">
-
+    <main className="min-h-screen w-full bg-white font-sans text-[#0a2b4f]">
       {/* ========================================
           HERO SECTION
       ======================================== */}
 
       <section
-        className="relative min-h-[400px] bg-[#041631] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[440px] lg:bg-[length:100%_100%]"
+        className="relative min-h-[400px] bg-[#041631] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[470px] lg:bg-[length:100%_100%]"
         style={{
           backgroundImage: `
            url("${tracksBG}")`,
         }}
       >
         <div className="relative z-10 mx-auto max-w-[1420px] px-4 pt-6 sm:px-8 sm:pt-8 lg:px-16 lg:pt-16">
-
           <motion.div
             initial="hidden"
             animate="show"
@@ -266,11 +263,7 @@ export default function TracksPage() {
             </h1>
 
             <motion.h2
-              initial={
-                reduceMotion
-                  ? false
-                  : { opacity: 0, y: 15 }
-              }
+              initial={reduceMotion ? false : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.6 }}
               className="mt-2 text-[16px] sm:text-[18px] lg:text-[20px] font-semibold text-white"
@@ -301,9 +294,7 @@ export default function TracksPage() {
       ======================================== */}
 
       <section className="relative z-10 -mt-4 rounded-t-[18px] bg-white px-4 pb-6 pt-6 sm:px-8 sm:pt-8 lg:px-16">
-
         <div className="mx-auto max-w-[1240px]">
-
           <SectionHeading
             eyebrow="Conference Streams"
             title="Three Main Streams"
@@ -335,9 +326,7 @@ export default function TracksPage() {
                   <div className="flex items-start gap-4">
                     <motion.div
                       whileHover={
-                        reduceMotion
-                          ? undefined
-                          : { rotate: 6, scale: 1.08 }
+                        reduceMotion ? undefined : { rotate: 6, scale: 1.08 }
                       }
                       transition={hoverTransition}
                       className="flex h-[65px] w-[65px] shrink-0 items-center justify-center rounded-full shadow-[0_10px_20px_rgba(0,30,80,0.16)]"
@@ -390,8 +379,6 @@ export default function TracksPage() {
                       </li>
                     ))}
                   </ul>
-
-                
                 </motion.article>
               );
             })}
@@ -404,9 +391,7 @@ export default function TracksPage() {
       ======================================== */}
 
       <section className="bg-white px-4 pb-7 pt-2 sm:px-8 lg:px-16">
-
         <div className="mx-auto max-w-[1240px]">
-
           <SectionHeading
             eyebrow="Topics of Interest"
             title="Key Topics"
@@ -435,9 +420,7 @@ export default function TracksPage() {
                 >
                   <motion.div
                     whileHover={
-                      reduceMotion
-                        ? undefined
-                        : { rotate: 8, scale: 1.1 }
+                      reduceMotion ? undefined : { rotate: 8, scale: 1.1 }
                     }
                     transition={hoverTransition}
                     className="mb-4 flex h-[60px] w-[60px] items-center justify-center rounded-full shadow-[0_8px_20px_rgba(0,30,80,0.15)]"
@@ -445,11 +428,7 @@ export default function TracksPage() {
                       background: topic.gradient,
                     }}
                   >
-                    <Icon
-                      size={30}
-                      strokeWidth={1.8}
-                      className="text-white"
-                    />
+                    <Icon size={30} strokeWidth={1.8} className="text-white" />
                   </motion.div>
 
                   <h3 className="max-w-[220px] text-[14px] font-semibold leading-5 text-[#07113F]">
@@ -471,17 +450,13 @@ export default function TracksPage() {
       ======================================== */}
 
       <section className="bg-white px-4 pb-5 sm:px-8 lg:px-16">
-
         <div className="mx-auto max-w-[1240px]">
-
           <motion.div
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             variants={reveal}
-            whileHover={
-              reduceMotion ? undefined : { y: -3 }
-            }
+            whileHover={reduceMotion ? undefined : { y: -3 }}
             transition={hoverTransition}
             className="relative overflow-hidden rounded-[14px] border border-[#CBDCFB] bg-[#E8F0FF] shadow-[0_8px_25px_rgba(0,40,120,0.06)]"
             style={{
@@ -495,9 +470,7 @@ export default function TracksPage() {
             }}
           >
             <div className="relative z-10 flex flex-col items-center justify-between gap-5 px-5 py-5 text-center sm:px-8 lg:flex-row lg:px-10 lg:text-left">
-
               <div className="flex flex-col items-center gap-5 sm:flex-row">
-
                 {/* Send Icon */}
 
                 <motion.div
@@ -512,11 +485,7 @@ export default function TracksPage() {
                   transition={hoverTransition}
                   className="flex h-[65px] w-[65px] shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#236EFF] to-[#0736B8] shadow-[0_10px_25px_rgba(11,99,255,0.25)]"
                 >
-                  <Send
-                    size={30}
-                    strokeWidth={1.8}
-                    className="text-white"
-                  />
+                  <Send size={30} strokeWidth={1.8} className="text-white" />
                 </motion.div>
 
                 <div>
@@ -525,8 +494,8 @@ export default function TracksPage() {
                   </h3>
 
                   <p className="mt-2 max-w-[620px] text-[13px] sm:text-[14px] leading-6 text-[#35466C]">
-                    We welcome interdisciplinary submissions that create
-                    impact across domains.
+                    We welcome interdisciplinary submissions that create impact
+                    across domains.
                   </p>
                 </div>
               </div>
@@ -538,7 +507,6 @@ export default function TracksPage() {
                 className="group inline-flex shrink-0 items-center justify-center gap-3 rounded-lg bg-[#082D9D] px-6 py-4 text-[13px] font-semibold text-white shadow-[0_8px_22px_rgba(8,45,157,0.2)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#1655F5] hover:shadow-[0_14px_30px_rgba(8,45,157,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1655F5]"
               >
                 SUBMIT YOUR PAPER
-
                 <ArrowRight
                   size={17}
                   className="transition-transform duration-300 group-hover:translate-x-1"
