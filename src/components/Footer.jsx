@@ -8,8 +8,8 @@ const QUICK_LINKS = [
   
   { label: "About", to: "/about" },
   { label: "Conference", to: "/conference " },
-  { label: "Speakers", to: "/speakers" },
-  { label: "Schedule", to: "/schedule" },
+  // { label: "Speakers", to: "/speakers" },
+  // { label: "Schedule", to: "/schedule" },
   { label: "Committee", to: "/committee" },
   { label: "Registration", to: "/registration" },
   { label: "Contact", to: "/contact" },
