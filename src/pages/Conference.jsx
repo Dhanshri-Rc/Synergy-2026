@@ -256,11 +256,11 @@ export default function TracksPage() {
             {/* Hero Title */}
 
             <h1 className="mt-6 font-[600] leading-[1.05]">
-              <span className="text-[36px] text-white font-[600] leading-[1.1] sm:text-[48px] lg:text-[50px]">
+              <span className="text-[36px] text-white font-[600] leading-[1.1] sm:text-[42px] lg:text-[46px]">
                 Conference
               </span>
 
-              <span className="block text-[36px] sm:text-[48px] lg:text-[52px] text-[#FFB51D]">
+              <span className="block text-[36px] sm:text-[42px] lg:text-[46px] text-[#FFB51D]">
                 Streams
               </span>
             </h1>
