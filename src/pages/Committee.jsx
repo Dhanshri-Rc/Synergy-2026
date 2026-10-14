@@ -21,6 +21,7 @@ import cta from "../assets/hero/ideax-2026-committee-call-to-action-banner.webp"
 // COMMITTEE DATA
 // -----------------------------------------
 
+
 const committeeSections = [
   {
     title: "Chief Patrons",
@@ -29,26 +30,26 @@ const committeeSections = [
     columns: 3,
     members: [
       {
-        name: "Dr. Tirso A. Ronquillo",
-        role: "President",
+        name: "Hon. Lily Marlene J. Hernandez-Bohn",
+        role: "University President",
         organization: "University of Batangas",
         country: "Philippines",
       },
       {
-        name: "Dr. Anthony Jose M. Tamayo",
+        name: "Dr. Jose Antony M. Tamayo",
         role: "President",
-        organization:
-          "University of Perpetual Help System DALTA",
+        organization: "University of Perpetual Help System DALTA",
         country: "Philippines",
       },
       {
-        name: "Dr. (Prof.) Rajesh Kumar",
-        role: "Vice Chancellor",
+        name: "Prof. Dr. Prakash Divakaran",
+        role: "Vice-Chancellor",
         organization: "Himalayan University",
         country: "India",
       },
     ],
   },
+
   {
     title: "Conference Chair",
     description:
@@ -56,13 +57,14 @@ const committeeSections = [
     columns: 1,
     members: [
       {
-        name: "Dr. [Name Placeholder]",
-        role: "Conference Chair",
-        organization: "SYNERGY 2026",
-        country: "",
+        name: "Dr. N. Krishnakumar",
+        role: "Conference Chairman",
+        organization: "Kerala Legislative Assembly",
+        country: "India",
       },
     ],
   },
+
   {
     title: "Co-Chairs",
     description:
@@ -70,26 +72,15 @@ const committeeSections = [
     columns: 3,
     members: [
       {
-        name: "Dr. [Name Placeholder]",
-        role: "Co-Chair",
-        organization: "University of Batangas",
-        country: "Philippines",
-      },
-      {
-        name: "Dr. [Name Placeholder]",
-        role: "Co-Chair",
+        name: "Dr. Ernesto Arlene V. Ramirez",
+        role: "Co-Chair, SYNERGY 2026",
         organization:
-          "University of Perpetual Help System DALTA",
+          "University of Perpetual Help System DALTA, Calamba Campus",
         country: "Philippines",
-      },
-      {
-        name: "Dr. [Name Placeholder]",
-        role: "Co-Chair",
-        organization: "Himalayan University",
-        country: "India",
       },
     ],
   },
+
   {
     title: "Organizing Committee",
     description:
@@ -97,33 +88,68 @@ const committeeSections = [
     columns: 4,
     members: [
       {
-        name: "Dr. [Name]",
-        role: "Organizing Secretary",
+        name: "Dr. Pastor R. Arguelles Jr.",
+        role: "Chairperson; Director, Research and Publication Office",
         organization: "University of Batangas",
         country: "Philippines",
       },
       {
-        name: "Dr. [Name]",
-        role: "Organizing Secretary",
-        organization:
-          "University of Perpetual Help System DALTA",
+        name: "Dr. Aurora P. Tolentino",
+        role: "Vice President for Academic Affairs",
+        organization: "University of Batangas",
         country: "Philippines",
       },
       {
-        name: "Dr. [Name]",
-        role: "Organizing Secretary",
-        organization: "Himalayan University",
+        name: "Dr. Marjorie Gutierrez-Tangog",
+        role: "Executive Vice President",
+        organization: "University of Perpetual Help System DALTA",
+        country: "Philippines",
+      },
+      {
+        name: "Mrs. Michelle M. Malsi",
+        role: "Assistant to the Chair, Research and Publication Office",
+        organization: "University of Batangas",
+        country: "Philippines",
+      },
+      {
+        name: "Mr. Jefferson M. Litan",
+        role: "Director, SYNERGY 2026",
+        organization: "University of Batangas, Lipa Campus",
+        country: "Philippines",
+      },
+      {
+        name: "Dr. Arun Chainit",
+        role: "Assistant Professor & Member of Council",
+        organization: "Phranakhon Rajabhat University",
+        country: "Thailand",
+      },
+      {
+        name: "Prof. Dr. Chaiwat Phuakkhong",
+        role: "Associate Professor",
+        organization: "Suratthani Rajabhat University",
+        country: "Thailand",
+      },
+      {
+        name: "Dr. Dharmesh Dhabliya",
+        role: "Founder & CEO",
+        organization: "Research Connect",
         country: "India",
       },
       {
-        name: "Mr./Ms. [Name]",
-        role: "Organizing Coordinator",
-        organization:
-          "Global Research Conference Forum",
+        name: "Dr. Giresh Kumar",
+        role: "Conference Co-Director",
+        organization: "Central University of Kerala",
+        country: "India",
+      },
+      {
+        name: "Dr. J. P. Bhosale",
+        role: "Conference Patron; Professor & Head Research",
+        organization: "Gramonnati Mandal's ACS College, Pune",
         country: "India",
       },
     ],
   },
+
   {
     title: "International Advisory Committee",
     description:
@@ -131,90 +157,107 @@ const committeeSections = [
     columns: 4,
     members: [
       {
-        name: "Prof. [Name]",
+        name: "Dr. Suresh Kumar Madhusudhanan",
         role: "Advisory Member",
-        organization: "",
-        country: "Philippines",
-      },
-      {
-        name: "Prof. [Name]",
-        role: "Advisory Member",
-        organization: "",
+        organization: "Seagull Group of Companies",
         country: "India",
       },
       {
-        name: "Prof. [Name]",
-        role: "Advisory Member",
-        organization: "",
-        country: "USA",
-      },
-      {
-        name: "Prof. [Name]",
-        role: "Advisory Member",
-        organization: "",
-        country: "UK",
-      },
-    ],
-  },
-  {
-    title: "Technical Program Committee",
-    description:
-      "The Technical Program Committee ensures the quality and relevance of submitted papers across all tracks.",
-    columns: 4,
-    members: [
-      {
-        name: "Dr. [Name]",
-        role: "Technical Program Member",
-        organization: "",
-        country: "Philippines",
-      },
-      {
-        name: "Dr. [Name]",
-        role: "Technical Program Member",
-        organization: "",
-        country: "India",
-      },
-      {
-        name: "Dr. [Name]",
-        role: "Technical Program Member",
-        organization: "",
+        name: "Dr. Arun Kumar Tarofder",
+        role: "Professor, Graduate School of Management",
+        organization: "Management & Science University",
         country: "Malaysia",
       },
       {
-        name: "Dr. [Name]",
-        role: "Technical Program Member",
-        organization: "",
-        country: "UAE",
+        name: "Dr. S. M. Ferdous Azam",
+        role: "Associate Professor",
+        organization: "Management & Science University",
+        country: "Malaysia",
+      },
+      {
+        name: "Dr. Shibu Dharmarajan",
+        role: "Advisory Member",
+        organization: "Assumption University",
+        country: "Thailand",
+      },
+      {
+        name: "Dr. June Bernadette D’Souza",
+        role: "Advisory Member",
+        organization: "Christ Church",
+        country: "New Zealand",
+      },
+      {
+        name: "Dr. Krishnaraj V.",
+        role: "Assistant Professor",
+        organization: "Karnataka State Open University, Mysore",
+        country: "India",
       },
     ],
   },
+
   {
-    title: "Publication Committee",
+    title: "National Advisory Board",
     description:
-      "The Publication Committee oversees the review process and coordination with the publication partner.",
-    columns: 3,
+      "The National Advisory Board brings together academic and professional experts from institutions across India.",
+    columns: 4,
     members: [
       {
-        name: "Dr. [Name]",
-        role: "Organization Chair",
-        organization: "Researcher Connect",
+        name: "Dr. M. Muthukumar",
+        role: "Advisory Member",
+        organization: "Madurai Kamaraj University",
         country: "India",
       },
       {
-        name: "Dr. [Name]",
-        role: "Publication Member",
-        organization: "Researcher Connect",
+        name: "Dr. Cholaraja M.",
+        role: "Assistant Professor",
+        organization: "Campus Law Centre, University of Delhi",
         country: "India",
       },
       {
-        name: "Dr. [Name]",
-        role: "Publication Member",
-        organization: "Researcher Connect",
+        name: "Dr. Kailash J. Karande",
+        role: "Director & Principal",
+        organization: "SKN Sinhgad College of Engineering",
+        country: "India",
+      },
+      {
+        name: "Adv. Varun Dev S.",
+        role: "Research Officer and Assistant Professor",
+        organization:
+          "Centre for Advanced Legal Studies and Research, Kerala Law Academy",
+        country: "India",
+      },
+      {
+        name: "Dr. N. Krishnakumar",
+        role: "Conference Chairman",
+        organization: "Kerala Legislative Assembly",
+        country: "India",
+      },
+      {
+        name: "Dr. B. Bhavana Rao",
+        role: "Advisory Member",
+        organization: "UPES, Dehradun",
         country: "India",
       },
     ],
   },
+
+  // {
+  //   title: "Technical Program Committee",
+  //   description:
+  //     "The Technical Program Committee ensures the quality and relevance of submitted papers across all tracks.",
+  //   columns: 4,
+  //   members: [],
+  // },
+
+  // {
+  //   title: "Publication Committee",
+  //   description:
+  //     "The Publication Committee oversees the review process and coordination with the publication partner.",
+  //   columns: 3,
+  //   members: [],
+  // },
 ];
+
 
 // -----------------------------------------
 // MOTION ANIMATIONS
