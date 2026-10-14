@@ -1,26 +1,46 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  motion,
-  useReducedMotion,
-} from "framer-motion";
-import {
-  UserRound,
-  ArrowRight,
-  ChevronRight,
-} from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { UserRound, ArrowRight, ChevronRight } from "lucide-react";
 
 import committeeHero from "../assets/img/committeeBg.png";
 import cta from "../assets/hero/ideax-2026-committee-call-to-action-banner.webp";
 
-// Replace the two image imports above with your
-// SYNERGY 2026 hero and CTA background images.
+// Committee profile images
+import honLilyHernandezBohn from "../assets/img/Lily.png";
+import joseTamayo from "../assets/img/joseAntony.png";
+import prakashDivakaran from "../assets/img/prakash.png";
 
-// -----------------------------------------
-// COMMITTEE DATA
-// -----------------------------------------
+import auroraTolentino from "../assets/img/Aurora.png";
+import pastorArguelles from "../assets/img/Pastor.png";
+import marjorieGutierrezTangog from "../assets/img/Marjorie.png";
+import ernestoRamirez from "../assets/img/Ernesto.png";
 
+import michelleMalsi from "../assets/img/Michelle.png";
+import jeffersonLitan from "../assets/img/jeffersonLitan.png";
+import arunChainit from "../assets/img/arunChainit.png";
+import chaiwatPhuakkhong from "../assets/img/chaiwatPhuakkhong.png";
+
+import dharmeshDhabliya from "../assets/img/dharmeshDabliya.png";
+import gireshKumar from "../assets/img/gireshKumar.png";
+import jpBhosale from "../assets/img/jpBhosale.png";
+import nKrishnakumar from "../assets/img/Krishnakumar.png";
+import sureshMadhusudhanan from "../assets/img/sureshMadhusudhanan.png";
+import arunTarofder from "../assets/img/arunTarofder.png";
+import ferdousAzam from "../assets/img/ferdousAzam.png";
+import shibuDharmarajan from "../assets/img/shibuDharmarajan.png";
+// import juneDsouza from "../assets/committee/june_dsouza.png";
+// import krishnaraj from "../assets/committee/krishnaraj.png";
+// import muthukumar from "../assets/committee/muthukumar.png";
+// import cholaraja from "../assets/committee/cholaraja.png";
+// import kailashKarande from "../assets/committee/kailash_karande.png";
+// import varunDev from "../assets/committee/varun_dev.png";
+// import bhavanaRao from "../assets/committee/bhavana_rao.png";
+
+// ==================================================
+// COMMITTEE MEMBER DATA
+// ==================================================
 
 const committeeSections = [
   {
@@ -34,22 +54,24 @@ const committeeSections = [
         role: "University President",
         organization: "University of Batangas",
         country: "Philippines",
+        image: honLilyHernandezBohn,
       },
       {
         name: "Dr. Jose Antony M. Tamayo",
         role: "President",
         organization: "University of Perpetual Help System DALTA",
         country: "Philippines",
+        image: joseTamayo,
       },
       {
         name: "Prof. Dr. Prakash Divakaran",
         role: "Vice-Chancellor",
         organization: "Himalayan University",
         country: "India",
+        image: prakashDivakaran,
       },
     ],
   },
-
   {
     title: "Conference Chair",
     description:
@@ -61,10 +83,10 @@ const committeeSections = [
         role: "Conference Chairman",
         organization: "Kerala Legislative Assembly",
         country: "India",
+        image: nKrishnakumar,
       },
     ],
   },
-
   {
     title: "Co-Chairs",
     description:
@@ -77,10 +99,10 @@ const committeeSections = [
         organization:
           "University of Perpetual Help System DALTA, Calamba Campus",
         country: "Philippines",
+        image: ernestoRamirez,
       },
     ],
   },
-
   {
     title: "Organizing Committee",
     description:
@@ -92,64 +114,73 @@ const committeeSections = [
         role: "Chairperson; Director, Research and Publication Office",
         organization: "University of Batangas",
         country: "Philippines",
+        image: pastorArguelles,
       },
       {
         name: "Dr. Aurora P. Tolentino",
         role: "Vice President for Academic Affairs",
         organization: "University of Batangas",
         country: "Philippines",
+        image: auroraTolentino,
       },
       {
         name: "Dr. Marjorie Gutierrez-Tangog",
         role: "Executive Vice President",
         organization: "University of Perpetual Help System DALTA",
         country: "Philippines",
+        image: marjorieGutierrezTangog,
       },
       {
         name: "Mrs. Michelle M. Malsi",
         role: "Assistant to the Chair, Research and Publication Office",
         organization: "University of Batangas",
         country: "Philippines",
+        image: michelleMalsi,
       },
       {
         name: "Mr. Jefferson M. Litan",
         role: "Director, SYNERGY 2026",
         organization: "University of Batangas, Lipa Campus",
         country: "Philippines",
+        image: jeffersonLitan,
       },
       {
         name: "Dr. Arun Chainit",
         role: "Assistant Professor & Member of Council",
         organization: "Phranakhon Rajabhat University",
         country: "Thailand",
+        image: arunChainit,
       },
       {
         name: "Prof. Dr. Chaiwat Phuakkhong",
         role: "Associate Professor",
         organization: "Suratthani Rajabhat University",
         country: "Thailand",
+        image: chaiwatPhuakkhong,
       },
       {
         name: "Dr. Dharmesh Dhabliya",
         role: "Founder & CEO",
         organization: "Research Connect",
         country: "India",
+        image: dharmeshDhabliya,
       },
       {
         name: "Dr. Giresh Kumar",
         role: "Conference Co-Director",
         organization: "Central University of Kerala",
         country: "India",
+        image: gireshKumar,
       },
       {
         name: "Dr. J. P. Bhosale",
         role: "Conference Patron; Professor & Head Research",
         organization: "Gramonnati Mandal's ACS College, Pune",
         country: "India",
+        image: jpBhosale,
       },
     ],
   },
-
   {
     title: "International Advisory Committee",
     description:
@@ -161,107 +192,101 @@ const committeeSections = [
         role: "Advisory Member",
         organization: "Seagull Group of Companies",
         country: "India",
+        image: sureshMadhusudhanan,
       },
       {
         name: "Dr. Arun Kumar Tarofder",
         role: "Professor, Graduate School of Management",
         organization: "Management & Science University",
         country: "Malaysia",
+        image: arunTarofder,
       },
       {
         name: "Dr. S. M. Ferdous Azam",
         role: "Associate Professor",
         organization: "Management & Science University",
         country: "Malaysia",
+        image: ferdousAzam,
       },
       {
         name: "Dr. Shibu Dharmarajan",
         role: "Advisory Member",
         organization: "Assumption University",
         country: "Thailand",
+        image: shibuDharmarajan,
       },
-      {
-        name: "Dr. June Bernadette D’Souza",
-        role: "Advisory Member",
-        organization: "Christ Church",
-        country: "New Zealand",
-      },
-      {
-        name: "Dr. Krishnaraj V.",
-        role: "Assistant Professor",
-        organization: "Karnataka State Open University, Mysore",
-        country: "India",
-      },
-    ],
-  },
-
-  {
-    title: "National Advisory Board",
-    description:
-      "The National Advisory Board brings together academic and professional experts from institutions across India.",
-    columns: 4,
-    members: [
-      {
-        name: "Dr. M. Muthukumar",
-        role: "Advisory Member",
-        organization: "Madurai Kamaraj University",
-        country: "India",
-      },
-      {
-        name: "Dr. Cholaraja M.",
-        role: "Assistant Professor",
-        organization: "Campus Law Centre, University of Delhi",
-        country: "India",
-      },
-      {
-        name: "Dr. Kailash J. Karande",
-        role: "Director & Principal",
-        organization: "SKN Sinhgad College of Engineering",
-        country: "India",
-      },
-      {
-        name: "Adv. Varun Dev S.",
-        role: "Research Officer and Assistant Professor",
-        organization:
-          "Centre for Advanced Legal Studies and Research, Kerala Law Academy",
-        country: "India",
-      },
-      {
-        name: "Dr. N. Krishnakumar",
-        role: "Conference Chairman",
-        organization: "Kerala Legislative Assembly",
-        country: "India",
-      },
-      {
-        name: "Dr. B. Bhavana Rao",
-        role: "Advisory Member",
-        organization: "UPES, Dehradun",
-        country: "India",
-      },
-    ],
-  },
-
+  //     {
+  //       name: "Dr. June Bernadette D’Souza",
+  //       role: "Advisory Member",
+  //       organization: "Christ Church",
+  //       country: "New Zealand",
+  //       image: juneDsouza,
+  //     },
+  //     {
+  //       name: "Dr. Krishnaraj V.",
+  //       role: "Assistant Professor",
+  //       organization: "Karnataka State Open University, Mysore",
+  //       country: "India",
+  //       image: krishnaraj,
+  //     },
+  //   ],
+  // },
   // {
-  //   title: "Technical Program Committee",
+  //   title: "National Advisory Board",
   //   description:
-  //     "The Technical Program Committee ensures the quality and relevance of submitted papers across all tracks.",
+  //     "The National Advisory Board brings together academic and professional experts from institutions across India.",
   //   columns: 4,
-  //   members: [],
-  // },
-
-  // {
-  //   title: "Publication Committee",
-  //   description:
-  //     "The Publication Committee oversees the review process and coordination with the publication partner.",
-  //   columns: 3,
-  //   members: [],
-  // },
+  //   members: [
+  //     {
+  //       name: "Dr. M. Muthukumar",
+  //       role: "Advisory Member",
+  //       organization: "Madurai Kamaraj University",
+  //       country: "India",
+  //       image: muthukumar,
+  //     },
+  //     {
+  //       name: "Dr. Cholaraja M.",
+  //       role: "Assistant Professor",
+  //       organization: "Campus Law Centre, University of Delhi",
+  //       country: "India",
+  //       image: cholaraja,
+  //     },
+  //     {
+  //       name: "Dr. Kailash J. Karande",
+  //       role: "Director & Principal",
+  //       organization: "SKN Sinhgad College of Engineering",
+  //       country: "India",
+  //       image: kailashKarande,
+  //     },
+  //     {
+  //       name: "Adv. Varun Dev S.",
+  //       role: "Research Officer and Assistant Professor",
+  //       organization:
+  //         "Centre for Advanced Legal Studies and Research, Kerala Law Academy",
+  //       country: "India",
+  //       image: varunDev,
+  //     },
+  //     {
+  //       name: "Dr. N. Krishnakumar",
+  //       role: "Conference Chairman",
+  //       organization: "Kerala Legislative Assembly",
+  //       country: "India",
+  //       image: nKrishnakumar,
+  //     },
+  //     {
+  //       name: "Dr. B. Bhavana Rao",
+  //       role: "Advisory Member",
+  //       organization: "UPES, Dehradun",
+  //       country: "India",
+  //       image: bhavanaRao,
+  //     },
+    ],
+  },
 ];
 
-
-// -----------------------------------------
-// MOTION ANIMATIONS
-// -----------------------------------------
+// ==================================================
+// ANIMATION VARIANTS
+// ==================================================
 
 const fadeUp = {
   hidden: {
@@ -276,6 +301,11 @@ const fadeUp = {
       ease: "easeOut",
     },
   },
+};
+
+const noMotion = {
+  hidden: { opacity: 1 },
+  show: { opacity: 1 },
 };
 
 const stagger = {
@@ -293,21 +323,16 @@ const springTransition = {
   damping: 23,
 };
 
-// -----------------------------------------
+// ==================================================
 // COMMITTEE MEMBER CARD
-// -----------------------------------------
+// ==================================================
 
 function MemberCard({ member, reduceMotion }) {
+  const [photoFailed, setPhotoFailed] = useState(false);
+
   return (
     <motion.article
-      variants={
-        reduceMotion
-          ? {
-              hidden: { opacity: 1 },
-              show: { opacity: 1 },
-            }
-          : fadeUp
-      }
+      variants={reduceMotion ? noMotion : fadeUp}
       whileHover={
         reduceMotion
           ? undefined
@@ -340,7 +365,7 @@ function MemberCard({ member, reduceMotion }) {
         hover:shadow-[0_18px_38px_rgba(10,50,100,0.15)]
       "
     >
-      {/* Profile Avatar */}
+      {/* Profile Image */}
 
       <motion.div
         whileHover={
@@ -348,33 +373,53 @@ function MemberCard({ member, reduceMotion }) {
             ? undefined
             : {
                 scale: 1.08,
-                rotate: 3,
               }
         }
         transition={springTransition}
         className="
           mb-3
           flex
-          h-[66px]
-          w-[66px]
+          h-[80px]
+          w-[80px]
           shrink-0
           items-center
           justify-center
           overflow-hidden
           rounded-full
-          border
+          border-2
           border-[#F3C76D]
           bg-gradient-to-b
           from-[#F3F5F7]
           to-[#E2E7ED]
           shadow-[0_3px_9px_rgba(0,0,0,0.07)]
+          sm:h-[88px]
+          sm:w-[88px]
         "
       >
-        <UserRound
-          size={43}
-          strokeWidth={1.45}
-          className="text-[#9DA8B3]"
-        />
+        {member.image && !photoFailed ? (
+          <img
+            src={member.image}
+            alt={`${member.name} profile`}
+            loading="lazy"
+            decoding="async"
+            onError={() => setPhotoFailed(true)}
+            className="
+              h-full
+              w-full
+              object-cover
+              object-center
+              transition-transform
+              duration-500
+              motion-safe:group-hover:scale-110
+            "
+          />
+        ) : (
+          <UserRound
+            size={43}
+            strokeWidth={1.45}
+            className="text-[#9DA8B3]"
+          />
+        )}
       </motion.div>
 
       {/* Name */}
@@ -410,7 +455,7 @@ function MemberCard({ member, reduceMotion }) {
         {member.role}
       </p>
 
-      {/* University */}
+      {/* Organization */}
 
       {member.organization && (
         <p
@@ -429,13 +474,7 @@ function MemberCard({ member, reduceMotion }) {
       {/* Country */}
 
       {member.country && (
-        <p
-          className="
-            text-[12px]
-            leading-[1.5]
-            text-[#41577A]
-          "
-        >
+        <p className="text-[12px] leading-[1.5] text-[#41577A]">
           {member.country}
         </p>
       )}
@@ -443,15 +482,11 @@ function MemberCard({ member, reduceMotion }) {
   );
 }
 
-// -----------------------------------------
+// ==================================================
 // COMMITTEE SECTION
-// -----------------------------------------
+// ==================================================
 
-function CommitteeSection({
-  section,
-  reduceMotion,
-  index,
-}) {
+function CommitteeSection({ section, reduceMotion }) {
   const isChair = section.columns === 1;
 
   const gridClass =
@@ -461,12 +496,7 @@ function CommitteeSection({
       ? "lg:grid-cols-3"
       : "lg:grid-cols-1";
 
-  const variants = reduceMotion
-    ? {
-        hidden: { opacity: 1 },
-        show: { opacity: 1 },
-      }
-    : fadeUp;
+  const variants = reduceMotion ? noMotion : fadeUp;
 
   return (
     <section
@@ -481,7 +511,7 @@ function CommitteeSection({
         }
       `}
     >
-      {/* Light background for chair section */}
+      {/* Chair Section Background */}
 
       {isChair && (
         <div
@@ -489,7 +519,6 @@ function CommitteeSection({
             pointer-events-none
             absolute
             inset-0
-            overflow-hidden
             bg-gradient-to-r
             from-[#F5FAFF]
             via-[#EFF7FF]
@@ -509,7 +538,7 @@ function CommitteeSection({
           lg:px-16
         "
       >
-        {/* Section Title */}
+        {/* Section Heading */}
 
         <motion.div
           initial="hidden"
@@ -559,17 +588,10 @@ function CommitteeSection({
           </p>
         </motion.div>
 
-        {/* Member Grid */}
+        {/* Members Grid */}
 
         <motion.div
-          variants={
-            reduceMotion
-              ? {
-                  hidden: {},
-                  show: {},
-                }
-              : stagger
-          }
+          variants={reduceMotion ? noMotion : stagger}
           initial="hidden"
           whileInView="show"
           viewport={{
@@ -590,9 +612,9 @@ function CommitteeSection({
             }
           `}
         >
-          {section.members.map((member, i) => (
+          {section.members.map((member, index) => (
             <MemberCard
-              key={`${section.title}-${i}`}
+              key={`${section.title}-${index}`}
               member={member}
               reduceMotion={reduceMotion}
             />
@@ -603,19 +625,14 @@ function CommitteeSection({
   );
 }
 
-// -----------------------------------------
+// ==================================================
 // MAIN COMMITTEE PAGE
-// -----------------------------------------
+// ==================================================
 
 export default function Committee() {
   const reduceMotion = useReducedMotion();
 
-  const reveal = reduceMotion
-    ? {
-        hidden: { opacity: 1 },
-        show: { opacity: 1 },
-      }
-    : fadeUp;
+  const reveal = reduceMotion ? noMotion : fadeUp;
 
   return (
     <main
@@ -623,6 +640,7 @@ export default function Committee() {
         min-h-screen
         w-full
         bg-white
+        font-sans
         text-[#07113F]
       "
     >
@@ -706,7 +724,7 @@ export default function Committee() {
               <span>Committee</span>
             </div>
 
-            {/* Hero Heading */}
+            {/* Hero Title */}
 
             <h1
               className="
@@ -742,7 +760,7 @@ export default function Committee() {
               <span className="w-[45%] bg-[#83A2C0]" />
             </div>
 
-            {/* Hero Description */}
+            {/* Description */}
 
             <p
               className="
@@ -775,11 +793,10 @@ export default function Committee() {
           to-[#FFFFFF]
         "
       >
-        {committeeSections.map((section, index) => (
+        {committeeSections.map((section) => (
           <CommitteeSection
             key={section.title}
             section={section}
-            index={index}
             reduceMotion={reduceMotion}
           />
         ))}
@@ -897,10 +914,6 @@ export default function Committee() {
               hover:-translate-y-1
               hover:bg-[#FFCA4F]
               hover:shadow-[0_14px_30px_rgba(255,181,29,0.25)]
-              focus-visible:outline
-              focus-visible:outline-2
-              focus-visible:outline-offset-4
-              focus-visible:outline-[#FFB51D]
             "
           >
             Register Now
