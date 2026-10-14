@@ -649,7 +649,7 @@ ${message}
             </h2>
           </motion.div>
 
-          <Link
+          {/* <Link
             to="/partners"
             className="group/btn inline-flex min-h-[36px] shrink-0 items-center justify-center gap-6 rounded-[5px] border border-[#D99B18] bg-transparent px-5 py-2 text-[12px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFC21A] hover:text-[#07113F] hover:shadow-[0_8px_20px_rgba(255,194,26,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC21A]"
           >
@@ -658,7 +658,7 @@ ${message}
               size={17}
               className="transition-transform duration-300 group-hover/btn:translate-x-1"
             />
-          </Link>
+          </Link> */}
         </div>
 
         {/* Carousel area */}

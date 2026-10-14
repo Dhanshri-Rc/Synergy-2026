@@ -39,15 +39,7 @@ export default function Footer() {
         <div>
           <div className="mb-3 flex items-center gap-2">
           <img src={Logo} alt="footer logo" className="w-[210px]"  />
-            {/* <Logo size={38} />
-            <div>
-              <h3 className="text-[28px] font-[600] leading-none tracking-wide">
-                IDEAX <span className="text-[#FFC21A]">2026</span>
-              </h3>
-              <p className="mt-1 text-[7.5px] font-[600] uppercase tracking-[0.16em] text-[#f0efeb]">
-                Innovate • Decide • Transform
-              </p>
-            </div> */}
+           
           </div>
 
           <p className="max-w-[260px] text-[13px] font-medium leading-[1.7] text-white/80">
