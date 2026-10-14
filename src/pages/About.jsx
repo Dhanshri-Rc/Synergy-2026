@@ -258,7 +258,7 @@ export default function AboutSynergy2026() {
 
   return (
 
-    <div className="min-h-screen overflow-x-hidden bg-white font-sans text-[#0a2b4f]">
+    <div className="min-h-screen w-full bg-white font-sans text-[#0a2b4f]">
 
       {/* Hero: original page height and width preserved */}
 
@@ -268,7 +268,7 @@ export default function AboutSynergy2026() {
 
         style={{
 
-          backgroundImage: `linear-gradient(90deg,rgba(1,17,44,.76),rgba(1,17,44,.15)),url('${ASSETS.hero}')`,
+          backgroundImage: `url('${ASSETS.hero}')`,
 
         }}
 
@@ -326,7 +326,7 @@ export default function AboutSynergy2026() {
 
         {/* Conference overview */}
 
-        <section className="mx-auto grid max-w-[1420px] grid-cols-1 items-center gap-8 px-4 py-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-4">
+        <section className="mx-auto grid max-w-[1420px] grid-cols-1 items-center gap-8 px-4 py-7 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-16 lg:py-9">
 
           <motion.div
 
@@ -404,7 +404,7 @@ export default function AboutSynergy2026() {
 
               transition={hoverTransition}
 
-              className="group relative rounded-xl  p-3 sm:p-1 transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(10,50,90,.12)]"
+              className="group relative rounded-xl  p-0 sm:p-0 transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(10,50,90,.12)]"
 
           >
 

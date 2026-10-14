@@ -5,7 +5,7 @@ import ScrollToTop from "./components/ScrollToTop";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Tracks from "./pages/Tracks";
+import Conference from "./pages/Conference";
 import Speakers from "./pages/Speakers";
 import Schedule from "./pages/Schedule";
 import Committee from "./pages/Committee";
@@ -51,10 +51,10 @@ export default function App() {
             }
           />
           <Route
-            path="/tracks"
+            path="/conference"
             element={
               <Layout navVariant="dark">
-                <Tracks />
+                <Conference />
               </Layout>
             }
           />
