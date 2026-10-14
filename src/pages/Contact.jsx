@@ -1,52 +1,262 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import {
   Calendar, MapPin, Laptop, Mail, Phone, Globe2, Share2,
-  ChevronDown, Send, Navigation, ArrowRight
+  ChevronDown, Send, Navigation, ArrowRight, ChevronLeft, ChevronRight,
+  Building2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Linkedin, Twitter, Facebook, Youtube } from "../components/SocialIcons";
 import { contactAPI } from "../services/api";
-import contactHero from "../assets/hero/ideax-2026-contact-page-banner.webp";
+import contactHero from "../assets/img/contactBg.png";
 import cta from "../assets/hero/ideax-2026-about-call-to-action-banner.webp"
+import batangasLogo from "../assets/img/batangasUniversityLogo.png";
+import perpetualLogo from "../assets/img/universityofPerpetual.png";
+import himalayanLogo from "../assets/img/himalayanUniversity.png";
+import globalResearchLogo from "../assets/img/globalResearch.png";
+import researcherConnectLogo from "../assets/img/RC Logo.png";
 
-const META = [
-  { icon: Calendar, title: "10 – 12", subtitle: "December, 2026", color: "text-[#2563EB]" },
-  { icon: MapPin, title: "Singapore,", subtitle: "Asia", color: "text-[#FF8A00]" },
-  { icon: Laptop, title: "Hybrid", subtitle: "(In-person & Online)", color: "text-[#22C55E]" },
+
+
+const CONTACT_DETAILS = [
+  {
+    icon: Mail,
+    title: "Email",
+    color: "#0861FF",
+    bg: "#EAF1FF",
+    items: [
+      {
+        text: "globalresearchconference@gmail.com",
+        href: "mailto:globalresearchconference@gmail.com",
+      },
+    ],
+  },
+  {
+    icon: Globe2,
+    title: "Websites",
+    color: "#0861FF",
+    bg: "#EAF1FF",
+    items: [
+      { text: "grcf.net", href: "https://grcf.net" },
+      {
+        text: "globalresearchconference.com",
+        href: "https://globalresearchconference.com",
+      },
+    ],
+  },
+  {
+    icon: MapPin,
+    title: "Venue",
+    color: "#FF9900",
+    bg: "#FFF5E6",
+    items: [
+      {
+        text: "University of Batangas Lipa Campus, Feliciano Leviste Road, Marawoy, Lipa City, Batangas, Philippines",
+      },
+    ],
+  },
+  {
+    icon: Building2,
+    title: "Managed by",
+    color: "#7545FF",
+    bg: "#F1EDFF",
+    items: [
+      {
+        text: "Infinite Global Research Conference Pvt. Ltd.",
+      },
+      {
+        text: "Plot No. RL-32 Shrifal Building, G Block Sambhaji Nagar, Chinchwad MIDC, Pune – 411019",
+      },
+    ],
+  },
+  {
+    icon: Phone,
+    title: "Phone Numbers",
+    color: "#00B979",
+    bg: "#E9FBF4",
+    items: [
+      { text: "+91 9423573130", href: "tel:+919423573130" },
+      { text: "+91 9545553130", href: "tel:+919545553130" },
+    ],
+  },
 ];
 
-const CONTACT_CARDS = [
-  { icon: MapPin, color: "bg-[#2563EB] text-white", title: "Conference Secretariat", lines: ["IDEAX 2026 Conference Office", "123 Innovation Drive, #05-01", "Singapore 138602"] },
-  { icon: Mail, color: "bg-[#f7872b] text-white", title: "Email Us", lines: ["General Inquiries", "submit@innovationconference.com"] },
-  { icon: Phone, color: "bg-[#089b34] text-white", title: "Call Us", lines: ["+91-9890917528", "(Mon – Fri, 9:00 AM – 6:00 PM SGT)"] },
-  { icon: Globe2, color: "bg-[#7812d2] text-white", title: "Website", lines: ["www.ideax-conference.org"] },
-];
-
-const FAQS = [
-  "How can I register for IDEAX 2026?",
-  "What is the mode of the conference?",
-  "Will the sessions be recorded?",
-  "Can I present my paper virtually?",
-  "What is included in the registration?",
+const PARTNERS = [
+  {
+    id: 1,
+    name: "University of Batangas",
+    subtitle: "Lipa Campus",
+    location: "Batangas, Philippines",
+    country: "Philippines",
+    flag: "🇵🇭",
+    img: batangasLogo,
+  },
+  {
+    id: 2,
+    name: "University of Perpetual Help System DALTA",
+    subtitle: "",
+    location: "",
+    country: "Philippines",
+    flag: "🇵🇭",
+    img: perpetualLogo,
+  },
+  {
+    id: 3,
+    name: "Himalayan University",
+    subtitle: "",
+    location: "",
+    country: "India",
+    flag: "🇮🇳",
+    img: himalayanLogo,
+  },
+  {
+    id: 4,
+    name: "Global Research Conference Forum",
+    subtitle: "",
+    location: "",
+    country: "International",
+    flag: "🌐",
+    img: globalResearchLogo,
+  },
+  {
+    id: 5,
+    name: "Research Connect",
+    subtitle: "Publication Partner",
+    location: "",
+    country: "International",
+    flag: "🌐",
+    img: researcherConnectLogo,
+  },
 ];
 
 export default function Contact() {
-  const [openFaq, setOpenFaq] = useState(null);
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
-  const [submitting, setSubmitting] = useState(false);
+ 
+ 
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  subject: "",
+  message: "",
+});
+
+const [feedback, setFeedback] = useState(null);
+
+    const [partnerIndex, setPartnerIndex] = useState(0);
+    const [visibleCount, setVisibleCount] = useState(5);
+    const [direction, setDirection] = useState(1);
+  
+    // Responsive number of visible cards
+    useEffect(() => {
+      const updateCount = () => {
+        const width = window.innerWidth;
+  
+        if (width < 480) {
+          setVisibleCount(1);
+        } else if (width < 640) {
+          setVisibleCount(2);
+        } else if (width < 1024) {
+          setVisibleCount(3);
+        } else {
+          setVisibleCount(5);
+        }
+      };
+  
+      updateCount();
+  
+      window.addEventListener("resize", updateCount);
+  
+      return () => window.removeEventListener("resize", updateCount);
+    }, []);
+  
+    const prevPartner = () => {
+      setDirection(-1);
+  
+      setPartnerIndex((prev) =>
+        (prev - 1 + PARTNERS.length) % PARTNERS.length
+      );
+    };
+  
+    const nextPartner = () => {
+      setDirection(1);
+  
+      setPartnerIndex((prev) =>
+        (prev + 1) % PARTNERS.length
+      );
+    };
+  
+    const visiblePartners = Array.from(
+      { length: Math.min(visibleCount, PARTNERS.length) },
+      (_, index) =>
+        PARTNERS[(partnerIndex + index) % PARTNERS.length]
+    );
+  
+    const carouselVariants = {
+      enter: (dir) => ({
+        opacity: 0,
+        x: dir > 0 ? 35 : -35,
+      }),
+      center: {
+        opacity: 1,
+        x: 0,
+      },
+      exit: (dir) => ({
+        opacity: 0,
+        x: dir > 0 ? -35 : 35,
+      }),
+    };
+
+    const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const { name, email, phone, subject, message } = form;
+
+  if (
+    !name.trim() ||
+    !email.trim() ||
+    !subject.trim() ||
+    !message.trim()
+  ) {
+    setFeedback({
+      type: "error",
+      message: "Please fill in all required fields.",
+    });
+    return;
+  }
+
+  const emailBody = `
+Full Name: ${name}
+Email Address: ${email}
+Phone Number: ${phone || "Not provided"}
+Subject: ${subject}
+
+Message:
+${message}
+  `.trim();
+
+  const mailtoLink =
+    `mailto:globalresearchconference@gmail.com` +
+    `?subject=${encodeURIComponent(
+      `SYNERGY 2026 Inquiry - ${subject}`
+    )}` +
+    `&body=${encodeURIComponent(emailBody)}`;
+
+  window.location.href = mailtoLink;
+
+
+};
 
   return (
     <main className="overflow-hidden bg-white text-[#07113F]">
       
 
       <section
-        className="relative min-h-[480px] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[500px] lg:bg-[length:100%_100%]"
+        className="relative min-h-[480px] bg-cover bg-center bg-no-repeat sm:min-h-[430px] lg:min-h-[470px] lg:bg-[length:100%_100%]"
         style={{
           backgroundImage: `url(${contactHero})`,
         }}
       >
-        <div className="relative z-10 mx-auto flex min-h-[430px] max-w-[1420px] items-center px-5 py-6 sm:min-h-[460px] sm:px-8 lg:min-h-[530px] lg:px-16">
+        <div className="relative z-10 mx-auto flex min-h-[430px] max-w-[1420px] items-center px-5 py-6 sm:min-h-[460px] sm:px-8 lg:min-h-[470px] lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
@@ -54,17 +264,17 @@ export default function Contact() {
             className="max-w-[560px]"
           >
             {/* Breadcrumb */}
-            <div className="mb-8 sm:-mt-10 flex items-center gap-2 text-[13px] font-semibold text-black/80">
+            <div className="mb-8 sm:-mt-10 flex items-center gap-2 text-[13px] font-semibold text-white">
               <Link to="/" className="transition hover:text-[#13B5FF]">
                 Home
               </Link>
-              <span className="text-black">›</span>
+              <span className="text-white">›</span>
               <Link to="/contact" className="font-semibold text-[#13B5FF] text-[13px]">
                 Contact Us
               </Link>
             </div>
       
-            <h1 className="text-[40px] font-[600] leading-[1.02] text-black sm:text-[46px] lg:text-[47px]">
+            <h1 className="text-[40px] font-[600] leading-[1.02] text-white sm:text-[46px] lg:text-[47px]">
               We’re Here{" "} <br />
               <span className="bg-gradient-to-r from-[#2cb2ef] to-[#493af3] bg-clip-text text-transparent">
                 to Help You
@@ -75,18 +285,18 @@ export default function Contact() {
               <span className="w-[45%] bg-[#FFC21A]" />
             </div>
       
-            <p className="mt-7 max-w-[390px] text-[15px] font-medium leading-[1.75] text-black/90">
+            <p className="mt-7 max-w-[390px] text-[15px] font-medium leading-[1.75] text-white/90">
            Have a question or need assistance? Reach out to our team and we'll get back to you as soon as possible.
             </p>
-            <div className="mt-7 flex flex-wrap gap-6">
-              {META.map(({ icon: Icon, title, subtitle, color }) => (
-                <div key={title} className="flex items-center gap-2">
-                  <Icon size={28} className= {color} />
-                  <div>
-                    <p className="text-[13px] font-bold">{title}</p>
-                    <p className="text-[11px] font-semibold text-[#1F2A44]/65">{subtitle}</p>
-                  </div>
-                </div>
+            <div className="mt-6 flex flex-wrap gap-3 text-[12px] font-semibold text-white">
+              {[
+                [Calendar, "4 – 5 December, 2026"],
+                [MapPin, "University of Batangas Lipa Campus, Batangas, Philippines"],
+                
+              ].map(([Icon, text]) => (
+                <span key={text} className="flex items-center gap-2">
+                  <Icon size={16} className="text-[#FFC21A]" /> {text}
+                </span>
               ))}
             </div>
           </motion.div>
@@ -95,348 +305,601 @@ export default function Contact() {
       
       </section>
 
-    <section className="px-5 py-10 sm:px-8 lg:px-16 ">
-  <div className="mx-auto grid max-w-[1340px] grid-cols-1 gap-8 lg:grid-cols-[420px_1fr]">
-    
-    {/* Contact Information */}
+   
+{/* ========== CONTACT INFORMATION + CONTACT FORM ========== */}
+<section className="relative overflow-hidden bg-[#F8FBFF] px-3 py-5 sm:px-6 sm:py-8 lg:px-10 xl:px-14">
+  <div className="mx-auto grid w-full max-w-[1450px] grid-cols-1 items-stretch gap-4 lg:grid-cols-2 lg:gap-5">
+
+    {/* ================= LEFT: CONTACT INFORMATION ================= */}
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.55 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+      className="min-w-0 rounded-[12px] border border-[#E2EAF6] bg-white px-4 py-5 shadow-[0_5px_22px_rgba(15,23,42,0.035)] sm:px-6"
     >
-      <p className="text-[14px] font-semibold uppercase text-[#2563EB]">
-        Get in Touch
+      <p className="text-[11px] font-semibold uppercase text-[#0861FF]">
+        GET IN TOUCH
       </p>
-   <div className=" mt-1 flex h-[4px] w-[85px] mx-1 items-center justify-between">
-        <span className="h-[7px] w-[7px] rounded-full bg-[#2563EB]" />
-        <span className="h-[3px] w-[36px] bg-[#C7D8FF]" />
-        <span className="h-[3px] w-[24px] bg-[#2563EB]" />
-        <span className="h-[3px] w-[24px] bg-[#FFC21A]" />
-        <span className="h-[3px] w-[36px] bg-[#C7D8FF]" />
 
-        <span className="h-[7px] w-[7px] rounded-full bg-[#2563EB]" />
-      </div>
-      <h2 className="mt-3 text-[26px] font-semibold leading-tight text-[#07113F]">
-        Contact Information
+      <h2 className="mt-1 text-[23px] font-semibold leading-tight text-[#07113F] sm:text-[26px]">
+        Contact <span className="text-[#0861FF]">Information</span>
       </h2>
 
-    
-
-      <p className="mt-3 max-w-[350px] text-[13px] font-medium leading-relaxed text-[#1F2A44]/80">
-        Our team is ready to assist you with any inquiries related to IDEAX 2026.
+      <p className="mt-2 max-w-[520px] text-[12px] font-medium leading-[1.5] text-[#354265] sm:text-[13px]">
+        We are here to assist you. Reach out to us through any of the
+        following channels for inquiries, support, or collaboration
+        opportunities related to SYNERGY 2026.
       </p>
 
-      <div className="mt-3 space-y-2.5">
-        {CONTACT_CARDS.map(({ icon: Icon, color, title, lines }, i) => (
-          <motion.div
-            key={title}
-            initial={{ opacity: 0, x: -18 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            whileHover={{ y: -5, scale: 1.01 }}
-            className="flex items-start gap-6 rounded-[10px] border border-[#E1E9F6] bg-white p-4 shadow-[0_8px_26px_rgba(15,23,42,0.04)] transition-all duration-300 hover:border-[#C7D8FF] hover:shadow-[0_18px_40px_rgba(37,99,235,0.12)]"
-          >
-            <span
-              className={`flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full ${color}`}
+      {/* Contact detail rows */}
+      <div className="mt-5 divide-y divide-[#E7EDF7]">
+        {CONTACT_DETAILS.map(
+          ({ icon: Icon, title, color, bg, items }, index) => (
+            <motion.div
+              key={title}
+              initial={{ opacity: 0, x: -14 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.055,
+              }}
+              whileHover={{
+                x: 4,
+                transition: { duration: 0.2 },
+              }}
+              className="group flex min-w-0 items-start gap-4 rounded-[7px] px-2 py-3 transition-colors duration-300 hover:bg-[#F7FAFF]"
             >
-              <Icon size={20} />
-            </span>
+              {/* Icon */}
+              <div
+                className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-[8px] transition-transform duration-300 group-hover:scale-105"
+                style={{ backgroundColor: bg }}
+              >
+                <Icon
+                  size={25}
+                  strokeWidth={1.9}
+                  style={{ color }}
+                  aria-hidden="true"
+                />
+              </div>
 
-            <div className="min-w-0">
-              <h3 className="text-[14px] font-semibold text-[#07113F]">
-                {title}
-              </h3>
+              {/* Text */}
+              <div className="min-w-0 flex-1">
+                <h3 className="mb-1 text-[12px] font-semibold text-[#07113F] sm:text-[13px]">
+                  {title}
+                </h3>
 
-              {lines.map((l) => (
-                <p
-                  key={l}
-                  className="break-words text-[12px] font-medium leading-[1.55] text-[#1F2A44]/70"
-                >
-                  {l}
-                </p>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-
-        <motion.div
-          whileHover={{ y: -5, scale: 1.01 }}
-          className="flex items-start gap-6 rounded-[10px] border border-[#E1E9F6] bg-white p-4 shadow-[0_8px_26px_rgba(15,23,42,0.04)] transition-all duration-300 hover:border-[#C7D8FF] hover:shadow-[0_18px_40px_rgba(37,99,235,0.12)]"
-        >
-          <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full text-[#EEF4FF] bg-[#2563EB]">
-            <Share2 size={20} />
-          </span>
-
-          <div>
-            <h3 className="mb-2 text-[14px] font-semibold text-[#07113F]">
-              Follow Us
-            </h3>
-
-            <div className="flex gap-2">
-              {[Linkedin, Twitter, Facebook, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-[#e6eaf2] text-[#2863e1] transition-all duration-300 hover:-translate-y-1 hover:bg-[#2563EB] hover:text-white"
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+                {items.map((item) =>
+                  item.href ? (
+                    <a
+                      key={item.text}
+                      href={item.href}
+                      target={
+                        item.href.startsWith("https://")
+                          ? "_blank"
+                          : undefined
+                      }
+                      rel={
+                        item.href.startsWith("https://")
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      className="block break-words text-[11px] font-medium leading-[1.45] text-[#0861FF] transition-colors duration-300 hover:text-[#003DBA] hover:underline sm:text-[12px]"
+                    >
+                      {item.text}
+                    </a>
+                  ) : (
+                    <p
+                      key={item.text}
+                      className="text-[11px] font-medium leading-[1.45] text-[#334266] sm:text-[12px]"
+                    >
+                      {item.text}
+                    </p>
+                  )
+                )}
+              </div>
+            </motion.div>
+          )
+        )}
       </div>
     </motion.div>
 
-    {/* Contact Form */}
+    {/* ================= RIGHT: CONTACT FORM ================= */}
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.55, delay: 0.1 }}
-      className="rounded-[12px] border border-[#E1E9F6] bg-[#F8FBFF] p-5 shadow-[0_10px_30px_rgba(15,23,42,0.04)] sm:p-7"
+      transition={{
+        duration: 0.55,
+        delay: 0.1,
+        ease: "easeOut",
+      }}
+      className="min-w-0 rounded-[12px] border border-[#E2EAF6] bg-white px-4 py-5 shadow-[0_5px_22px_rgba(15,23,42,0.035)] sm:px-6"
     >
-      <h3 className="text-[26px] font-semibold text-[#07113F]">
-        Send Us a Message
-      </h3>
-
-      <p className="mt-3 text-[13px] font-medium text-[#1F2A44]/70">
-        Fill in the form below and we will get back to you shortly.
+      <p className="text-[11px] font-semibold uppercase text-[#0861FF]">
+        DROP US A MESSAGE
       </p>
 
-      <form
-        onSubmit={async (e) => {
-          e.preventDefault();
+      <h2 className="mt-1 text-[23px] font-semibold leading-tight text-[#07113F] sm:text-[26px]">
+        Send Us <span className="text-[#0861FF]">a Message</span>
+      </h2>
 
-          if (!form.name || !form.email || !form.subject || !form.message) {
-            alert("Please fill all required fields.");
-            return;
-          }
+      <p className="mt-2 max-w-[520px] text-[12px] font-medium leading-[1.5] text-[#354265] sm:text-[13px]">
+        Have a question or need assistance? Fill out the form below
+        and our team will get back to you as soon as possible.
+      </p>
 
-          setSubmitting(true);
-          try {
-            await contactAPI.send(form);
-            alert("Message sent successfully!");
-            setForm({ name: "", email: "", subject: "", message: "" });
-          } catch (err) {
-            alert(err.message || "Failed to send message. Please try again.");
-          } finally {
-            setSubmitting(false);
-          }
-        }}
-        className="mt-8 space-y-6"
-      >
-        <div className="grid gap-5 sm:grid-cols-2">
-          <Field
-            label="Full Name"
+      {/* Form */}
+    <form
+  onSubmit={handleSubmit}
+  className="mt-4 space-y-3"
+>
+        {/* Full name */}
+        <div>
+          <label
+            htmlFor="contact-name"
+            className="mb-1.5 block text-[12px] font-semibold text-[#07113F]"
+          >
+            Full Name <span className="text-red-500">*</span>
+          </label>
+
+          <input
+            id="contact-name"
+            type="text"
+            required
+            autoComplete="name"
             placeholder="Enter your full name"
             value={form.name}
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-          />
-
-          <Field
-            label="Email Address"
-            type="email"
-            placeholder="Enter your email"
-            value={form.email}
-            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, name: e.target.value }))
+            }
+            className="h-[42px] w-full rounded-[6px] border border-[#DFE8F5] bg-[#FCFDFF] px-3 text-[12px] text-[#07113F] outline-none transition-all duration-300 placeholder:text-[#9CA8BC] hover:border-[#B9CEEF] focus:border-[#0861FF] focus:ring-2 focus:ring-[#0861FF]/10"
           />
         </div>
 
+        {/* Email */}
         <div>
-          <label className="mb-2 block text-[12px] font-bold text-[#07113F]">
+          <label
+            htmlFor="contact-email"
+            className="mb-1.5 block text-[12px] font-semibold text-[#07113F]"
+          >
+            Email Address <span className="text-red-500">*</span>
+          </label>
+
+          <input
+            id="contact-email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="Enter your email address"
+            value={form.email}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, email: e.target.value }))
+            }
+            className="h-[42px] w-full rounded-[6px] border border-[#DFE8F5] bg-[#FCFDFF] px-3 text-[12px] text-[#07113F] outline-none transition-all duration-300 placeholder:text-[#9CA8BC] hover:border-[#B9CEEF] focus:border-[#0861FF] focus:ring-2 focus:ring-[#0861FF]/10"
+          />
+        </div>
+
+        {/* Phone */}
+        <div>
+          <label
+            htmlFor="contact-phone"
+            className="mb-1.5 block text-[12px] font-semibold text-[#07113F]"
+          >
+            Phone Number
+          </label>
+
+          <input
+            id="contact-phone"
+            type="tel"
+            autoComplete="tel"
+            placeholder="Enter your phone number"
+            value={form.phone}
+            onChange={(e) =>
+              setForm((prev) => ({ ...prev, phone: e.target.value }))
+            }
+            className="h-[42px] w-full rounded-[6px] border border-[#DFE8F5] bg-[#FCFDFF] px-3 text-[12px] text-[#07113F] outline-none transition-all duration-300 placeholder:text-[#9CA8BC] hover:border-[#B9CEEF] focus:border-[#0861FF] focus:ring-2 focus:ring-[#0861FF]/10"
+          />
+        </div>
+
+        {/* Subject */}
+        <div>
+          <label
+            htmlFor="contact-subject"
+            className="mb-1.5 block text-[12px] font-semibold text-[#07113F]"
+          >
             Subject <span className="text-red-500">*</span>
           </label>
 
           <select
+            id="contact-subject"
             required
             value={form.subject}
-            onChange={(e) => setForm({ ...form, subject: e.target.value })}
-            className="h-[46px] w-full rounded-[6px] border border-[#D9E3F2] bg-white px-4 text-[12px] font-medium text-[#1F2A44]/70 outline-none transition focus:border-[#2563EB]"
+            onChange={(e) =>
+              setForm((prev) => ({
+                ...prev,
+                subject: e.target.value,
+              }))
+            }
+            className="h-[42px] w-full rounded-[6px] border border-[#DFE8F5] bg-[#FCFDFF] px-3 text-[12px] text-[#07113F] outline-none transition-all duration-300 focus:border-[#0861FF] focus:ring-2 focus:ring-[#0861FF]/10"
           >
             <option value="">Select a subject</option>
             <option value="General Inquiry">General Inquiry</option>
-            <option value="Registration Support">Registration Support</option>
+            <option value="Registration Support">
+              Registration Support
+            </option>
             <option value="Paper Submission">Paper Submission</option>
             <option value="Sponsorship">Sponsorship</option>
+            <option value="Collaboration">Collaboration</option>
+            <option value="Other">Other</option>
           </select>
         </div>
 
+        {/* Message */}
         <div>
-          <label className="mb-3 block text-[12px] font-bold text-[#07113F]">
+          <label
+            htmlFor="contact-message"
+            className="mb-1.5 block text-[12px] font-semibold text-[#07113F]"
+          >
             Message <span className="text-red-500">*</span>
           </label>
 
           <textarea
+            id="contact-message"
             required
-            rows={7}
-            value={form.message}
-            onChange={(e) => setForm({ ...form, message: e.target.value })}
+            rows={3}
             placeholder="Type your message here..."
-            className="w-full resize-none rounded-[6px] border border-[#D9E3F2] bg-white px-4 py-3 text-[12px] font-medium outline-none transition focus:border-[#2563EB]"
+            value={form.message}
+            onChange={(e) =>
+              setForm((prev) => ({
+                ...prev,
+                message: e.target.value,
+              }))
+            }
+            className="min-h-[80px] w-full resize-y rounded-[6px] border border-[#DFE8F5] bg-[#FCFDFF] px-3 py-3 text-[12px] text-[#07113F] outline-none transition-all duration-300 placeholder:text-[#9CA8BC] hover:border-[#B9CEEF] focus:border-[#0861FF] focus:ring-2 focus:ring-[#0861FF]/10"
           />
         </div>
 
-        <label className="flex items-start gap-2 text-[12px] font-medium text-[#1F2A44]/70">
-          <input required type="checkbox" className="mt-0.5" />
-          <span>
-            I agree to the{" "}
-            <a href="#" className="text-[#2563EB]">
-              privacy policy
-            </a>{" "}
-            and consent to the processing of my data.
-          </span>
-        </label>
+        {/* Submission feedback */}
+        {feedback && (
+          <p
+            role="status"
+            aria-live="polite"
+            className={`rounded-[6px] px-3 py-2 text-[12px] font-medium ${
+              feedback.type === "success"
+                ? "bg-green-50 text-green-700"
+                : "bg-red-50 text-red-700"
+            }`}
+          >
+            {feedback.message}
+          </p>
+        )}
 
-        <button
-          type="submit"
-          disabled={submitting}
-          className="inline-flex h-[42px] items-center gap-3 rounded-[6px] bg-[#2563EB] px-6 text-[11px] font-bold uppercase text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#2f3ec6] hover:text-[#ebecf0] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
-        >
-          {submitting ? "Sending..." : "Send Message"} <Send size={14} />
-        </button>
+        {/* Submit button */}
+      
+{/* Frontend-only submit button */}
+<motion.button
+  type="submit"
+  whileHover={{ y: -2 }}
+  whileTap={{ scale: 0.98 }}
+  className="group mt-1 flex min-h-[43px] w-full items-center justify-center gap-3 rounded-[6px] bg-[#FFBA08] px-5 py-2.5 text-[12px] font-semibold text-[#07113F] shadow-[0_5px_16px_rgba(255,186,8,0.14)] transition-all duration-300 hover:bg-[#FFCA30] hover:shadow-[0_9px_22px_rgba(255,186,8,0.25)]"
+>
+  Send Message
+
+  <ArrowRight
+    size={17}
+    strokeWidth={2}
+    className="transition-transform duration-300 group-hover:translate-x-1"
+  />
+</motion.button>
+
+{/* Form feedback */}
+{feedback && (
+  <p
+    role="status"
+    aria-live="polite"
+    className={`mt-2 rounded-[6px] px-3 py-2 text-[12px] font-medium ${
+      feedback.type === "error"
+        ? "bg-red-50 text-red-700"
+        : "bg-blue-50 text-blue-700"
+    }`}
+  >
+    {feedback.message}
+  </p>
+)}
+
       </form>
     </motion.div>
   </div>
 </section>
 
-   <section className="px-5 pb-8 sm:px-8 lg:px-16">
-  <div className="mx-auto grid max-w-[1340px] grid-cols-1 gap-5 lg:grid-cols-2">
 
-    {/* FIND US */}
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55 }}
-      className="overflow-hidden rounded-[12px] border border-[#DCE8FA] bg-[#F8FBFF] shadow-[0_10px_30px_rgba(15,23,42,0.05)]"
+    <section
+      id="organizing-partners"
+      className="relative isolate overflow-hidden rounded-t-[12px] bg-[#050C35] px-4 py-5 sm:px-6 sm:py-6 lg:px-10 xl:px-12 2xl:px-16"
     >
-      <h3 className="px-5 py-4 text-[14px] font-semibold uppercase text-[#2563EB]">
-        Find Us
-      </h3>
+      {/* Background gradients */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_95%_90%,rgba(115,34,194,0.28),transparent_25%),radial-gradient(circle_at_20%_0%,rgba(37,99,235,0.17),transparent_40%)]"
+      />
 
-      <div className="relative h-[295px] overflow-hidden bg-[#EEF4FF]">
-        <iframe
-          title="Singapore Map"
-          className="h-full w-full"
-          loading="lazy"
-          src="https://maps.google.com/maps?q=Singapore&t=&z=13&ie=UTF8&iwloc=&output=embed"
-        />
+      {/* Decorative bottom glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-28 -right-24 h-[260px] w-[260px] rounded-full bg-purple-600/10 blur-[85px]"
+      />
 
-      
-      </div>
+      <div className="relative z-10 mx-auto w-full max-w-[1450px]">
+        {/* Section heading */}
+        <div className="mb-3 flex flex-col items-start justify-between gap-3 sm:mb-4 sm:flex-row sm:items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <p className="text-[12px] font-semibold uppercase tracking-[0.02em] text-[#FFC21A]">
+              ORGANIZING PARTNERS
+            </p>
 
-     
-    </motion.div>
+            <h2 className="mt-1.5 text-[21px] font-semibold leading-[1.2] tracking-[-0.015em] text-white sm:text-[24px] lg:text-[25px]">
+              Leading Institutions. Stronger Together.
+            </h2>
+          </motion.div>
 
-    {/* FAQ */}
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, delay: 0.08 }}
-      className="rounded-[12px] border border-[#DCE8FA] bg-[#F8FBFF] p-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)]"
-    >
-      <h3 className="mb-4 text-[14px] font-semibold uppercase text-[#2563EB]">
-        Frequently Asked Questions
-      </h3>
+          <Link
+            to="/partners"
+            className="group/btn inline-flex min-h-[36px] shrink-0 items-center justify-center gap-6 rounded-[5px] border border-[#D99B18] bg-transparent px-5 py-2 text-[12px] font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#FFC21A] hover:text-[#07113F] hover:shadow-[0_8px_20px_rgba(255,194,26,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC21A]"
+          >
+            View All Partners
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover/btn:translate-x-1"
+            />
+          </Link>
+        </div>
 
-      {FAQS.map((faq, i) => (
-        <div key={faq} className="border-b border-[#DCE8FA] last:border-b-0">
+        {/* Carousel area */}
+        <div className="relative px-0 min-[480px]:px-9 lg:px-10">
+          {/* Previous arrow */}
           <button
             type="button"
-            onClick={() => setOpenFaq(openFaq === i ? null : i)}
-            className="flex w-full items-center justify-between gap-4 py-4 text-left text-[13px] font-semibold text-[#07113F] transition-all duration-300 "
+            onClick={prevPartner}
+            aria-label="Previous organizing partner"
+            className="absolute left-0 top-1/2 z-20 hidden h-[34px] w-[34px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/[0.04] text-white transition-all duration-300 hover:scale-110 hover:border-[#FFC21A] hover:bg-[#FFC21A] hover:text-[#07113F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FFC21A] min-[480px]:flex"
           >
-            <span>{faq}</span>
-            <ChevronDown
-              size={18}
-              className={`shrink-0 text-[#2563EB] transition-transform duration-300 ${
-                openFaq === i ? "rotate-180" : ""
-              }`}
-            />
+            <ChevronLeft size={19} strokeWidth={1.8} />
           </button>
 
-          <AnimatePresence>
-            {openFaq === i && (
-              <motion.p
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="overflow-hidden pb-4 text-[12px] font-medium leading-relaxed text-[#1F2A44]/70"
+          {/* Animated partner cards */}
+          <div className="relative overflow-hidden">
+            <AnimatePresence
+              mode="wait"
+              initial={false}
+              custom={direction}
+            >
+              <motion.div
+                key={`${partnerIndex}-${visibleCount}`}
+                custom={direction}
+                variants={carouselVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+                className="grid grid-cols-1 gap-2.5 min-[480px]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-3"
               >
-                Details will be updated soon. Please contact the IDEAX 2026 team
-                for more information.
-              </motion.p>
-            )}
-          </AnimatePresence>
+                {visiblePartners.map((partner, index) => (
+                  <motion.article
+                    key={partner.id}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.35,
+                      delay: index * 0.04,
+                    }}
+                    whileHover={{
+                      y: -6,
+                      scale: 1.015,
+                      transition: {
+                        duration: 0.22,
+                        ease: "easeOut",
+                      },
+                    }}
+                    className="group relative flex min-h-[194px] min-w-0 flex-col items-center overflow-hidden rounded-[7px] border border-white/[0.04] bg-white/[0.085] px-2.5 py-3 text-center shadow-[0_5px_18px_rgba(0,0,0,0.04)] transition-[background-color,border-color,box-shadow] duration-300 hover:z-10 hover:border-[#4779D6]/60 hover:bg-white/[0.13] hover:shadow-[0_16px_35px_rgba(23,80,184,0.18)] sm:min-h-[200px] lg:min-h-[194px]"
+                  >
+                    {/* Logo */}
+                    <div className="mb-2 flex h-[85px] w-[85px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-white p-1 shadow-[0_2px_10px_rgba(0,0,0,0.12)] transition-transform duration-300 group-hover:scale-105">
+                      <img
+                        src={partner.img}
+                        alt={`${partner.name} logo`}
+                        loading="lazy"
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+
+                    {/* Partner name */}
+                    <h3 className="w-full text-[13px] font-semibold leading-[1.2] text-white sm:text-[13.5px]">
+                      {partner.name}
+                    </h3>
+
+                    {/* Partner subtitle */}
+                    {partner.subtitle && (
+                      <p className="mt-1 text-[11px] leading-[1.25] text-white/80">
+                        {partner.subtitle}
+                      </p>
+                    )}
+
+                    {/* Location */}
+                    {partner.location && (
+                      <p className="mt-0.5 text-[10.5px] leading-[1.25] text-white/70">
+                        {partner.location}
+                      </p>
+                    )}
+
+                    {/* Country */}
+                    <div className="mt-auto flex items-center justify-center gap-2 pt-2 text-[12px] font-medium text-white/85">
+                      {partner.country === "International" ? (
+                        <Globe2
+                          size={20}
+                          strokeWidth={1.7}
+                          className="shrink-0 text-[#66C3FF]"
+                        />
+                      ) : (
+                        <span
+                          aria-hidden="true"
+                          className="text-[22px] leading-none"
+                        >
+                          {partner.flag}
+                        </span>
+                      )}
+
+                      <span>{partner.country}</span>
+                    </div>
+
+                    {/* Hover accent */}
+                    <div
+                      aria-hidden="true"
+                      className="absolute bottom-0 left-1/2 h-[2px] w-0 -translate-x-1/2 bg-[#FFC21A] transition-[width] duration-300 group-hover:w-[65%]"
+                    />
+                  </motion.article>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Next arrow */}
+          <button
+            type="button"
+            onClick={nextPartner}
+            aria-label="Next organizing partner"
+            className="absolute right-0 top-1/2 z-20 hidden h-[34px] w-[34px] -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-white/[0.04] text-white transition-all duration-300 hover:scale-110 hover:border-[#FFC21A] hover:bg-[#FFC21A] hover:text-[#07113F] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#FFC21A] min-[480px]:flex"
+          >
+            <ChevronRight size={19} strokeWidth={1.8} />
+          </button>
         </div>
-      ))}
 
-     
-    </motion.div>
-  </div>
-</section>
+        {/* Mobile navigation */}
+        <div className="mt-4 flex items-center justify-center gap-4 min-[480px]:hidden">
+          <button
+            type="button"
+            onClick={prevPartner}
+            aria-label="Previous partner"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-all duration-300 hover:bg-[#FFC21A] hover:text-[#07113F]"
+          >
+            <ChevronLeft size={19} />
+          </button>
 
-     <section className="bg-white px-5 pb-7 sm:px-8 lg:px-16">
+          <span className="text-[12px] font-medium text-white/70">
+            {partnerIndex + 1} / {PARTNERS.length}
+          </span>
+
+          <button
+            type="button"
+            onClick={nextPartner}
+            aria-label="Next partner"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-white transition-all duration-300 hover:bg-[#FFC21A] hover:text-[#07113F]"
+          >
+            <ChevronRight size={19} />
+          </button>
+        </div>
+      </div>
+    </section>
+
+   
+{/* ================= CONTACT PAGE CTA ================= */}
+<section className="w-full bg-white px-4 pb-6 pt-3 sm:px-6 sm:pb-8 lg:px-10 xl:px-14">
   <motion.div
     initial={{ opacity: 0, y: 22 }}
     whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.55, ease: "easeOut" }}
-    className="relative mx-auto flex max-w-[1340px] flex-col items-start justify-between gap-5 overflow-hidden rounded-[10px] px-6 py-6 text-white shadow-[0_14px_35px_rgba(15,23,42,0.12)] sm:flex-row sm:items-center sm:px-10"
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{
+      duration: 0.55,
+      ease: "easeOut",
+    }}
+    className="relative isolate mx-auto w-full max-w-[1340px] overflow-hidden rounded-[11px] border border-[#263C91] bg-[#06124B] text-white shadow-[0_8px_25px_rgba(0,25,100,0.12)]"
   >
-    <img
-      src={cta}
-      alt="CTA Background"
-      className="absolute inset-0 h-full w-full object-cover object-center"
+    {/* Background image */}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${cta})` }}
     />
 
-    <div className="relative z-10 flex w-full items-center gap-4 sm:w-auto">
-      <motion.span
-        whileHover={{ scale: 1.1, rotate: -8 }}
-        className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-[#005BFF]"
-      >
-        <Send size={26} className="text-white" />
-      </motion.span>
+    {/* Dark navy overlay */}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(2,13,64,0.89)_0%,rgba(4,20,103,0.84)_55%,rgba(16,9,111,0.85)_100%)]"
+    />
 
-      <div>
-        <h3 className="text-[18px] font-semibold leading-tight sm:text-[20px]">
-          Stay Connected. Stay Informed.
-        </h3>
+    {/* Subtle decorative glow */}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(30,90,255,0.16),transparent_48%)]"
+    />
 
-        <p className="mt-2 max-w-[400px] text-[12px] font-medium leading-[1.55] text-white/85 sm:text-[13px]">
-          Subscribe to our newsletter and never miss an update about IDEAX 2026.
-        </p>
+    {/* CTA Content */}
+    <div className="relative z-10 flex w-full flex-col items-center justify-between gap-5 px-4 py-5 sm:px-7 md:flex-row md:gap-6 md:px-8 md:py-4 lg:px-9 lg:py-3">
+
+      {/* Left content */}
+      <div className="flex min-w-0 flex-col items-center gap-4 text-center min-[480px]:flex-row min-[480px]:text-left">
+
+        {/* Circular send icon */}
+        <motion.div
+          whileHover={{
+            scale: 1.1,
+            rotate: -10,
+            transition: { duration: 0.3 },
+          }}
+          className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#087CFF_0%,#315BFF_55%,#6644FF_100%)] shadow-[0_5px_18px_rgba(31,99,255,0.35)] transition-shadow duration-300 hover:shadow-[0_8px_28px_rgba(31,99,255,0.55)]"
+        >
+          <Send
+            size={29}
+            strokeWidth={2.2}
+            className="text-white"
+            aria-hidden="true"
+          />
+        </motion.div>
+
+        {/* Heading & Description */}
+        <div className="min-w-0">
+          <h2 className="text-[18px] font-semibold leading-[1.25] tracking-[-0.015em] text-white sm:text-[20px] lg:text-[21px]">
+            Let's Connect for{" "}
+            <span className="text-[#FFC21A]">
+              SYNERGY 2026
+            </span>
+          </h2>
+
+          <p className="mt-1 max-w-[610px] text-[11px] font-medium leading-[1.5] text-white/90 sm:text-[12px] lg:text-[13px]">
+            We look forward to hearing from you. Join our global
+            community and be part of a sustainable and digital future.
+          </p>
+        </div>
       </div>
-    </div>
 
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        alert("Subscribed successfully!");
-      }}
-      className="relative z-10 flex w-full overflow-hidden rounded-[6px] bg-white sm:w-auto"
-    >
-      <input
-        required
-        type="email"
-        placeholder="Enter your email"
-        className="h-[44px] min-w-0 flex-1 px-4 text-[12px] font-medium text-[#07113F] outline-none placeholder:text-[#6B7280] sm:w-[300px]"
-      />
-
-      <button
-        type="submit"
-        className="inline-flex h-[44px] shrink-0 items-center justify-center gap-2 bg-[#FFC21A] px-5 text-[11px] font-bold uppercase text-[#07113F] transition-all duration-300 hover:bg-[#FFD34D] sm:px-6"
+      {/* Register button */}
+      <Link
+        to="/registration"
+        aria-label="Register Now for SYNERGY 2026"
+        className="group inline-flex min-h-[40px] w-full shrink-0 items-center justify-center gap-5 rounded-[6px] bg-[#FFC21A] px-6 py-2.5 text-[13px] font-semibold text-[#07113F] shadow-[0_7px_20px_rgba(255,194,26,0.18)] transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-[#FFD443] hover:shadow-[0_12px_28px_rgba(255,194,26,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto sm:min-w-[160px] lg:min-w-[170px]"
       >
-        Subscribe <ArrowRight size={15} />
-      </button>
-    </form>
+        Register Now
+
+        <ArrowRight
+          size={19}
+          strokeWidth={2}
+          className="transition-transform duration-300 group-hover:translate-x-1.5"
+        />
+      </Link>
+    </div>
   </motion.div>
 </section>
+
+
     </main>
   );
 }
@@ -444,7 +907,7 @@ export default function Contact() {
 function Field({ label, type = "text", placeholder, value, onChange }) {
   return (
     <div>
-      <label className="mb-2 block text-[12px] font-bold text-[#07113F]">
+      <label className="mb-2 block text-[12px] font-semibold text-[#07113F]">
         {label} <span className="text-red-500">*</span>
       </label>
 
