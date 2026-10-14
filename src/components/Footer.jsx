@@ -90,15 +90,15 @@ export default function Footer() {
           <ul className="space-y-4 text-[12px] font-medium text-white/78">
             <li className="flex items-center gap-3">
               <MapPin size={15} className="text-white/80" />
-              Singapore
+             Philippines
             </li>
             <li className="flex items-center gap-3">
               <Mail size={15} className="text-white/80" />
-              submit@innovationconference.com
+              globalresearchconference@gmail.com
             </li>
             <li className="flex items-center gap-3">
               <Phone size={15} className="text-white/80" />
-              +91-9890917528
+             +91-9423573130
             </li>
           </ul>
         </div>
