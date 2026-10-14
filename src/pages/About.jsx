@@ -300,7 +300,7 @@ export default function AboutSynergy2026() {
 
             </div>
 
-            <h1 className="text-[36px] font-[600] leading-[1.1] sm:text-[48px] lg:text-[50px]">
+            <h1 className="text-[36px] font-[600] leading-[1.1] sm:text-[42px] lg:text-[46px]">
 
               About SYNERGY <Gold>2026</Gold>
 
