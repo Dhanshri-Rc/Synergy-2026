@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
@@ -215,71 +214,71 @@ const committeeSections = [
         country: "Thailand",
         image: shibuDharmarajan,
       },
-  //     {
-  //       name: "Dr. June Bernadette D’Souza",
-  //       role: "Advisory Member",
-  //       organization: "Christ Church",
-  //       country: "New Zealand",
-  //       image: juneDsouza,
-  //     },
-  //     {
-  //       name: "Dr. Krishnaraj V.",
-  //       role: "Assistant Professor",
-  //       organization: "Karnataka State Open University, Mysore",
-  //       country: "India",
-  //       image: krishnaraj,
-  //     },
-  //   ],
-  // },
-  // {
-  //   title: "National Advisory Board",
-  //   description:
-  //     "The National Advisory Board brings together academic and professional experts from institutions across India.",
-  //   columns: 4,
-  //   members: [
-  //     {
-  //       name: "Dr. M. Muthukumar",
-  //       role: "Advisory Member",
-  //       organization: "Madurai Kamaraj University",
-  //       country: "India",
-  //       image: muthukumar,
-  //     },
-  //     {
-  //       name: "Dr. Cholaraja M.",
-  //       role: "Assistant Professor",
-  //       organization: "Campus Law Centre, University of Delhi",
-  //       country: "India",
-  //       image: cholaraja,
-  //     },
-  //     {
-  //       name: "Dr. Kailash J. Karande",
-  //       role: "Director & Principal",
-  //       organization: "SKN Sinhgad College of Engineering",
-  //       country: "India",
-  //       image: kailashKarande,
-  //     },
-  //     {
-  //       name: "Adv. Varun Dev S.",
-  //       role: "Research Officer and Assistant Professor",
-  //       organization:
-  //         "Centre for Advanced Legal Studies and Research, Kerala Law Academy",
-  //       country: "India",
-  //       image: varunDev,
-  //     },
-  //     {
-  //       name: "Dr. N. Krishnakumar",
-  //       role: "Conference Chairman",
-  //       organization: "Kerala Legislative Assembly",
-  //       country: "India",
-  //       image: nKrishnakumar,
-  //     },
-  //     {
-  //       name: "Dr. B. Bhavana Rao",
-  //       role: "Advisory Member",
-  //       organization: "UPES, Dehradun",
-  //       country: "India",
-  //       image: bhavanaRao,
-  //     },
+      //     {
+      //       name: "Dr. June Bernadette D’Souza",
+      //       role: "Advisory Member",
+      //       organization: "Christ Church",
+      //       country: "New Zealand",
+      //       image: juneDsouza,
+      //     },
+      //     {
+      //       name: "Dr. Krishnaraj V.",
+      //       role: "Assistant Professor",
+      //       organization: "Karnataka State Open University, Mysore",
+      //       country: "India",
+      //       image: krishnaraj,
+      //     },
+      //   ],
+      // },
+      // {
+      //   title: "National Advisory Board",
+      //   description:
+      //     "The National Advisory Board brings together academic and professional experts from institutions across India.",
+      //   columns: 4,
+      //   members: [
+      //     {
+      //       name: "Dr. M. Muthukumar",
+      //       role: "Advisory Member",
+      //       organization: "Madurai Kamaraj University",
+      //       country: "India",
+      //       image: muthukumar,
+      //     },
+      //     {
+      //       name: "Dr. Cholaraja M.",
+      //       role: "Assistant Professor",
+      //       organization: "Campus Law Centre, University of Delhi",
+      //       country: "India",
+      //       image: cholaraja,
+      //     },
+      //     {
+      //       name: "Dr. Kailash J. Karande",
+      //       role: "Director & Principal",
+      //       organization: "SKN Sinhgad College of Engineering",
+      //       country: "India",
+      //       image: kailashKarande,
+      //     },
+      //     {
+      //       name: "Adv. Varun Dev S.",
+      //       role: "Research Officer and Assistant Professor",
+      //       organization:
+      //         "Centre for Advanced Legal Studies and Research, Kerala Law Academy",
+      //       country: "India",
+      //       image: varunDev,
+      //     },
+      //     {
+      //       name: "Dr. N. Krishnakumar",
+      //       role: "Conference Chairman",
+      //       organization: "Kerala Legislative Assembly",
+      //       country: "India",
+      //       image: nKrishnakumar,
+      //     },
+      //     {
+      //       name: "Dr. B. Bhavana Rao",
+      //       role: "Advisory Member",
+      //       organization: "UPES, Dehradun",
+      //       country: "India",
+      //       image: bhavanaRao,
+      //     },
     ],
   },
 ];
@@ -414,11 +413,7 @@ function MemberCard({ member, reduceMotion }) {
             "
           />
         ) : (
-          <UserRound
-            size={43}
-            strokeWidth={1.45}
-            className="text-[#9DA8B3]"
-          />
+          <UserRound size={43} strokeWidth={1.45} className="text-[#9DA8B3]" />
         )}
       </motion.div>
 
@@ -493,8 +488,8 @@ function CommitteeSection({ section, reduceMotion }) {
     section.columns === 4
       ? "lg:grid-cols-4"
       : section.columns === 3
-      ? "lg:grid-cols-3"
-      : "lg:grid-cols-1";
+        ? "lg:grid-cols-3"
+        : "lg:grid-cols-1";
 
   const variants = reduceMotion ? noMotion : fadeUp;
 
@@ -504,11 +499,7 @@ function CommitteeSection({ section, reduceMotion }) {
         relative
         py-5
         sm:py-6
-        ${
-          isChair
-            ? "bg-[#F1F8FF]"
-            : "bg-transparent"
-        }
+        ${isChair ? "bg-[#F1F8FF]" : "bg-transparent"}
       `}
     >
       {/* Chair Section Background */}
@@ -605,11 +596,7 @@ function CommitteeSection({ section, reduceMotion }) {
             gap-4
             sm:grid-cols-2
             ${gridClass}
-            ${
-              isChair
-                ? "mx-auto max-w-[360px] sm:grid-cols-1"
-                : ""
-            }
+            ${isChair ? "mx-auto max-w-[360px] sm:grid-cols-1" : ""}
           `}
         >
           {section.members.map((member, index) => (
@@ -657,17 +644,11 @@ export default function Committee() {
           bg-center
           bg-no-repeat
           sm:min-h-[430px]
-          lg:min-h-[460px]
+          lg:min-h-[470px]
           lg:bg-[length:100%_100%]
         "
         style={{
           backgroundImage: `
-            linear-gradient(
-              90deg,
-              rgba(0,14,38,0.68) 0%,
-              rgba(0,14,38,0.24) 55%,
-              rgba(0,14,38,0.05) 100%
-            ),
             url("${committeeHero}")
           `,
         }}
@@ -735,13 +716,9 @@ export default function Committee() {
                 lg:text-[46px]
               "
             >
-              <span className="block text-white">
-                Conference
-              </span>
+              <span className="block text-white">Conference</span>
 
-              <span className="block text-[#FFB51D]">
-                Committee
-              </span>
+              <span className="block text-[#FFB51D]">Committee</span>
             </h1>
 
             {/* Accent Line */}
@@ -772,10 +749,9 @@ export default function Committee() {
                 text-white/95
               "
             >
-              SYNERGY 2026 is guided by an esteemed
-              committee of academicians, researchers,
-              and industry experts from diverse
-              disciplines and countries.
+              SYNERGY 2026 is guided by an esteemed committee of academicians,
+              researchers, and industry experts from diverse disciplines and
+              countries.
             </p>
           </motion.div>
         </div>
@@ -803,131 +779,104 @@ export default function Committee() {
       </div>
 
       {/* =====================================
-          REGISTRATION CTA
-      ===================================== */}
+    REGISTRATION CTA
+===================================== */}
 
-      <section className="bg-white">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{
-            once: true,
-            amount: 0.15,
-          }}
-          variants={reveal}
-          className="
-            relative
-            mx-auto
-            flex
-            min-h-[135px]
-            w-full
-            flex-col
-            items-start
-            justify-between
-            gap-5
-            overflow-hidden
-            bg-[#041B43]
-            px-5
-            py-6
-            text-white
-            sm:px-8
-            lg:flex-row
-            lg:items-center
-            lg:px-16
-          "
-          style={{
-            backgroundImage: `
-              linear-gradient(
-                90deg,
-                rgba(1,18,49,0.94) 0%,
-                rgba(1,18,49,0.65) 48%,
-                rgba(1,18,49,0.12) 100%
-              ),
-              url("${cta}")
-            `,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          <div
+      <section className="bg-white py-6 sm:py-8">
+        {/* Same container alignment as other sections */}
+        <div className="mx-auto max-w-[1340px] px-5 sm:px-8 lg:px-16">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{
+              once: true,
+              amount: 0.15,
+            }}
+            variants={reveal}
             className="
-              relative
-              z-10
-              w-full
-              max-w-[1340px]
-              lg:w-auto
-            "
+        relative
+        flex
+        min-h-[135px]
+        w-full
+        flex-col
+        items-start
+        justify-between
+        gap-5
+        overflow-hidden
+        rounded-[14px]
+        bg-[#041B43]
+        px-5
+        py-6
+        text-white
+        shadow-[0_10px_30px_rgba(10,40,90,0.12)]
+        sm:px-8
+        lg:flex-row
+        lg:items-center
+        lg:px-10
+      "
+            style={{
+              backgroundImage: `
+          linear-gradient(
+            90deg,
+            rgba(1,18,49,0.94) 0%,
+            rgba(1,18,49,0.65) 48%,
+            rgba(1,18,49,0.12) 100%
+          ),
+          url("${cta}")
+        `,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
           >
-            <h2
+            {/* CTA Text */}
+            <div className="relative z-10 w-full lg:w-auto">
+              <h2 className="text-[22px] font-semibold leading-tight sm:text-[25px] lg:text-[28px]">
+                Be a Part of{" "}
+                <span className="text-[#FFB51D]">SYNERGY 2026</span>
+              </h2>
+
+              <p className="mt-2 max-w-[520px] text-[12px] leading-5 text-white/90 sm:text-[13px]">
+                Join global experts, researchers and innovators for meaningful
+                discussions and collaboration.
+              </p>
+            </div>
+
+            {/* Register Button */}
+            <Link
+              to="/registration"
               className="
-                text-[22px]
-                font-semibold
-                leading-tight
-                sm:text-[25px]
-                lg:text-[28px]
-              "
+          group
+          relative
+          z-10
+          inline-flex
+          min-h-[44px]
+          shrink-0
+          items-center
+          justify-center
+          gap-3
+          rounded-full
+          bg-[#FFB51D]
+          px-7
+          py-3
+          text-[12px]
+          font-semibold
+          text-[#082C53]
+          shadow-[0_8px_22px_rgba(255,181,29,0.18)]
+          transition-all
+          duration-300
+          hover:-translate-y-1
+          hover:bg-[#FFCA4F]
+          hover:shadow-[0_14px_30px_rgba(255,181,29,0.25)]
+        "
             >
-              Be a Part of{" "}
-              <span className="text-[#FFB51D]">
-                SYNERGY 2026
-              </span>
-            </h2>
-
-            <p
-              className="
-                mt-2
-                max-w-[520px]
-                text-[12px]
-                leading-5
-                text-white/90
-                sm:text-[13px]
-              "
-            >
-              Join global experts, researchers and
-              innovators for meaningful discussions
-              and collaboration.
-            </p>
-          </div>
-
-          <Link
-            to="/registration"
-            className="
-              group
-              relative
-              z-10
-              inline-flex
-              min-h-[44px]
-              shrink-0
-              items-center
-              justify-center
-              gap-3
-              rounded-full
-              bg-[#FFB51D]
-              px-7
-              py-3
-              text-[12px]
-              font-semibold
-              text-[#082C53]
-              shadow-[0_8px_22px_rgba(255,181,29,0.18)]
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:bg-[#FFCA4F]
-              hover:shadow-[0_14px_30px_rgba(255,181,29,0.25)]
-            "
-          >
-            Register Now
-
-            <ArrowRight
-              size={16}
-              className="
-                transition-transform
-                duration-300
-                group-hover:translate-x-1
-              "
-            />
-          </Link>
-        </motion.div>
+              Register Now
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </Link>
+          </motion.div>
+        </div>
       </section>
     </main>
   );
