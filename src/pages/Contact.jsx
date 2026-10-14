@@ -7,9 +7,8 @@ import {
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Linkedin, Twitter, Facebook, Youtube } from "../components/SocialIcons";
-import { contactAPI } from "../services/api";
 import contactHero from "../assets/img/contactBg.png";
-import cta from "../assets/hero/ideax-2026-about-call-to-action-banner.webp"
+import cta from "../assets/img/ideax-2026-committee-call-to-action-banner.webp";
 import batangasLogo from "../assets/img/batangasUniversityLogo.png";
 import perpetualLogo from "../assets/img/universityofPerpetual.png";
 import himalayanLogo from "../assets/img/himalayanUniversity.png";

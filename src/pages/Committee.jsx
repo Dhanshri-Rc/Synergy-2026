@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { UserRound, ArrowRight, ChevronRight } from "lucide-react";
 
 import committeeHero from "../assets/img/committeeBg.png";
-import cta from "../assets/hero/ideax-2026-committee-call-to-action-banner.webp";
+import cta from "../assets/img/ideax-2026-committee-call-to-action-banner.webp";
 
 // Committee profile images
 import honLilyHernandezBohn from "../assets/img/Lily.png";
@@ -344,7 +344,7 @@ function MemberCard({ member, reduceMotion }) {
       className="
         group
         flex
-        min-h-[175px]
+        min-h-[185px]
         w-full
         min-w-0
         flex-col
@@ -364,58 +364,67 @@ function MemberCard({ member, reduceMotion }) {
         hover:shadow-[0_18px_38px_rgba(10,50,100,0.15)]
       "
     >
-      {/* Profile Image */}
+      
+{/* Profile Image */}
 
-      <motion.div
-        whileHover={
-          reduceMotion
-            ? undefined
-            : {
-                scale: 1.08,
-              }
+<motion.div
+  whileHover={
+    reduceMotion
+      ? undefined
+      : {
+          scale: 1.08,
         }
-        transition={springTransition}
-        className="
-          mb-3
-          flex
-          h-[80px]
-          w-[80px]
-          shrink-0
-          items-center
-          justify-center
-          overflow-hidden
-          rounded-full
-          border-2
-          border-[#F3C76D]
-          bg-gradient-to-b
-          from-[#F3F5F7]
-          to-[#E2E7ED]
-          shadow-[0_3px_9px_rgba(0,0,0,0.07)]
-          sm:h-[88px]
-          sm:w-[88px]
-        "
-      >
-        {member.image && !photoFailed ? (
-          <img
-            src={member.image}
-            alt={`${member.name} profile`}
-            loading="lazy"
-            decoding="async"
-            onError={() => setPhotoFailed(true)}
-            className="
-              h-full
-              w-full
-              object-cover
-              object-center
-              transition-transform
-              duration-500
-              motion-safe:group-hover:scale-110
-            "
-          />
-        ) : (
-          <UserRound size={43} strokeWidth={1.45} className="text-[#9DA8B3]" />
-        )}
-      </motion.div>
+  }
+  transition={springTransition}
+  className="
+    mb-4
+    flex
+    h-[110px]
+    w-[110px]
+    shrink-0
+    items-center
+    justify-center
+    overflow-hidden
+    rounded-full
+    border-2
+    border-[#F3C76D]
+    bg-gradient-to-b
+    from-[#F3F5F7]
+    to-[#E2E7ED]
+    shadow-[0_5px_15px_rgba(0,0,0,0.10)]
+    sm:h-[120px]
+    sm:w-[120px]
+    lg:h-[130px]
+    lg:w-[130px]
+  "
+>
+  {member.image && !photoFailed ? (
+    <img
+      src={member.image}
+      alt={`${member.name} profile`}
+      loading="lazy"
+      decoding="async"
+      onError={() => setPhotoFailed(true)}
+      className="
+        h-full
+        w-full
+        rounded-full
+        object-cover
+        object-center
+        transition-transform
+        duration-500
+        motion-safe:group-hover:scale-110
+      "
+    />
+  ) : (
+    <UserRound
+      size={58}
+      strokeWidth={1.45}
+      className="text-[#9DA8B3]"
+    />
+  )}
+</motion.div>
+
 
       {/* Name */}
 

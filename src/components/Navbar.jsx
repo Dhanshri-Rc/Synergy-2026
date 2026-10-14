@@ -3,7 +3,7 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import hlogo from "../assets/hero/headerLogo.png";
+import hlogo from "../assets/img/headerLogo.png";
 
 const LINKS = [
   { label: "Home", to: "/" },
