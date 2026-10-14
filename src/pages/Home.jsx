@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import homeHero from "../assets/img/homeBg.png";
 import { useState , useEffect } from "react";
-import profile from "../assets/hero/IDEAX-2026-conference-illustration.webp"
+// import profile from "../assets/img/IDEAX-2026-conference-illustration.webp"
 import batangasLogo from "../assets/img/batangasUniversityLogo.png";
 import perpetualLogo from "../assets/img/universityofPerpetual.png";
 import himalayanLogo from "../assets/img/himalayanUniversity.png";

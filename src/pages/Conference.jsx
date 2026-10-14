@@ -17,7 +17,7 @@ import {
 
 // Replace these with your SYNERGY 2026 image files.
 import tracksBG from "../assets/img/conference.png";
-import trackCtaBg from "../assets/hero/ideax-2026-conference-tracks-call-to-action.webp";
+import trackCtaBg from "../assets/img/ideax-2026-conference-tracks-call-to-action.webp";
 
 // --------------------------------------------------
 // FRAMER MOTION VARIANTS
