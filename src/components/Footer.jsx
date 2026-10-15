@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Facebook, Youtube } from "./SocialIcons";
-import Logo from "../assets/img/synergy-2026-footer-logo.webp";
+import Logo from "../assets/img/synergy-2026-globe-logo.webp";
 
 const QUICK_LINKS = [
   
