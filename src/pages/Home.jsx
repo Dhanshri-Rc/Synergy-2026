@@ -14,14 +14,14 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-import homeHero from "../assets/img/homeBg.png";
+import homeHero from "../assets/img/synergy-2026-home-hero-banner.webp";
 import { useState , useEffect } from "react";
 // import profile from "../assets/img/IDEAX-2026-conference-illustration.webp"
-import batangasLogo from "../assets/img/batangasUniversityLogo.png";
-import perpetualLogo from "../assets/img/universityofPerpetual.png";
-import himalayanLogo from "../assets/img/himalayanUniversity.png";
-import globalResearchLogo from "../assets/img/globalResearch.png";
-import researcherConnectLogo from "../assets/img/RC Logo.png";
+import batangasLogo from "../assets/img/batangasUniversityLogo.webp";
+import perpetualLogo from "../assets/img/university-of-Perpetual-logo.webp";
+import himalayanLogo from "../assets/img/himalayan-University-logo.webp";
+import globalResearchLogo from "../assets/img/global-research-collaboration-logo.webp";
+import researcherConnectLogo from "../assets/img/researcher-connect-publication-partner-logo.webp";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
