@@ -3,7 +3,7 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import hlogo from "../assets/img/headerLogo.png";
+import hlogo from "../assets/img/synergy-2026-header-logo.webp";
 
 const LINKS = [
   { label: "Home", to: "/" },

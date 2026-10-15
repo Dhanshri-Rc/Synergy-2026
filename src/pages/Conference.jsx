@@ -16,8 +16,8 @@ import {
 } from "lucide-react";
 
 // Replace these with your SYNERGY 2026 image files.
-import tracksBG from "../assets/img/conference.png";
-import trackCtaBg from "../assets/img/ideax-2026-conference-tracks-call-to-action.webp";
+import tracksBG from "../assets/img/synergy-2026-conference-tracks-banner.webp";
+import trackCtaBg from "../assets/img/synergy-2026-conference-tracks-call-to-action.webp";
 
 // --------------------------------------------------
 // FRAMER MOTION VARIANTS

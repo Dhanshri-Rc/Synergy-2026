@@ -3,32 +3,32 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { UserRound, ArrowRight, ChevronRight } from "lucide-react";
 
-import committeeHero from "../assets/img/committeeBg.png";
-import cta from "../assets/img/ideax-2026-committee-call-to-action-banner.webp";
+import committeeHero from "../assets/img/synergy-2026-conference-committee-banner.webp";
+import cta from "../assets/img/synergy-2026-committee-call-to-action-banner.webp";
 
 // Committee profile images
-import honLilyHernandezBohn from "../assets/img/Lily.png";
-import joseTamayo from "../assets/img/joseAntony.png";
-import prakashDivakaran from "../assets/img/prakash.png";
+import honLilyHernandezBohn from "../assets/img/Lilyn-synergy-2026-committee.webp";
+import joseTamayo from "../assets/img/jose-antony-m-tamayo-synergy-2026-committee.webp";
+import prakashDivakaran from "../assets/img/prakash-divakaran-synergy-2026-committee.webp";
 
-import auroraTolentino from "../assets/img/Aurora.png";
-import pastorArguelles from "../assets/img/Pastor.png";
-import marjorieGutierrezTangog from "../assets/img/Marjorie.png";
-import ernestoRamirez from "../assets/img/Ernesto.png";
+import auroraTolentino from "../assets/img/aurora-p-tolentino-synergy-2026-committee.webp";
+import pastorArguelles from "../assets/img/pastorArguelles-synergy-2026-committee.webp";
+import marjorieGutierrezTangog from "../assets/img/Marjorien-synergy-2026-committee.webp";
+import ernestoRamirez from "../assets/img/Ernestosynergy-2026-committee.webp";
 
-import michelleMalsi from "../assets/img/Michelle.png";
-import jeffersonLitan from "../assets/img/jeffersonLitan.png";
-import arunChainit from "../assets/img/arunChainit.png";
-import chaiwatPhuakkhong from "../assets/img/chaiwatPhuakkhong.png";
+import michelleMalsi from "../assets/img/Michellen-synergy-2026-committee.webp";
+import jeffersonLitan from "../assets/img/jeffersonLitan-synergy-2026-committee.webp";
+import arunChainit from "../assets/img/arunChainitn-synergy-2026-committee.webp";
+import chaiwatPhuakkhong from "../assets/img/chaiwatPhuakkhong-synergy-2026-committee.webp";
 
-import dharmeshDhabliya from "../assets/img/dharmeshDabliya.png";
-import gireshKumar from "../assets/img/gireshKumar.png";
-import jpBhosale from "../assets/img/jpBhosale.png";
-import nKrishnakumar from "../assets/img/Krishnakumar.png";
-import sureshMadhusudhanan from "../assets/img/sureshMadhusudhanan.png";
-import arunTarofder from "../assets/img/arunTarofder.png";
-import ferdousAzam from "../assets/img/ferdousAzam.png";
-import shibuDharmarajan from "../assets/img/shibuDharmarajan.png";
+import dharmeshDhabliya from "../assets/img/dharmesh-dhabliya-synergy-2026-committee.webp";
+import gireshKumar from "../assets/img/Girishkumar-synergy-2026-committee.webp";
+import jpBhosale from "../assets/img/jpBhosalen-synergy-2026-committee.webp";
+import nKrishnakumar from "../assets/img/krishnakumar-synergy-2026-committee.webp";
+import sureshMadhusudhanan from "../assets/img/sureshMadhusudhanan-synergy-2026-committee.webp";
+import arunTarofder from "../assets/img/arunTarofdern-synergy-2026-committee.webp";
+import ferdousAzam from "../assets/img/ferdousAzamn-synergy-2026-committee.webp";
+import shibuDharmarajan from "../assets/img/shibuDharmarajan-synergy-2026-committee.webp";
 // import juneDsouza from "../assets/committee/june_dsouza.png";
 // import krishnaraj from "../assets/committee/krishnaraj.png";
 // import muthukumar from "../assets/committee/muthukumar.png";

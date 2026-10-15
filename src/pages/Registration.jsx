@@ -24,8 +24,8 @@ import {
   Utensils,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-import registrationHero from "../assets/img/RegistrationBg.png";
-import ctaBg from "../assets/img/ideax-2026-committee-call-to-action-banner.webp";
+import registrationHero from "../assets/img/synergy-2026-registration-banner.webp";
+import ctaBg from "../assets/img//synergy-2026-conference-tracks-call-to-action.webp";
 // import noteImg from "../assets/img/ideax-2026-registration-guidelines.webp";
 // import questionImg from "../assets/img/ideax-2026-registration-faq.webp";
 

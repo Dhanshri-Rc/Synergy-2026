@@ -7,13 +7,13 @@ import {
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Linkedin, Twitter, Facebook, Youtube } from "../components/SocialIcons";
-import contactHero from "../assets/img/contactBg.png";
-import cta from "../assets/img/ideax-2026-committee-call-to-action-banner.webp";
-import batangasLogo from "../assets/img/batangasUniversityLogo.png";
-import perpetualLogo from "../assets/img/universityofPerpetual.png";
-import himalayanLogo from "../assets/img/himalayanUniversity.png";
-import globalResearchLogo from "../assets/img/globalResearch.png";
-import researcherConnectLogo from "../assets/img/RC Logo.png";
+import contactHero from "../assets/img/synergy-2026-contact-us-banner.webp";
+import cta from "../assets/img/synergy-2026-conference-tracks-call-to-action.webp";
+import batangasLogo from "../assets/img/batangasUniversityLogo.webp";
+import perpetualLogo from "../assets/img/university-of-Perpetual-logo.webp";
+import himalayanLogo from "../assets/img/himalayan-University-logo.webp";
+import globalResearchLogo from "../assets/img/global-research-collaboration-logo.webp";
+import researcherConnectLogo from "../assets/img/researcher-connect-publication-partner-logo.webp";
 
 
 
