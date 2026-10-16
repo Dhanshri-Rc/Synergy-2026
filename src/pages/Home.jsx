@@ -29,10 +29,10 @@ const fadeUp = {
 };
 
 const STATS = [
-  { icon: Users, value: "500+", label: "Global Participants", color: "text-[#2563EB]" },
-  { icon: FileText, value: "200+", label: "Research Streams", color: "text-[#7C3AED]" },
-  { icon: Globe2, value: "30+", label: "Countries Represented", color: "text-[#12B8B3]" },
-  { icon: Mic2, value: "50+", label: "Industry Experts & Speakers", color: "text-[#FB923C]" },
+  { icon: Users, value: "50+", label: "Global Participants", color: "text-[#2563EB]" },
+  { icon: FileText, value: "10+", label: "Research Streams", color: "text-[#7C3AED]" },
+  { icon: Globe2, value: "10+", label: "Countries Represented", color: "text-[#12B8B3]" },
+  { icon: Mic2, value: "10+", label: "Industry Experts & Speakers", color: "text-[#FB923C]" },
 ];
 
 const TRACKS = [
@@ -94,8 +94,17 @@ const PARTNERS = [
     flag: "🇵🇭",
     img: perpetualLogo,
   },
-  {
+    {
     id: 3,
+    name: "Research Connect",
+    subtitle: "Publication Partner",
+    location: "",
+    country: "International",
+    flag: "🌐",
+    img: researcherConnectLogo,
+  },
+  {
+    id: 4,
     name: "Himalayan University",
     subtitle: "",
     location: "",
@@ -104,22 +113,13 @@ const PARTNERS = [
     img: himalayanLogo,
   },
   {
-    id: 4,
+    id: 5,
     name: "Global Research Conference Forum",
     subtitle: "",
     location: "",
     country: "International",
     flag: "🌐",
     img: globalResearchLogo,
-  },
-  {
-    id: 5,
-    name: "Research Connect",
-    subtitle: "Publication Partner",
-    location: "",
-    country: "International",
-    flag: "🌐",
-    img: researcherConnectLogo,
   },
 ];
 
