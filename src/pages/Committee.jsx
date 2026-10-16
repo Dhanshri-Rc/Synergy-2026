@@ -133,6 +133,27 @@ const committeeSections = [
         country: "India",
         image: dharmeshDhabliya,
       },
+        {
+        name: "Vinit Khetani",
+        role: "Chief Technology Officer",
+        organization: "Research Connect",
+        country: "India",
+        image: vinitKhetani,
+      },
+       {
+        name: "Sharyu Ikhar",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: sharyuIkhar,
+      },
+        {
+        name: "Yogesh Nagargoje",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: yogeshNagargoje,
+      },
       {
         name: "Mrs. Michelle M. Malsi",
         role: "Assistant to the Chair, Research and Publication Office",
@@ -154,13 +175,7 @@ const committeeSections = [
         country: "Thailand",
         image: arunChainit,
       },
-       {
-        name: "Vinit Khetani",
-        role: "Chief Technology Officer",
-        organization: "Research Connect",
-        country: "India",
-        image: vinitKhetani,
-      },
+     
       {
         name: "Prof. Dr. Chaiwat Phuakkhong",
         role: "Associate Professor",
@@ -176,13 +191,7 @@ const committeeSections = [
         country: "India",
         image: gireshKumar,
       },
-      {
-        name: "Yogesh Nagargoje",
-        role: "Founder & CEO",
-        organization: "Research Connect",
-        country: "India",
-        image: yogeshNagargoje,
-      },
+    
       {
         name: "Dr. J. P. Bhosale",
         role: "Conference Patron; Professor & Head Research",
@@ -190,13 +199,7 @@ const committeeSections = [
         country: "India",
         image: jpBhosale,
       },
-      {
-        name: "Sharyu Ikhar",
-        role: "Founder & CEO",
-        organization: "Research Connect",
-        country: "India",
-        image: sharyuIkhar,
-      },
+     
     ],
   },
   {
