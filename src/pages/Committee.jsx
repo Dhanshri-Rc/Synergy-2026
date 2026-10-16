@@ -74,30 +74,30 @@ const committeeSections = [
       },
     ],
   },
-  
-{
-  title: "Conference Chair & Co-Chair",
-  description:
-    "Our Conference Chair and Co-Chair provide academic leadership, strategic guidance, and coordination to ensure the successful execution of SYNERGY 2026.",
-  columns: 2,
-  members: [
-    {
-      name: "Dr. N. Krishnakumar",
-      role: "Conference Chairman",
-      organization: "Kerala Legislative Assembly",
-      country: "India",
-      image: nKrishnakumar,
-    },
-    {
-      name: "Dr. Ernesto Arlene V. Ramirez",
-      role: "Co-Chair, SYNERGY 2026",
-      organization:
-        "University of Perpetual Help System DALTA, Calamba Campus",
-      country: "Philippines",
-      image: ernestoRamirez,
-    },
-  ],
-},
+
+  {
+    title: "Conference Chair & Co-Chair",
+    description:
+      "Our Conference Chair and Co-Chair provide academic leadership, strategic guidance, and coordination to ensure the successful execution of SYNERGY 2026.",
+    columns: 2,
+    members: [
+      {
+        name: "Dr. N. Krishnakumar",
+        role: "Conference Chairman",
+        organization: "Kerala Legislative Assembly",
+        country: "India",
+        image: nKrishnakumar,
+      },
+      {
+        name: "Dr. Ernesto Arlene V. Ramirez",
+        role: "Co-Chair, SYNERGY 2026",
+        organization:
+          "University of Perpetual Help System DALTA, Calamba Campus",
+        country: "Philippines",
+        image: ernestoRamirez,
+      },
+    ],
+  },
 
   {
     title: "Organizing Committee",
@@ -141,40 +141,26 @@ const committeeSections = [
         image: michelleMalsi,
       },
       {
+        name: "Vinit Khetani",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: vinitKhetani,
+      },
+      {
         name: "Mr. Jefferson M. Litan",
         role: "Director, SYNERGY 2026",
         organization: "University of Batangas, Lipa Campus",
         country: "Philippines",
         image: jeffersonLitan,
       },
+
       {
         name: "Dr. Arun Chainit",
         role: "Assistant Professor & Member of Council",
         organization: "Phranakhon Rajabhat University",
         country: "Thailand",
         image: arunChainit,
-      },
-       {
-        name: "Vinit Khetani",
-        role: "Chief Technology Officer",
-        organization: "Research Connect",
-        country: "India",
-        image: vinitKhetani,
-      },
-      {
-        name: "Prof. Dr. Chaiwat Phuakkhong",
-        role: "Associate Professor",
-        organization: "Suratthani Rajabhat University",
-        country: "Thailand",
-        image: chaiwatPhuakkhong,
-      },
-      
-      {
-        name: "Dr. Giresh Kumar",
-        role: "Conference Co-Director",
-        organization: "Central University of Kerala",
-        country: "India",
-        image: gireshKumar,
       },
       {
         name: "Yogesh Nagargoje",
@@ -183,6 +169,22 @@ const committeeSections = [
         country: "India",
         image: yogeshNagargoje,
       },
+      {
+        name: "Prof. Dr. Chaiwat Phuakkhong",
+        role: "Associate Professor",
+        organization: "Suratthani Rajabhat University",
+        country: "Thailand",
+        image: chaiwatPhuakkhong,
+      },
+
+      // {
+      //   name: "Dr. Giresh Kumar",
+      //   role: "Conference Co-Director",
+      //   organization: "Central University of Kerala",
+      //   country: "India",
+      //   image: gireshKumar,
+      // },
+
       {
         name: "Dr. J. P. Bhosale",
         role: "Conference Patron; Professor & Head Research",
@@ -383,19 +385,18 @@ function MemberCard({ member, reduceMotion }) {
         hover:shadow-[0_18px_38px_rgba(10,50,100,0.15)]
       "
     >
-      
-{/* Profile Image */}
+      {/* Profile Image */}
 
-<motion.div
-  whileHover={
-    reduceMotion
-      ? undefined
-      : {
-          scale: 1.08,
+      <motion.div
+        whileHover={
+          reduceMotion
+            ? undefined
+            : {
+                scale: 1.08,
+              }
         }
-  }
-  transition={springTransition}
-  className="
+        transition={springTransition}
+        className="
     mb-4
     flex
     h-[110px]
@@ -416,15 +417,15 @@ function MemberCard({ member, reduceMotion }) {
     lg:h-[130px]
     lg:w-[130px]
   "
->
-  {member.image && !photoFailed ? (
-    <img
-      src={member.image}
-      alt={`${member.name} profile`}
-      loading="lazy"
-      decoding="async"
-      onError={() => setPhotoFailed(true)}
-      className="
+      >
+        {member.image && !photoFailed ? (
+          <img
+            src={member.image}
+            alt={`${member.name} profile`}
+            loading="lazy"
+            decoding="async"
+            onError={() => setPhotoFailed(true)}
+            className="
         h-full
         w-full
         rounded-full
@@ -434,16 +435,11 @@ function MemberCard({ member, reduceMotion }) {
         duration-500
         motion-safe:group-hover:scale-110
       "
-    />
-  ) : (
-    <UserRound
-      size={58}
-      strokeWidth={1.45}
-      className="text-[#9DA8B3]"
-    />
-  )}
-</motion.div>
-
+          />
+        ) : (
+          <UserRound size={58} strokeWidth={1.45} className="text-[#9DA8B3]" />
+        )}
+      </motion.div>
 
       {/* Name */}
 
@@ -510,18 +506,16 @@ function MemberCard({ member, reduceMotion }) {
 // ==================================================
 
 function CommitteeSection({ section, reduceMotion }) {
-  
-const isChair = section.title === "Conference Chair & Co-Chair";
+  const isChair = section.title === "Conference Chair & Co-Chair";
 
-const gridClass =
-  section.columns === 4
-    ? "lg:grid-cols-4"
-    : section.columns === 3
-      ? "lg:grid-cols-3"
-      : section.columns === 2
-        ? "lg:grid-cols-2"
-        : "lg:grid-cols-1";
-
+  const gridClass =
+    section.columns === 4
+      ? "lg:grid-cols-4"
+      : section.columns === 3
+        ? "lg:grid-cols-3"
+        : section.columns === 2
+          ? "lg:grid-cols-2"
+          : "lg:grid-cols-1";
 
   const variants = reduceMotion ? noMotion : fadeUp;
 
@@ -613,16 +607,15 @@ const gridClass =
 
         {/* Members Grid */}
 
-
-<motion.div
-  variants={reduceMotion ? noMotion : stagger}
-  initial="hidden"
-  whileInView="show"
-  viewport={{
-    once: true,
-    amount: 0.08,
-  }}
-  className={`
+        <motion.div
+          variants={reduceMotion ? noMotion : stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+            amount: 0.08,
+          }}
+          className={`
     mt-5
     grid
     grid-cols-1
@@ -630,16 +623,15 @@ const gridClass =
     sm:grid-cols-2
     ${isChair ? "lg:grid-cols-4" : gridClass}
   `}
->
-  {section.members.map((member, index) => (
-    <MemberCard
-      key={`${section.title}-${index}`}
-      member={member}
-      reduceMotion={reduceMotion}
-    />
-  ))}
-</motion.div>
-
+        >
+          {section.members.map((member, index) => (
+            <MemberCard
+              key={`${section.title}-${index}`}
+              member={member}
+              reduceMotion={reduceMotion}
+            />
+          ))}
+        </motion.div>
       </div>
     </section>
   );
