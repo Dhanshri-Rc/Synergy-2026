@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { Linkedin, Twitter, Facebook, Youtube } from "./SocialIcons";
-import Logo from "../assets/img/synergy-2026-footer-logo.webp";
+import Logo from "../assets/img/synergy-2026-globe-logo.webp";
+
 
 const QUICK_LINKS = [
   
@@ -23,6 +25,66 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
+
+  
+const [email, setEmail] = useState("");
+const [message, setMessage] = useState("");
+const [messageType, setMessageType] = useState("");
+
+const handleSubscribe = (e) => {
+  e.preventDefault();
+
+  const cleanEmail = email.trim().toLowerCase();
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(cleanEmail)) {
+    setMessage("Please enter a valid email address.");
+    setMessageType("error");
+    return;
+  }
+
+  // Get previously subscribed emails from browser storage
+  let subscribers = [];
+
+  try {
+    subscribers = JSON.parse(
+      localStorage.getItem("synergy2026_subscribers") || "[]"
+    );
+
+    if (!Array.isArray(subscribers)) {
+      subscribers = [];
+    }
+  } catch {
+    subscribers = [];
+  }
+
+  // Check if the email is already subscribed
+  if (subscribers.includes(cleanEmail)) {
+    setMessage("This email is already subscribed!");
+    setMessageType("duplicate");
+    return;
+  }
+
+  // Save the new subscriber
+  subscribers.push(cleanEmail);
+
+  try {
+    localStorage.setItem(
+      "synergy2026_subscribers",
+      JSON.stringify(subscribers)
+    );
+
+    setMessage("Successfully subscribed to SYNERGY 2026 updates!");
+    setMessageType("success");
+    setEmail("");
+  } catch {
+    setMessage("Unable to save subscription. Please try again.");
+    setMessageType("error");
+  }
+};
+
+
   return (
     <footer className="relative overflow-hidden bg-[#020B2D] text-white">
       <div className="absolute inset-0 bg-[linear-gradient(100deg,#020B2D_0%,#061B4F_48%,#031341_100%)]" />
@@ -103,35 +165,107 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Stay Updated */}
-        <div>
-          <h4 className="mb-1 text-[12px] font-[600] uppercase tracking-wide text-white">
-            Stay Updated
-          </h4>
-<div className="w-6 h-[2px] rounded-lg bg-[#123CFF] mb-3"></div>
-          <p className="mb-4 max-w-[310px] text-[12px] font-medium leading-[1.7] text-white/78">
-            Subscribe to get the latest updates and announcements.
-          </p>
+       
+{/* Stay Updated */}
+<div>
+  <h4 className="mb-1 text-[12px] font-[600] uppercase tracking-wide text-white">
+    Stay Updated
+  </h4>
 
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex h-[48px] max-w-[360px] overflow-hidden rounded-[5px] border border-white/15 bg-white/[0.04]"
-          >
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="min-w-0 flex-1 bg-transparent px-4 text-[12px] font-medium text-white outline-none placeholder:text-white/42"
-            />
+  <div className="mb-3 h-[2px] w-6 rounded-lg bg-[#123CFF]" />
 
-            <button
-              type="submit"
-              aria-label="Subscribe"
-              className="flex w-[52px] items-center justify-center bg-[#123CFF] text-white transition-all duration-300 hover:bg-[#FFC21A] hover:text-[#07113F]"
-            >
-              <Send size={17} />
-            </button>
-          </form>
-        </div>
+  <p className="mb-4 max-w-[310px] text-[12px] font-medium leading-[1.7] text-white/78">
+    Subscribe to get the latest updates and announcements.
+  </p>
+
+  <form
+    onSubmit={handleSubscribe}
+    className="
+      flex
+      h-[48px]
+      max-w-[360px]
+      overflow-hidden
+      rounded-[5px]
+      border
+      border-white/15
+      bg-white/[0.04]
+      focus-within:border-[#FFB51D]
+    "
+  >
+    <input
+      type="email"
+      value={email}
+      onChange={(e) => {
+        setEmail(e.target.value);
+        setMessage("");
+      }}
+      placeholder="Enter your email"
+      aria-label="Enter your email to subscribe"
+      required
+      className="
+        min-w-0
+        flex-1
+        bg-transparent
+        px-4
+        text-[12px]
+        font-medium
+        text-white
+        outline-none
+        placeholder:text-white/42
+      "
+    />
+
+    <button
+      type="submit"
+      aria-label="Subscribe"
+      className="
+        flex
+        w-[52px]
+        items-center
+        justify-center
+        bg-[#123CFF]
+        text-white
+        transition-all
+        duration-300
+        hover:bg-[#FFC21A]
+        hover:text-[#07113F]
+      "
+    >
+      <Send size={17} />
+    </button>
+  </form>
+
+  {/* Subscription Message */}
+  {message && (
+    <motion.p
+      key={message}
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      role="status"
+      aria-live="polite"
+      className={`
+        mt-3
+        max-w-[360px]
+        rounded-md
+        px-3
+        py-2
+        text-[12px]
+        font-medium
+        leading-5
+        ${
+          messageType === "success"
+            ? "bg-green-500/10 text-green-300"
+            : messageType === "duplicate"
+            ? "bg-yellow-500/10 text-yellow-300"
+            : "bg-red-500/10 text-red-300"
+        }
+      `}
+    >
+      {message}
+    </motion.p>
+  )}
+</div>
+
       </motion.div>
     </footer>
   );
