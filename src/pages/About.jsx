@@ -11,6 +11,8 @@ import {
   ChartNoAxesCombined,
   ArrowRight,
   ExternalLink,
+  Calendar,
+  MapPin,
 } from "lucide-react";
 
 // Replace these paths with the corresponding assets from your project.
@@ -206,7 +208,7 @@ export default function AboutSynergy2026() {
       {/* Hero: original page height and width preserved */}
 
       <section
-        className="relative min-h-[360px] sm:min-h-[430px] lg:min-h-[470px] bg-[#061b39] bg-cover bg-center bg-no-repeat lg:bg-[length:100%_100%]"
+        className="relative min-h-[360px] sm:min-h-[430px] lg:min-h-[460px] bg-[#061b39] bg-cover bg-center bg-no-repeat lg:bg-[length:100%_100%]"
         style={{
           backgroundImage: `url('${ASSETS.hero}')`,
         }}
@@ -229,12 +231,24 @@ export default function AboutSynergy2026() {
               About <br /> SYNERGY <Gold>2026</Gold>
             </h1>
 
-            <div className="mt-2 h-[4px] w-[70px] bg-[#ffb51d]" />
+            <div className="mt-2 h-[4px] w-[70px] bg-[#ffb51d] rounded-full" />
 
             <p className="mt-6 max-w-[400px] text-[13px] font-medium leading-6 text-white/95 sm:text-[14px] lg:text-[15px]">
               Bringing together global minds to drive interdisciplinary
               innovation for a sustainable and digital future.
             </p>
+
+              <div className="mt-6 flex flex-wrap gap-3 text-[12px] font-semibold text-white">
+                          {[
+                            [Calendar, "4 – 5 December, 2026"],
+                            [MapPin, "University of Batangas Lipa Campus, Batangas, Philippines"],
+                            
+                          ].map(([Icon, text]) => (
+                            <span key={text} className="flex items-center gap-2">
+                              <Icon size={16} className="text-[#FFC21A]" /> {text}
+                            </span>
+                          ))}
+                        </div>
           </motion.div>
         </div>
       </section>
