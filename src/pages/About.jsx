@@ -166,7 +166,7 @@ const descriptions = [
 
     text: "The Global Research Conference Forum (GRCF) is an international academic platform committed to advancing multidisciplinary research, fostering global academic collaboration, and promoting innovation through high-impact conferences, workshops, and publications. Headquartered in India, GRCF has collaborated with esteemed universities and organizing events that bring together scholars, professionals, and students from diverse domains.",
 
-    url: null,
+    url: "https://grcf.net/",
 
     button: "Learn More",
   },
