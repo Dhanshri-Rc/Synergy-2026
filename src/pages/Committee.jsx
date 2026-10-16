@@ -162,13 +162,6 @@ const committeeSections = [
         image: michelleMalsi,
       },
       {
-        name: "Vinit Khetani",
-        role: "Founder & CEO",
-        organization: "Research Connect",
-        country: "India",
-        image: vinitKhetani,
-      },
-      {
         name: "Mr. Jefferson M. Litan",
         role: "Director, SYNERGY 2026",
         organization: "University of Batangas, Lipa Campus",
@@ -182,13 +175,6 @@ const committeeSections = [
         organization: "Phranakhon Rajabhat University",
         country: "Thailand",
         image: arunChainit,
-      },
-      {
-        name: "Yogesh Nagargoje",
-        role: "Founder & CEO",
-        organization: "Research Connect",
-        country: "India",
-        image: yogeshNagargoje,
       },
       {
         name: "Prof. Dr. Chaiwat Phuakkhong",
