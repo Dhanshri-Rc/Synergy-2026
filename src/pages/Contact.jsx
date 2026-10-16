@@ -99,15 +99,16 @@ const PARTNERS = [
     flag: "🇵🇭",
     img: perpetualLogo,
   },
-  {
+    {
     id: 3,
-    name: "Himalayan University",
-    subtitle: "",
+    name: "Research Connect",
+    subtitle: "Publication Partner",
     location: "",
-    country: "India",
-    flag: "🇮🇳",
-    img: himalayanLogo,
+    country: "International",
+    flag: "🌐",
+    img: researcherConnectLogo,
   },
+
   {
     id: 4,
     name: "Global Research Conference Forum",
@@ -117,17 +118,17 @@ const PARTNERS = [
     flag: "🌐",
     img: globalResearchLogo,
   },
-  {
+    {
     id: 5,
-    name: "Research Connect",
-    subtitle: "Publication Partner",
+    name: "Himalayan University",
+    subtitle: "",
     location: "",
-    country: "International",
-    flag: "🌐",
-    img: researcherConnectLogo,
+    country: "India",
+    flag: "🇮🇳",
+    img: himalayanLogo,
   },
-];
 
+];
 export default function Contact() {
  
  

@@ -1,22 +1,17 @@
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Calendar, MapPin, Laptop, Lightbulb, BarChart3, Target,
-  Users, FileText, Globe2, Mic2, BrainCircuit, LineChart,
-  Cloud, HeartPulse, Leaf, Cpu, ChevronLeft, ChevronRight,
-  CheckCircle2, FileCheck2, BadgeCheck, ShieldCheck, Send,
-  ArrowRight ,   ChartNoAxesColumnIncreasing, BookOpen, Database , Award, CalendarDays , Check ,
+  Calendar, MapPin, Lightbulb, 
+  Users, FileText, Globe2, Mic2, 
+ Leaf,  ChevronLeft, ChevronRight, Send,
+  ArrowRight,ChartNoAxesColumnIncreasing, BookOpen, Database , Award, CalendarDays , Check ,
   Scale,
-  Settings,
-  
-
-  Network,
+  Settings,Network,
 
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import homeHero from "../assets/img/synergy-2026-home-hero-banner.webp";
 import { useState , useEffect } from "react";
-// import profile from "../assets/img/IDEAX-2026-conference-illustration.webp"
 import batangasLogo from "../assets/img/batangasUniversityLogo.webp";
 import perpetualLogo from "../assets/img/university-of-Perpetual-logo.webp";
 import himalayanLogo from "../assets/img/himalayan-University-logo.webp";
@@ -29,10 +24,10 @@ const fadeUp = {
 };
 
 const STATS = [
-  { icon: Users, value: "500+", label: "Global Participants", color: "text-[#2563EB]" },
-  { icon: FileText, value: "200+", label: "Research Streams", color: "text-[#7C3AED]" },
-  { icon: Globe2, value: "30+", label: "Countries Represented", color: "text-[#12B8B3]" },
-  { icon: Mic2, value: "50+", label: "Industry Experts & Speakers", color: "text-[#FB923C]" },
+  { icon: Users, value: "50+", label: "Global Participants", color: "text-[#2563EB]" },
+  { icon: FileText, value: "10+", label: "Research Streams", color: "text-[#7C3AED]" },
+  { icon: Globe2, value: "10+", label: "Countries Represented", color: "text-[#12B8B3]" },
+  { icon: Mic2, value: "20+", label: "Industry Experts & Speakers", color: "text-[#FB923C]" },
 ];
 
 const TRACKS = [
@@ -94,15 +89,16 @@ const PARTNERS = [
     flag: "🇵🇭",
     img: perpetualLogo,
   },
-  {
+    {
     id: 3,
-    name: "Himalayan University",
-    subtitle: "",
+    name: "Research Connect",
+    subtitle: "Publication Partner",
     location: "",
-    country: "India",
-    flag: "🇮🇳",
-    img: himalayanLogo,
+    country: "International",
+    flag: "🌐",
+    img: researcherConnectLogo,
   },
+
   {
     id: 4,
     name: "Global Research Conference Forum",
@@ -112,15 +108,16 @@ const PARTNERS = [
     flag: "🌐",
     img: globalResearchLogo,
   },
-  {
+    {
     id: 5,
-    name: "Research Connect",
-    subtitle: "Publication Partner",
+    name: "Himalayan University",
+    subtitle: "",
     location: "",
-    country: "International",
-    flag: "🌐",
-    img: researcherConnectLogo,
+    country: "India",
+    flag: "🇮🇳",
+    img: himalayanLogo,
   },
+
 ];
 
 
@@ -170,12 +167,9 @@ const PUBLICATION_HIGHLIGHTS = [
 
 export default function Home() {
 
-
-
-
-  const [partnerIndex, setPartnerIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(5);
-  const [direction, setDirection] = useState(1);
+const [partnerIndex, setPartnerIndex] = useState(0);
+const [visibleCount, setVisibleCount] = useState(5);
+const [direction, setDirection] = useState(1);
 
   // Responsive number of visible cards
   useEffect(() => {
