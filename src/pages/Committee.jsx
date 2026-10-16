@@ -12,6 +12,7 @@ import joseTamayo from "../assets/img/jose-antony-m-tamayo-synergy-2026-committe
 import prakashDivakaran from "../assets/img/prakash-divakaran-synergy-2026-committee.webp";
 
 import auroraTolentino from "../assets/img/aurora-p-tolentino-synergy-2026-committee.webp";
+import vinitKhetani from "../assets/img/vinitKhetani-synergy-2026-committee.webp";
 import pastorArguelles from "../assets/img/pastorArguelles-synergy-2026-committee.webp";
 import marjorieGutierrezTangog from "../assets/img/Marjorien-synergy-2026-committee.webp";
 import ernestoRamirez from "../assets/img/Ernestosynergy-2026-committee.webp";
@@ -21,7 +22,9 @@ import jeffersonLitan from "../assets/img/jeffersonLitan-synergy-2026-committee.
 import arunChainit from "../assets/img/arunChainitn-synergy-2026-committee.webp";
 import chaiwatPhuakkhong from "../assets/img/chaiwatPhuakkhong-synergy-2026-committee.webp";
 
-import dharmeshDhabliya from "../assets/img/dharmesh-dhabliya-synergy-2026-committee.webp";
+import dharmeshDhabliya from "../assets/img/dharmesh-dhabliya-synergy-2026-committee.png";
+import yogeshNagargoje from "../assets/img/yogeshNagargoje-synergy-2026-committee.webp";
+import sharyuIkhar from "../assets/img/sharyuIkhar-synergy-2026-committee.webp";
 import gireshKumar from "../assets/img/Girishkumar-synergy-2026-committee.webp";
 import jpBhosale from "../assets/img/jpBhosalen-synergy-2026-committee.webp";
 import nKrishnakumar from "../assets/img/krishnakumar-synergy-2026-committee.webp";
@@ -71,37 +74,31 @@ const committeeSections = [
       },
     ],
   },
-  {
-    title: "Conference Chair",
-    description:
-      "The Conference Chair oversees the academic program and ensures the successful execution of SYNERGY 2026.",
-    columns: 1,
-    members: [
-      {
-        name: "Dr. N. Krishnakumar",
-        role: "Conference Chairman",
-        organization: "Kerala Legislative Assembly",
-        country: "India",
-        image: nKrishnakumar,
-      },
-    ],
-  },
-  {
-    title: "Co-Chairs",
-    description:
-      "Our Co-Chairs support the Conference Chair in academic and organizational responsibilities.",
-    columns: 3,
-    members: [
-      {
-        name: "Dr. Ernesto Arlene V. Ramirez",
-        role: "Co-Chair, SYNERGY 2026",
-        organization:
-          "University of Perpetual Help System DALTA, Calamba Campus",
-        country: "Philippines",
-        image: ernestoRamirez,
-      },
-    ],
-  },
+  
+{
+  title: "Conference Chair & Co-Chair",
+  description:
+    "Our Conference Chair and Co-Chair provide academic leadership, strategic guidance, and coordination to ensure the successful execution of SYNERGY 2026.",
+  columns: 2,
+  members: [
+    {
+      name: "Dr. N. Krishnakumar",
+      role: "Conference Chairman",
+      organization: "Kerala Legislative Assembly",
+      country: "India",
+      image: nKrishnakumar,
+    },
+    {
+      name: "Dr. Ernesto Arlene V. Ramirez",
+      role: "Co-Chair, SYNERGY 2026",
+      organization:
+        "University of Perpetual Help System DALTA, Calamba Campus",
+      country: "Philippines",
+      image: ernestoRamirez,
+    },
+  ],
+},
+
   {
     title: "Organizing Committee",
     description:
@@ -130,6 +127,13 @@ const committeeSections = [
         image: marjorieGutierrezTangog,
       },
       {
+        name: "Dr. Dharmesh Dhabliya",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: dharmeshDhabliya,
+      },
+      {
         name: "Mrs. Michelle M. Malsi",
         role: "Assistant to the Chair, Research and Publication Office",
         organization: "University of Batangas",
@@ -150,6 +154,13 @@ const committeeSections = [
         country: "Thailand",
         image: arunChainit,
       },
+       {
+        name: "Vinit Khetani",
+        role: "Chief Technology Officer",
+        organization: "Research Connect",
+        country: "India",
+        image: vinitKhetani,
+      },
       {
         name: "Prof. Dr. Chaiwat Phuakkhong",
         role: "Associate Professor",
@@ -157,13 +168,7 @@ const committeeSections = [
         country: "Thailand",
         image: chaiwatPhuakkhong,
       },
-      {
-        name: "Dr. Dharmesh Dhabliya",
-        role: "Founder & CEO",
-        organization: "Research Connect",
-        country: "India",
-        image: dharmeshDhabliya,
-      },
+      
       {
         name: "Dr. Giresh Kumar",
         role: "Conference Co-Director",
@@ -172,11 +177,25 @@ const committeeSections = [
         image: gireshKumar,
       },
       {
+        name: "Yogesh Nagargoje",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: yogeshNagargoje,
+      },
+      {
         name: "Dr. J. P. Bhosale",
         role: "Conference Patron; Professor & Head Research",
         organization: "Gramonnati Mandal's ACS College, Pune",
         country: "India",
         image: jpBhosale,
+      },
+      {
+        name: "Sharyu Ikhar",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: sharyuIkhar,
       },
     ],
   },
@@ -491,14 +510,18 @@ function MemberCard({ member, reduceMotion }) {
 // ==================================================
 
 function CommitteeSection({ section, reduceMotion }) {
-  const isChair = section.columns === 1;
+  
+const isChair = section.title === "Conference Chair & Co-Chair";
 
-  const gridClass =
-    section.columns === 4
-      ? "lg:grid-cols-4"
-      : section.columns === 3
-        ? "lg:grid-cols-3"
+const gridClass =
+  section.columns === 4
+    ? "lg:grid-cols-4"
+    : section.columns === 3
+      ? "lg:grid-cols-3"
+      : section.columns === 2
+        ? "lg:grid-cols-2"
         : "lg:grid-cols-1";
+
 
   const variants = reduceMotion ? noMotion : fadeUp;
 
@@ -590,32 +613,33 @@ function CommitteeSection({ section, reduceMotion }) {
 
         {/* Members Grid */}
 
-        <motion.div
-          variants={reduceMotion ? noMotion : stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{
-            once: true,
-            amount: 0.08,
-          }}
-          className={`
-            mt-5
-            grid
-            grid-cols-1
-            gap-4
-            sm:grid-cols-2
-            ${gridClass}
-            ${isChair ? "mx-auto max-w-[360px] sm:grid-cols-1" : ""}
-          `}
-        >
-          {section.members.map((member, index) => (
-            <MemberCard
-              key={`${section.title}-${index}`}
-              member={member}
-              reduceMotion={reduceMotion}
-            />
-          ))}
-        </motion.div>
+
+<motion.div
+  variants={reduceMotion ? noMotion : stagger}
+  initial="hidden"
+  whileInView="show"
+  viewport={{
+    once: true,
+    amount: 0.08,
+  }}
+  className={`
+    mt-5
+    grid
+    grid-cols-1
+    gap-4
+    sm:grid-cols-2
+    ${isChair ? "lg:grid-cols-4" : gridClass}
+  `}
+>
+  {section.members.map((member, index) => (
+    <MemberCard
+      key={`${section.title}-${index}`}
+      member={member}
+      reduceMotion={reduceMotion}
+    />
+  ))}
+</motion.div>
+
       </div>
     </section>
   );
