@@ -226,7 +226,7 @@ export default function AboutSynergy2026() {
             </div>
 
             <h1 className="text-[36px] font-[600] leading-[1.1] sm:text-[42px] lg:text-[46px]">
-              About SYNERGY <Gold>2026</Gold>
+              About <br /> SYNERGY <Gold>2026</Gold>
             </h1>
 
             <div className="mt-2 h-[4px] w-[70px] bg-[#ffb51d]" />
