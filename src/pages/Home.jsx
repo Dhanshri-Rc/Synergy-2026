@@ -93,18 +93,6 @@ const PARTNERS = [
     id: 3,
     name: "Research Connect",
     subtitle: "Publication Partner",
-<<<<<<< HEAD
-=======
-    location: "",
-    country: "International",
-    flag: "🌐",
-    img: researcherConnectLogo,
-  },
-  {
-    id: 4,
-    name: "Himalayan University",
-    subtitle: "",
->>>>>>> 3c51d5f55ef010d75597853a2cd6e736c054a32c
     location: "",
     country: "International",
     flag: "🌐",
@@ -120,7 +108,6 @@ const PARTNERS = [
     flag: "🌐",
     img: globalResearchLogo,
   },
-<<<<<<< HEAD
     {
     id: 5,
     name: "Himalayan University",
@@ -131,8 +118,6 @@ const PARTNERS = [
     img: himalayanLogo,
   },
 
-=======
->>>>>>> 3c51d5f55ef010d75597853a2cd6e736c054a32c
 ];
 
 
