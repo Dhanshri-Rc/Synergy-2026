@@ -133,6 +133,27 @@ const committeeSections = [
         country: "India",
         image: dharmeshDhabliya,
       },
+        {
+        name: "Vinit Khetani",
+        role: "Chief Technology Officer",
+        organization: "Research Connect",
+        country: "India",
+        image: vinitKhetani,
+      },
+       {
+        name: "Sharyu Ikhar",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: sharyuIkhar,
+      },
+        {
+        name: "Yogesh Nagargoje",
+        role: "Founder & CEO",
+        organization: "Research Connect",
+        country: "India",
+        image: yogeshNagargoje,
+      },
       {
         name: "Mrs. Michelle M. Malsi",
         role: "Assistant to the Chair, Research and Publication Office",
@@ -162,6 +183,7 @@ const committeeSections = [
         country: "Thailand",
         image: arunChainit,
       },
+<<<<<<< HEAD
       {
         name: "Yogesh Nagargoje",
         role: "Founder & CEO",
@@ -169,6 +191,25 @@ const committeeSections = [
         country: "India",
         image: yogeshNagargoje,
       },
+=======
+     
+      {
+        name: "Prof. Dr. Chaiwat Phuakkhong",
+        role: "Associate Professor",
+        organization: "Suratthani Rajabhat University",
+        country: "Thailand",
+        image: chaiwatPhuakkhong,
+      },
+      
+      {
+        name: "Dr. Giresh Kumar",
+        role: "Conference Co-Director",
+        organization: "Central University of Kerala",
+        country: "India",
+        image: gireshKumar,
+      },
+    
+>>>>>>> 3db4c40fcb09f954f9d9709430a34d9692a980b1
       {
         name: "Prof. Dr. Chaiwat Phuakkhong",
         role: "Associate Professor",
@@ -192,13 +233,7 @@ const committeeSections = [
         country: "India",
         image: jpBhosale,
       },
-      {
-        name: "Sharyu Ikhar",
-        role: "Founder & CEO",
-        organization: "Research Connect",
-        country: "India",
-        image: sharyuIkhar,
-      },
+     
     ],
   },
   {
