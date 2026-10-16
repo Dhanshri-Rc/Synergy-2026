@@ -183,7 +183,6 @@ const committeeSections = [
         country: "Thailand",
         image: arunChainit,
       },
-<<<<<<< HEAD
       {
         name: "Yogesh Nagargoje",
         role: "Founder & CEO",
@@ -191,25 +190,6 @@ const committeeSections = [
         country: "India",
         image: yogeshNagargoje,
       },
-=======
-     
-      {
-        name: "Prof. Dr. Chaiwat Phuakkhong",
-        role: "Associate Professor",
-        organization: "Suratthani Rajabhat University",
-        country: "Thailand",
-        image: chaiwatPhuakkhong,
-      },
-      
-      {
-        name: "Dr. Giresh Kumar",
-        role: "Conference Co-Director",
-        organization: "Central University of Kerala",
-        country: "India",
-        image: gireshKumar,
-      },
-    
->>>>>>> 3db4c40fcb09f954f9d9709430a34d9692a980b1
       {
         name: "Prof. Dr. Chaiwat Phuakkhong",
         role: "Associate Professor",
