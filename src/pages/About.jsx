@@ -16,29 +16,29 @@ import {
 // Replace these paths with the corresponding assets from your project.
 
 const ASSETS = {
-  hero: "/src/assets/img/aboutBg.png",
+  hero: "/src/assets/img/synergy-2026-about-conference-banner.webp",
 
-  campus: "/src/assets/img/universityBatangas.png",
+  campus: "/src/assets/img/university-of-Batangas.webp",
 
-  batangasLogo: "/src/assets/img/batangasUniversityLogo.png",
+  batangasLogo: "/src/assets/img/batangasUniversityLogo.webp",
 
-  daltaLogo: "/src/assets/img/universityofPerpetual.png",
+  daltaLogo: "/src/assets/img/university-of-Perpetual-logo.webp",
 
-  himalayanLogo: "/src/assets/img/himalayanUniversity.png",
+  himalayanLogo: "/src/assets/img/himalayan-University-logo.webp",
 
-  grcfLogo: "/src/assets/img/globalResearch.png",
+  grcfLogo: "/src/assets/img/global-research-collaboration-logo.webp",
 
-  researcherLogo: "/src/assets/img/RC Logo.png",
+  researcherLogo: "/src/assets/img/researcher-connect-publication-partner-logo.webp ",
 
-  batangasBg: "/src/assets/img/BatangasBg.png",
+  batangasBg: "/src/assets/img/university-of-batangas-background.webp",
 
-  daltaBg: "/src/assets/img/perpetualBg.png",
+  daltaBg: "/src/assets/img/perpetual-university-background.webp",
 
-  himalayanBg: "/src/assets/img/himalayanBg.png",
+  himalayanBg: "/src/assets/img/himalayan-university-background.webp",
 
-  grcfBg: "/src/assets/img/globalBg.png",
+  grcfBg: "/src/assets/img/global-research-collaboration-background.webp",
 
-  partnerBg: "/src/assets/img/aboutCta.png",
+  partnerBg: "/src/assets/img/synergy-2026-about-call-to-action.webp",
 };
 
 const reveal = {
