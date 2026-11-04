@@ -30,7 +30,7 @@ import perpetualLogo from "../assets/img/university-of-Perpetual-logo.webp";
 import himalayanLogo from "../assets/img/himalayan-University-logo.webp";
 import globalResearchLogo from "../assets/img/global-research-collaboration-logo.webp";
 import researcherConnectLogo from "../assets/img/researcher-connect-publication-partner-logo.webp";
-import siareLogo from "../assets/img/logo.png";
+import siareLogo from "../assets/img/society-of-integrated-academic-research-and-education-logo.webp";
 
 const CONTACT_DETAILS = [
   {
