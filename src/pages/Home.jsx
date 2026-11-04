@@ -124,6 +124,7 @@ const PARTNERS = [
     flag: "🌐",
     img: siareLogo,
   },
+
   {
     id: 3,
     name: "Researcher Connect",
@@ -133,6 +134,8 @@ const PARTNERS = [
     flag: "🌐",
     img: researcherConnectLogo,
   },
+
+  
   {
     id: 4,
     name: "University of Perpetual Help System DALTA",
