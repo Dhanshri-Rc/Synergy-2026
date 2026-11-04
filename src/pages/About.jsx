@@ -14,34 +14,22 @@ import {
   Calendar,
   MapPin,
 } from "lucide-react";
+import hero from "../assets/img/synergy-2026-about-conference-banner.webp";
+import campus from "../assets/img/university-of-Batangas.webp";
+import batangasLogo from "../assets/img/batangasUniversityLogo.webp";
+import daltaLogo from "../assets/img/university-of-Perpetual-logo.webp";
+import himalayanLogo from "../assets/img/himalayan-University-logo.webp";
+import grcfLogo from "../assets/img/global-research-collaboration-logo.webp";
+import researcherLogo from "../assets/img/researcher-connect-publication-partner-logo.webp";
+import batangasBg from "../assets/img/university-of-batangas-background.webp";
+import daltaBg from "../assets/img/perpetual-university-background.webp";
+import himalayanBg from "../assets/img/himalayan-university-background.webp";
+import grcfBg from "../assets/img/global-research-collaboration-background.webp";
+import partnerBg from "../assets/img/synergy-2026-about-call-to-action.webp";
 
-// Replace these paths with the corresponding assets from your project.
 
-const ASSETS = {
-  hero: "/src/assets/img/synergy-2026-about-conference-banner.webp",
 
-  campus: "/src/assets/img/university-of-Batangas.webp",
 
-  batangasLogo: "/src/assets/img/batangasUniversityLogo.webp",
-
-  daltaLogo: "/src/assets/img/university-of-Perpetual-logo.webp",
-
-  himalayanLogo: "/src/assets/img/himalayan-University-logo.webp",
-
-  grcfLogo: "/src/assets/img/global-research-collaboration-logo.webp",
-
-  researcherLogo: "/src/assets/img/researcher-connect-publication-partner-logo.webp ",
-
-  batangasBg: "/src/assets/img/university-of-batangas-background.webp",
-
-  daltaBg: "/src/assets/img/perpetual-university-background.webp",
-
-  himalayanBg: "/src/assets/img/himalayan-university-background.webp",
-
-  grcfBg: "/src/assets/img/global-research-collaboration-background.webp",
-
-  partnerBg: "/src/assets/img/synergy-2026-about-call-to-action.webp",
-};
 
 const reveal = {
   hidden: { opacity: 0, y: 22 },
@@ -92,7 +80,7 @@ const institutions = [
 
     location: "Lipa City, Feliciano Leviste Road, Lipa City, Philippines",
 
-    logo: ASSETS.batangasLogo,
+    logo: batangasLogo,
   },
 
   {
@@ -100,7 +88,7 @@ const institutions = [
 
     location: "Calamba, Laguna, Philippines",
 
-    logo: ASSETS.daltaLogo,
+    logo: daltaLogo,
   },
 
   {
@@ -108,7 +96,7 @@ const institutions = [
 
     location: "Itanagar, Arunachal Pradesh, India",
 
-    logo: ASSETS.himalayanLogo,
+    logo: himalayanLogo,
   },
 
   {
@@ -116,7 +104,7 @@ const institutions = [
 
     location: "International Academic Platform",
 
-    logo: ASSETS.grcfLogo,
+    logo: grcfLogo,
   },
 ];
 
@@ -124,7 +112,7 @@ const descriptions = [
   {
     title: "University of Batangas",
 
-    bg: ASSETS.batangasBg,
+    bg: batangasBg,
 
     dark: true,
 
@@ -138,7 +126,7 @@ const descriptions = [
   {
     title: "University of Perpetual Help System DALTA",
 
-    bg: ASSETS.daltaBg,
+    bg: daltaBg,
 
     text: "The University of Perpetual Help System DALTA is a distinguished private higher education institution committed to academic excellence, research, and community development. With campuses serving students in the Philippines, the university provides quality education across diverse fields and encourages graduates to become globally competitive, responsible, and service-oriented professionals.",
 
@@ -150,7 +138,7 @@ const descriptions = [
   {
     title: "Himalayan University",
 
-    bg: ASSETS.himalayanBg,
+    bg: himalayanBg,
 
     text: "The Himalayan University is a leading multidisciplinary institution of higher education located in Itanagar, Arunachal Pradesh, India. Established with a vision to promote quality education, research, innovation, and community engagement, the University offers a wide range of undergraduate, postgraduate, diploma, and doctoral programs across diverse disciplines. Recognized by statutory bodies including UGC and other professional councils, Himalayan University is committed to fostering academic excellence, skill development, entrepreneurship, and holistic development of the North-Eastern region and the nation.",
 
@@ -162,7 +150,7 @@ const descriptions = [
   {
     title: "Global Research Conference Forum (GRCF)",
 
-    bg: ASSETS.grcfBg,
+    bg: grcfBg,
 
     text: "The Global Research Conference Forum (GRCF) is an international academic platform committed to advancing multidisciplinary research, fostering global academic collaboration, and promoting innovation through high-impact conferences, workshops, and publications. Headquartered in India, GRCF has collaborated with esteemed universities and organizing events that bring together scholars, professionals, and students from diverse domains.",
 
@@ -210,7 +198,7 @@ export default function AboutSynergy2026() {
       <section
         className="relative min-h-[360px] sm:min-h-[430px] lg:min-h-[460px] bg-[#061b39] bg-cover bg-center bg-no-repeat lg:bg-[length:100%_100%]"
         style={{
-          backgroundImage: `url('${ASSETS.hero}')`,
+          backgroundImage: `url('${hero}')`,
         }}
       >
         <div className="relative mx-auto max-w-[1420px] px-4 pt-10 sm:px-6 sm:pt-14 lg:px-16 lg:pt-20">
@@ -303,7 +291,7 @@ export default function AboutSynergy2026() {
             className="group relative rounded-xl  p-0 sm:p-0 transition-shadow duration-300 hover:shadow-[0_12px_32px_rgba(10,50,90,.12)]"
           >
             <img
-              src={ASSETS.campus}
+              src={campus}
               alt="University of Batangas campus"
               className="h-[250px] w-full rounded-lg object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.025] sm:h-[320px] lg:h-[350px]"
             />
@@ -493,12 +481,12 @@ export default function AboutSynergy2026() {
         lg:px-10
       "
               style={{
-                backgroundImage: `url('${ASSETS.partnerBg}')`,
+                backgroundImage: `url('${partnerBg}')`,
               }}
             >
               {/* Researcher Connect Logo */}
               <img
-                src={ASSETS.researcherLogo}
+                src={researcherLogo}
                 alt="Researcher Connect"
                 className="
           h-24
