@@ -116,7 +116,7 @@ const PARTNERS = [
   },
   {
     id: 3,
-    name: "Research Connect",
+    name: "Researcher Connect",
     subtitle: "Publication Partner",
     location: "",
     country: "International",
